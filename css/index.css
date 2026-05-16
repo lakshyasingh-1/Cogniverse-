@@ -95,7 +95,6 @@ nav a:hover {
   border-radius: 25px;
 }
 
-/* SCROLL BUTTON */
 .scroll {
   position: absolute;
   bottom: 20px;
@@ -151,7 +150,7 @@ html {
   font-size: 13px;
   margin-bottom: 6px;
 }
-/* CONTACT SECTION - FULL WHITE */
+
 #contact {
   background: white;
   color: black;
@@ -160,14 +159,14 @@ html {
   margin: 0;
 }
 
-/* Center content but keep full white background */
+
 .contact-box {
   max-width: 600px;
   margin: auto;
   text-align: center;
 }
 
-.contact-box h2 {
+.contact-box h2 { 
   font-size: 28px;
   margin-bottom: 10px;
 }
