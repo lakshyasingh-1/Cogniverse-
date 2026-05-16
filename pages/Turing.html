@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alan Turing — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #030d09;
+    --paper: #e8f8f2;
+    --aged: #d0eee3;
+    --rust: #0a6640;
+    --gold: #0dbb6e;
+    --charcoal: #040f0a;
+    --fade: #3a7a5e;
+    --formula-bg: #030d09;
+    --formula-text: #00ffaa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.45;
+  }
+
+  /* ─── BINARY / TAPE PATTERN ─── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 28px,
+        rgba(13,187,110,0.03) 28px,
+        rgba(13,187,110,0.03) 29px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(10%) contrast(1.15) brightness(0.82) hue-rotate(100deg) saturate(0.7);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+      linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  .hero-image-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 40% 60%, rgba(13,187,110,0.12) 0%, transparent 60%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Scrolling binary tape on hero-left */
+  .binary-tape {
+    position: absolute;
+    top: 0; right: 0;
+    width: 48px;
+    height: 100%;
+    z-index: 3;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    opacity: 0.18;
+  }
+
+  .binary-tape span {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    line-height: 18px;
+    text-align: center;
+    letter-spacing: 2px;
+    animation: scroll-tape 12s linear infinite;
+    display: block;
+    white-space: nowrap;
+  }
+
+  @keyframes scroll-tape {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-50%); }
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+    z-index: 1;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(13,187,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--charcoal);
+    max-width: 420px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.694);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── SECTION STYLES ─── */
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+
+  /* ─── BIOGRAPHY ─── */
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list { list-style: none; }
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(232,248,242,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .achievement-list li:last-child { border-bottom: none; }
+  .achievement-list li::before {
+    content: '>';
+    font-family: 'Courier Prime', monospace;
+    color: var(--gold);
+    font-size: 15px;
+    line-height: 1.2;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ─── FORMULAS ─── */
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+  /* Terminal prompt decoration */
+  .formula-card::before {
+    content: '01';
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    color: rgba(0,255,170,0.07);
+    letter-spacing: 4px;
+    pointer-events: none;
+  }
+
+  .formula-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(13,187,110,0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .formula-card:hover { background: #051a0f; }
+  .formula-card:hover::after { opacity: 1; }
+
+  .formula-math {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(16px, 2vw, 26px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    line-height: 1.5;
+  }
+
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 16px;
+  }
+
+  .formula-explanation {
+    font-size: 17px;
+    color: rgba(232,248,242,0.65);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ─── CONTRIBUTIONS ─── */
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+  }
+  .contrib-item:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(13,187,110,0.08);
+  }
+  .contrib-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-top: 8px;
+  }
+
+  /* ─── PROBLEMS SOLVED ─── */
+  .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .problem-item:hover { background: rgba(13,187,110,0.04); }
+
+  .problem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  .problem-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+  
+  /* ─── PDF LINK BUTTON ─── */
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 7px 16px;
+    border: 1px solid var(--rust);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before {
+    content: '↓';
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13,187,110,0.3);
+  }
+
+  /* ─── LIMITATIONS ─── */
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+    z-index: 1;
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card {
+    background: var(--paper);
+    padding: 28px 24px;
+    border-left: 4px solid var(--rust);
+  }
+
+  .limit-text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  /* ─── LEGACY STRIP ─── */
+  .legacy-strip {
+    background: var(--charcoal);
+    padding: 36px 40px;
+    margin: 0 -40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .legacy-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    opacity: 0.7;
+  }
+
+  .legacy-scroll {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .legacy-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: rgba(232,248,242,0.5);
+    border: 1px solid rgba(13,187,110,0.2);
+    padding: 6px 14px;
+    border-radius: 2px;
+    white-space: nowrap;
+    transition: all 0.25s;
+  }
+
+  .legacy-tag:hover {
+    color: var(--formula-text);
+    border-color: rgba(13,187,110,0.6);
+    background: rgba(13,187,110,0.07);
+  }
+
+  /* ─── BOOKS ─── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(13,187,110,0.14);
+    border-color: transparent;
+  }
+
+  .book-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .book-arrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    text-transform: uppercase;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(232,248,242,0.5);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .error {
+    color: rgba(10,102,64,0.75);
+    font-size: large;
+  }
+   /* ─── HOME BUTTON ─── */
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(232,160,96,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .home-btn:hover {
+    background: var(--rust);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  .home-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+    .legacy-strip { margin: 0 -24px; padding: 36px 24px; }
+    .problem-meta { flex-direction: column; gap: 6px; }
+  }
+
+  /* ─── SCROLL ANIMATION ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+<a class="home-btn" href="Math.html" title="Go Home">
+  <span>Home</span>
+</a>
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Alan_turing_header.jpg/500px-Alan_turing_header.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail"
+           alt="Alan Turing">
+    </div>
+
+    <!-- Scrolling binary tape -->
+    <div class="binary-tape">
+      <span id="tape-content"></span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="nationality-tag">British &nbsp;·&nbsp; Mathematician &amp; Computer Scientist</div>
+    <h1 class="hero-name">Alan<br>Turing<span"></span></h1>
+    <p class="hero-era">1912 — 1954</p>
+    <p class="hero-tagline">He conceived the computer, broke Enigma, and asked whether machines could think — before the world was ready for any of it.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Fields</div>
+        <div class="meta-value">Mathematics, CS, Logic</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">British</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Known For</div>
+        <div class="meta-value">Turing Machine, Enigma</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        <div class="meta-value">Cambridge, Princeton</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BIOGRAPHY ═══ -->
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">A Life That<br>Computed the Future</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Alan Mathison Turing was born in London, the son of a civil servant stationed in India. From childhood he showed an extraordinary capacity for independent mathematical thought — teaching himself calculus from first principles, writing on the science of relativity at fifteen without having studied it. He studied mathematics at King's College, Cambridge, where he was elected a Fellow at 22, and earned his PhD at Princeton under Alonzo Church.
+        <br><br>
+        In 1936 he published "On Computable Numbers" — a paper that defined what it means for a problem to be solvable by a mechanical procedure. The abstract device at its centre, the <em>Turing Machine</em>, became the theoretical foundation of every computer ever built. In 1939 he joined the codebreakers at Bletchley Park, where he designed the Bombe — an electromechanical machine that cracked the Nazi Enigma cipher and, historians estimate, shortened World War II by two to four years.
+        <br><br>
+        After the war he designed one of the first stored-program computers (the ACE), wrote the first chess program, and in 1950 published "Computing Machinery and Intelligence" — which proposed the Turing Test and founded the field of artificial intelligence. In 1952 he was prosecuted for homosexuality, chemically castrated by court order, and stripped of his security clearance. He died in 1954 of cyanide poisoning. He was 41. The British government formally apologised in 2009; he was pardoned in 2013.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Achievements</div>
+        <ul class="achievement-list">
+          <li>Invented the Turing Machine — theoretical foundation of computing (1936)</li>
+          <li>Proved the Halting Problem is undecidable</li>
+          <li>Broke Nazi Enigma cipher at Bletchley Park (1940)</li>
+          <li>Designed the Bombe — cracking Lorenz and Enigma codes</li>
+          <li>Proposed the Turing Test for machine intelligence (1950)</li>
+          <li>Founded computational biology with morphogenesis model (1952)</li>
+          <li>Designed the ACE — one of the first stored-program computers</li>
+          <li>Wrote the first chess-playing algorithm (Turochamp, 1948)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ EQUATIONS & CONCEPTS ═══ -->
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Theorems &amp; Models</div>
+    <h2 class="section-title">The Logic That<br>Built the Digital Age</h2>
+    <div class="formulas-grid">
+
+      <div class="formula-card">
+        <div class="formula-math">M = (Q, Γ, b, Σ, δ, q₀, F)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The Turing Machine — a 7-tuple of states, tape alphabet, blank symbol, input symbols, transition function, start state, and accepting states. Any computable function can be computed by one.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">HALT(M, w) is undecidable</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The Halting Problem: no general algorithm can determine, for every program M and input w, whether M will halt or run forever. Turing's proof by diagonalisation set the limits of computation itself.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">∂a/∂t = F(a,b) + D<sub style="font-size:0.6em">a</sub>∇²a</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Turing's reaction-diffusion equation for morphogenesis — describing how two chemical morphogens interacting with different diffusion rates spontaneously produce the patterns of spots, stripes, and whorls seen in animal coats.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">P(M passes | M is machine) → 1</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The Turing Test (formalised): if a human interrogator cannot reliably distinguish a machine from a human in text conversation, the machine may be said to exhibit intelligence — Turing's operational definition of AI.</div>
+      </div>
+
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">UTM simulates any TM M on input w &nbsp;≡&nbsp; U(⟨M,w⟩)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The Universal Turing Machine — a single machine U that reads a description of any other Turing Machine M and its input w, then simulates M's computation exactly. This is the conceptual blueprint of the stored-program computer: hardware that executes arbitrary software.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ CONTRIBUTIONS ═══ -->
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What He<br>Gave Civilisation</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">The Turing Machine and computability theory — formalising the notion of algorithm and defining the mathematical boundary between the solvable and the unsolvable, forever.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">Breaking Enigma at Bletchley Park — the Bombe machine decrypted millions of Nazi messages, giving the Allies decisive intelligence advantages at sea, on land, and in the air throughout WWII.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">The Universal Turing Machine — the theoretical ancestor of every general-purpose computer: one machine that executes any program by reading its description, not by being rewired.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">Artificial intelligence — "Computing Machinery and Intelligence" (1950) posed the question machines could think, proposed the Turing Test, and launched AI as a serious scientific discipline.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">Mathematical biology — his 1952 paper on morphogenesis showed that the complex patterns of life arise from simple chemical reaction-diffusion equations, founding the field of computational developmental biology.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Courier Prime', monospace; font-size: 52px; font-weight: 900; opacity: 0.18; line-height: 1; flex-shrink: 0;">01</div>
+        <div style="color: rgba(232,248,242,0.6); font-size: 16px; padding-top: 8px; font-style: italic;">…and every smartphone, cloud server, neural network, and digital device on Earth, which runs on the architecture he conceived before any of them existed.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROBLEMS SOLVED ═══ -->
+  <section class="reveal">
+    <div class="section-label">04 &nbsp; Problems Solved</div>
+    <h2 class="section-title">The Unsolvable,<br>Solved</h2>
+    <div class="problems-list">
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.01</div>
+          <div class="problem-text">Resolved Hilbert's Entscheidungsproblem — proving no algorithm can decide, for every mathematical statement, whether it is provable — by inventing the Turing Machine and demonstrating the Halting Problem is undecidable.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Computability &amp; Decidability, 1936</div>
+          <div class="problem-proof">On Computable Numbers, with an Application to the Entscheidungsproblem — Proc. London Math. Soc., Vol. 42, 1937</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf" target="_blank" rel="noopener">View Paper PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.02</div>
+          <div class="problem-text">Cracked the Naval Enigma cipher used by German U-boats — designing an improved Bombe that found rotor settings from known plaintext cribs, enabling the Allies to read encrypted U-boat communications and win the Battle of the Atlantic.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Enigma Codebreaking, Bletchley Park, 1940</div>
+          <div class="problem-proof">Declassified GCHQ report — "Prof's Book" (Turing's treatise on Enigma), 1940; released 2012</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://www.gchq.gov.uk/information/turing-and-enigma" target="_blank" rel="noopener">View Archive PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.03</div>
+          <div class="problem-text">Defined a rigorous operational criterion for machine intelligence — the Imitation Game (Turing Test) — resolving the philosophical impasse over whether "thinking" is a meaningful predicate for machines by replacing it with a measurable behavioural one.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Artificial Intelligence, 1950</div>
+          <div class="problem-proof">Computing Machinery and Intelligence — Mind, Vol. 59, No. 236, pp. 433–460, 1950</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://redirect.cs.umbc.edu/courses/471/papers/turing.pdf" target="_blank" rel="noopener">View Paper PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.04</div>
+          <div class="problem-text">Explained how biological organisms generate spatial patterns — stripes, spots, and whorls — from chemically uniform initial conditions, proving that symmetry-breaking arises inevitably from coupled reaction-diffusion equations even without a genetic blueprint for pattern.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Mathematical Biology / Morphogenesis, 1952</div>
+          <div class="problem-proof">The Chemical Basis of Morphogenesis — Phil. Trans. Royal Society B, Vol. 237, pp. 37–72, 1952</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://royalsocietypublishing.org/doi/10.1098/rstb.1952.0012" target="_blank" rel="noopener">View Paper PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.05</div>
+          <div class="problem-text">Designed the Automatic Computing Engine (ACE) — one of the first complete specifications for a stored-program electronic digital computer — translating the abstract Universal Turing Machine into concrete engineering blueprints for real hardware.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Computer Architecture, 1945</div>
+          <div class="problem-proof">Proposed Electronic Calculator (ACE Report) — National Physical Laboratory, 1945; declassified 1972</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://www.turingarchive.org/browse.php/C/32" target="_blank" rel="noopener">View Archive PDF</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ LEGACY STRIP ═══ -->
+<div class="legacy-strip reveal">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="legacy-label">Fields Turing Founded or Transformed</div>
+    <div class="legacy-scroll">
+      <span class="legacy-tag">Theoretical Computer Science</span>
+      <span class="legacy-tag">Computability Theory</span>
+      <span class="legacy-tag">Cryptanalysis</span>
+      <span class="legacy-tag">Artificial Intelligence</span>
+      <span class="legacy-tag">Mathematical Biology</span>
+      <span class="legacy-tag">Complexity Theory</span>
+      <span class="legacy-tag">Machine Learning (precursor)</span>
+      <span class="legacy-tag">Natural Language Processing</span>
+      <span class="legacy-tag">Stored-Program Computing</span>
+      <span class="legacy-tag">Information Theory</span>
+      <span class="legacy-tag">Computational Neuroscience</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LIMITATIONS (full-bleed) ═══ -->
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">05 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Where Even<br>Turing Stumbled</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The Turing Test, while historically pivotal, is now widely criticised as an insufficient criterion for intelligence — a machine can pass it through sophisticated pattern matching without any genuine understanding, as the Chinese Room argument illustrates.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His ACE computer design — the most detailed of its era — was so far ahead of engineering reality that NPL engineers found it impractical to build. Bureaucratic delays meant it was never fully realised in his lifetime, ceding the first working machine to Manchester and Cambridge.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Turing's morphogenesis model, while conceptually revolutionary, used simplifying assumptions about linear reaction kinetics that limit its biological accuracy. Modern developmental biology requires far more complex gene regulatory networks than his two-morphogen system.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> He did not develop a theory of computational complexity — the question of not just what can be computed, but at what cost in time and memory. This gap, left to Cook, Karp, and others in the 1970s, produced the P vs NP problem, still unresolved today.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The circumstances of his death — cyanide poisoning, 16 months after his conviction — remain contested. The coroner ruled suicide, but the evidence is ambiguous; some historians argue it may have been accidental. We will likely never know. What is certain is that the world lost him at 41 — long before he was finished.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BOOKS ═══ -->
+  <section class="reveal">
+    <div class="section-label">06 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://www.amazon.com/Alan-Turing-Enigma-Andrew-Hodges/dp/0691164724" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Alan Turing: The Enigma</div>
+        <div class="book-arrow">Andrew Hodges →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Computing-Machinery-Intelligence-Alan-Turing/dp/B09MZ5NG97" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Computing Machinery and Intelligence</div>
+        <div class="book-arrow">By Turing himself →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Turing-Imitation-Game-Computing-Machinery/dp/0141979852" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">The Imitation Game: Alan Turing Decoded</div>
+        <div class="book-arrow">Jim Ottaviani →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Introduction-Theory-Computation-Michael-Sipser/dp/113318779X" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Introduction to the Theory of Computation</div>
+        <div class="book-arrow">Michael Sipser →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"We can only see a short distance ahead, but we can see plenty there that needs to be done."</div>
+  <div>Alan Turing &nbsp;·&nbsp; 1912–1954 &nbsp;·&nbsp; Father of Computer Science &amp; Artificial Intelligence</div>
+</footer>
+
+<script>
+  /* ── Scroll reveal ── */
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  /* ── Formula card stagger ── */
+  document.querySelectorAll('.formula-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+
+  /* ── Scrolling binary tape ── */
+  const tape = document.getElementById('tape-content');
+  if (tape) {
+    const bits = Array.from({ length: 400 }, () => Math.random() > 0.5 ? '1' : '0').join(' ');
+    tape.textContent = bits + ' ' + bits; // doubled for seamless loop
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richard Feynman — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0a06;
+    --paper: #faf5ee;
+    --aged: #ede4d4;
+    --sepia: #c47a2a;
+    --rust: #c45c0a;
+    --gold: #e8a020;
+    --charcoal: #1e1508;
+    --fade: #7a6040;
+    --formula-bg: #120d04;
+    --formula-text: #f0c060;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(15%) contrast(1.08) brightness(0.95);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+                linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 84px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--charcoal);
+    max-width: 420px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.694);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    animation: fadeUp 1s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+
+  /* ─── BIOGRAPHY ─── */
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list { list-style: none; }
+
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(250,245,238,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .achievement-list li:last-child { border-bottom: none; }
+  .achievement-list li::before {
+    content: '★';
+    color: var(--gold);
+    font-size: 14px;
+    line-height: 1;
+    margin-top: 4px;
+  }
+
+  /* ─── FORMULAS ─── */
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+  .formula-card:hover {
+    transform: scaleX(1.05);
+    background: #241a08;
+  }
+
+  .formula-math {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 2.8vw, 36px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 16px;
+  }
+
+  .formula-explanation {
+    font-size: 18px;
+    color: rgba(250,245,238,0.65);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ─── CONTRIBUTIONS ─── */
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+  }
+  .contrib-item:hover {
+    border-color: var(--rust);
+    transform: translateY(-3px);
+  }
+  .contrib-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-top: 8px;
+  }
+
+  /* ─── PROBLEMS SOLVED ─── */
+  /* ─── PROBLEMS SOLVED ─── */
+  .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .problem-item:hover { background: rgba(61,158,53,0.04); }
+
+  .problem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  .problem-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+  .problem-source::before { content: '⊢ '; color: var(--gold); }
+  .problem-proof::before  { content: '✓ '; color: var(--gold); }
+
+  /* ─── PDF LINK BUTTON ─── */
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 7px 16px;
+    border: 1px solid var(--rust);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before {
+    content: '↓';
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(61,158,53,0.35);
+  }
+
+  /* ─── LIMITATIONS ─── */
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card {
+    background: white;
+    padding: 28px 24px;
+    border-left: 4px solid var(--rust);
+    position: relative;
+  }
+
+  .limit-text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  /* ─── BOOKS ─── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    border-color: transparent;
+  }
+
+  .book-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .book-arrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    text-transform: uppercase;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(250,245,238,0.5);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+   /* ─── HOME BUTTON ─── */
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(232,160,96,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .home-btn:hover {
+    background: var(--rust);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  .home-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+  /* ─── FEYNMAN DIAGRAM DECO ─── */
+  .diagram-deco {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    opacity: 0.07;
+    width: 120px;
+    height: 120px;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .error {
+    color: rgba(196, 92, 10, 0.55);
+    font-size: large;
+  }
+
+  /* Feynman diagram SVG watermark in formula section */
+  .formula-section-wrap {
+    position: relative;
+  }
+</style>
+</head>
+<body>
+<a class="home-btn" href="physics.html" title="Go Home">
+Home
+</a>
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/42/Richard_Feynman_Nobel.jpg/500px-Richard_Feynman_Nobel.jpg"
+           alt="Richard Feynman">
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="nationality-tag">American &nbsp;·&nbsp; Theoretical Physicist</div>
+    <h1 class="hero-name">Richard<br>Feynman</h1>
+    <p class="hero-era">1918 — 1988</p>
+    <p class="hero-tagline">He made quantum electrodynamics visual, intuitive, and exact — then taught the world that curiosity is its own reward.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Field</div>
+        <div class="meta-value">Theoretical Physics</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">American</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nobel Prize</div>
+        <div class="meta-value">1965</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        <div class="meta-value">Caltech</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BIOGRAPHY ═══ -->
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">The Curious<br>Character</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Richard Phillips Feynman was born in Queens, New York in 1918. Raised by a father who taught him to see patterns instead of labels, he arrived at MIT and then Princeton already thinking differently from everyone around him.
+        <br><br>
+        At twenty-four he joined the Manhattan Project at Los Alamos, where his combination of brilliance and irreverence — safecracking, bongo drums, letters written in code to evade censors — became the stuff of legend. After the war, at Cornell and then Caltech, he single-handedly reformulated quantum mechanics through a new tool he invented: the <em>path integral</em>, and gave QED its now-iconic diagrammatic language.
+        <br><br>
+        He shared the 1965 Nobel Prize in Physics with Schwinger and Tomonaga for this work. But Feynman was equally legendary as a teacher — his undergraduate lectures at Caltech, published as <em>The Feynman Lectures on Physics</em>, remain the greatest physics textbook ever written. In his final act he exposed the O-ring failure that destroyed Challenger, demonstrating the fault with a glass of ice water on live television.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Achievements</div>
+        <ul class="achievement-list">
+          <li>Nobel Prize in Physics (1965) for QED</li>
+          <li>Feynman diagrams — a new language for particle physics</li>
+          <li>Path integral formulation of quantum mechanics</li>
+          <li>Parton model of hadron structure</li>
+          <li>Feynman Lectures on Physics (1964)</li>
+          <li>Pioneer of quantum computing concept (1981)</li>
+          <li>Challenger O-ring diagnosis (1986)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FORMULAS ═══ -->
+  <section class="reveal formula-section-wrap" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Equations</div>
+    <h2 class="section-title">The Mathematics<br>of the Quantum World</h2>
+    <div class="formulas-grid">
+      <div class="formula-card">
+        <div class="formula-math">⟨x<sub style="font-size:0.6em">f</sub>|x<sub style="font-size:0.6em">i</sub>⟩ = ∫ 𝒟x · e<sup style="font-size:0.6em">iS[x]/ℏ</sup></div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Path integral: the probability amplitude for a particle to travel between two points is a sum over every possible path, each weighted by its classical action.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">𝓛 = ψ̄(iγ<sup style="font-size:0.6em">μ</sup>D<sub style="font-size:0.6em">μ</sub> − m)ψ − ¼F<sub style="font-size:0.6em">μν</sub>F<sup style="font-size:0.6em">μν</sup></div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">QED Lagrangian: governs how electrons and photons interact. Feynman's diagrammatic rules for this theory predict experimental results to 12 decimal places.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">α = e² / (4πε₀ℏc) ≈ 1/137</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Fine-structure constant: the dimensionless coupling strength of electromagnetism. Feynman called it "one of the greatest damn mysteries of physics."</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">ΔE · Δt ≥ ℏ/2</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Energy-time uncertainty: a virtual particle can violate energy conservation briefly. Feynman diagrams made these fleeting interactions calculable and physical.</div>
+      </div>
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">P = |∑ amplitudes|²</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The core rule of quantum mechanics as Feynman taught it: compute an amplitude (a complex number) for each way an event can happen, add them all up, then square the result to get probability. Simple to state; revolutionary in application.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTRIBUTIONS ═══ -->
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What He<br>Gave Science</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">Feynman diagrams — a pictorial calculus for particle interactions that transformed abstract QED into a tool every physicist could use.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">Path integral formulation — a completely new and mathematically equivalent foundation for quantum mechanics, now used across all of theoretical physics.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">Parton model — proposed that protons contain point-like constituents (quarks), paving the way for quantum chromodynamics (QCD).</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">Quantum computing — his 1981 lecture "Simulating Physics with Computers" laid the conceptual foundation for the entire field.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">The Feynman Lectures on Physics — three volumes of undergraduate physics reimagined from first principles, still the most read physics text in the world.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; opacity: 0.2; line-height: 1; flex-shrink: 0;">∞</div>
+        <div style="color: rgba(250,245,238,0.6); font-size: 16px; padding-top: 8px; font-style: italic;">…and an entire generation of physicists who learned to love the mystery of it all.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROBLEMS SOLVED ═══ -->
+  <section class="reveal">
+  <div class="section-label">04 &nbsp; Problems Solved</div>
+  <h2 class="section-title">The Unsolvable,<br>Solved</h2>
+
+  <div class="problems-list">
+
+    <div class="problem-item">
+      <div class="problem-header">
+        <div class="problem-num">P.01</div>
+        <div class="problem-text">
+          Resolved the infinities plaguing quantum electrodynamics through renormalisation, making the theory finite and calculable for the first time.
+        </div>
+      </div>
+
+      <div class="problem-meta">
+        <div class="problem-source">
+          Source: QED
+        </div>
+        <div class="problem-proof">
+          Proof: Nobel Prize in Physics, 1965
+        </div>
+      </div>
+
+      <div class="solution-link">
+        <a href="#P01">View Solution pdf</a>
+      </div>
+    </div>
+
+    <div class="problem-item">
+      <div class="problem-header">
+        <div class="problem-num">P.02</div>
+        <div class="problem-text">
+          Predicted the anomalous magnetic moment of the electron to extraordinary precision — the most accurate prediction in the history of science.
+        </div>
+      </div>
+
+      <div class="problem-meta">
+        <div class="problem-source">
+          Source: QED
+        </div>
+        <div class="problem-proof">
+          Proof: Experimental verification (g-factor measurements)
+        </div>
+      </div>
+
+      <div class="solution-link">
+        <a href="#P02">View Solution pdf</a>
+      </div>
+    </div>
+
+    <div class="problem-item">
+      <div class="problem-header">
+        <div class="problem-num">P.03</div>
+        <div class="problem-text">
+          Explained superfluidity in liquid helium-4 using quantum mechanical first principles, solving a puzzle that had stumped physics for decades.
+        </div>
+      </div>
+
+      <div class="problem-meta">
+        <div class="problem-source">
+          Source: Condensed Matter Physics
+        </div>
+        <div class="problem-proof">
+          Proof: Feynman's 1953 paper on superfluid He-4
+        </div>
+      </div>
+
+      <div class="solution-link">
+        <a href="#P03">View Solution pdf</a>
+      </div>
+    </div>
+
+    <div class="problem-item">
+      <div class="problem-header">
+        <div class="problem-num">P.04</div>
+        <div class="problem-text">
+          Collaborated with Gell-Mann on the V-A theory of weak interactions, correctly describing the structure of beta decay and the weak force.
+        </div>
+      </div>
+
+      <div class="problem-meta">
+        <div class="problem-source">
+          Source: Particle Physics
+        </div>
+        <div class="problem-proof">
+          Proof: V–A theory (1958), confirmed experimentally
+        </div>
+      </div>
+
+      <div class="solution-link">
+        <a href="#P04">View Solution pdf</a>
+      </div>
+    </div>
+
+    <div class="problem-item">
+      <div class="problem-header">
+        <div class="problem-num">P.05</div>
+        <div class="problem-text">
+          Diagnosed the Challenger Space Shuttle O-ring failure in real time, demonstrating cold-temperature brittleness with a cup of ice water before the Rogers Commission.
+        </div>
+      </div>
+
+      <div class="problem-meta">
+        <div class="problem-source">
+          Source: Engineering / Materials
+        </div>
+        <div class="problem-proof">
+          Proof: Rogers Commission testimony, 1986
+        </div>
+      </div>
+
+      <div class="solution-link">
+        <a href="#P05">View Solution pdf</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<!-- ═══ LIMITATIONS (full-bleed) ═══ -->
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">05 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Where Even<br>Feynman Stumbled</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> QED cannot be a complete theory of nature — it doesn't include gravity, and breaks down at the Planck scale.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Expressed deep scepticism of string theory and quantum gravity research, dismissing entire research programmes that later bore fruit.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His renormalisation procedure, while effective, was regarded by Dirac and others as mathematically suspect — the underlying issue remains unresolved.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Never produced a grand unified theory or made substantial contributions to general relativity or cosmology.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His famous "if you think you understand quantum mechanics, you don't understand quantum mechanics" — a frank admission that the interpretation of the theory remains contested to this day.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BOOKS ═══ -->
+  <section class="reveal">
+    <div class="section-label">06 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://www.amazon.com/Feynman-Lectures-Physics-Vol/dp/0465024939" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">The Feynman Lectures on Physics</div>
+        <div class="book-arrow">By Feynman himself →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/QED-Strange-Theory-Light-Matter/dp/0691164096" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">QED: The Strange Theory of Light and Matter</div>
+        <div class="book-arrow">By Feynman himself →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Surely-Feynman-Adventures-Curious-Character/dp/0393316041" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Surely You're Joking, Mr. Feynman!</div>
+        <div class="book-arrow">By Feynman himself →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Genius-Life-Science-Richard-Feynman/dp/0679747044" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Genius: The Life and Science of Richard Feynman</div>
+        <div class="book-arrow">James Gleick →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"The first principle is that you must not fool yourself — and you are the easiest person to fool."</div>
+  <div>Richard Feynman &nbsp;·&nbsp; 1918–1988 &nbsp;·&nbsp; Nobel Laureate in Physics</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  document.querySelectorAll('.formula-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+</script>
+</body>
+</html>

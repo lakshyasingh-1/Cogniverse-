@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cogniverse</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      body {
+        margin: 0;
+        background: #000;
+        color: #fff;
+        overflow-x: hidden;
+        padding-top: 80px;
+      }
+
+      /* HEADER */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 50px;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 15px;
+        padding: 8px 18px;
+        border-radius: 20px;
+        transition: 0.3s;
+        cursor: pointer;
+        border: 1px solid rgba(0, 255, 255, 0.4);
+      }
+
+      nav a:hover {
+        background: cyan;
+        color: #000;
+      }
+
+      /* BACKGROUND */
+      .stars {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: url("https://www.transparenttextures.com/patterns/stardust.png");
+        animation: moveStars 60s linear infinite;
+        z-index: -1;
+      }
+
+      @keyframes moveStars {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 1000px 1000px;
+        }
+      }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        top: 0;
+        left: 0;
+
+        filter: brightness(0.35);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+
+        max-width: 900px;
+        padding: 20px;
+      }
+
+      .hero-content h1 {
+        font-size: 64px;
+        color: white;
+        line-height: 1.1;
+        margin-bottom: 20px;
+
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+      }
+
+      .hero-content p {
+        font-size: 20px;
+        color: #ddd;
+        margin-bottom: 30px;
+      }
+
+      .hero-content button {
+        padding: 14px 34px;
+        border: none;
+        border-radius: 40px;
+        cursor: progress;
+        background: cyan;
+        color: black;
+
+        font-size: 16px;
+        cursor: pointer;
+
+        transition: 0.3s ease;
+      }
+
+      .hero-content button:hover {
+        transform: scale(1.08);
+        box-shadow: 0 0 25px cyan;
+      }
+
+      .hero-image img:hover {
+        transform: scale(1.05);
+      }
+      /* CARD GRID */
+      .container {
+        width: 90%;
+        margin: auto;
+        display: grid;
+        width: min(1100px, 90%);
+        grid-template-columns: repeat(2, 1fr); /* 👈 2 cards per row */
+        gap: 30px;
+
+        margin-top: 40px;
+      }
+      .section-heading {
+        text-align: center;
+        margin: 80px 20px 20px;
+      }
+
+      .section-heading h2 {
+        font-size: 36px;
+        color: cyan;
+        margin-bottom: 10px;
+      }
+
+      .section-heading p {
+        color: #aaa;
+        font-size: 16px;
+      }
+      /* CARD */
+      .card {
+        padding: 25px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: 0.3s;
+        text-align: center;
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+      }
+
+      .card h3 {
+        color: cyan;
+        margin-bottom: 10px;
+      }
+
+      .tagline {
+        font-style: italic;
+        color: #ccc;
+        margin-bottom: 15px;
+      }
+
+      .card p {
+        font-size: 14px;
+        color: #aaa;
+      }
+
+      .card button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 25px;
+        background: cyan;
+        color: #000;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .card button:hover {
+        transform: scale(1.1);
+      }
+
+      /* FOOTER (UNCHANGED) */
+      #footer {
+        background: #000;
+        color: white;
+        padding-top: 60px;
+      }
+
+      .footer-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 30px 50px;
+      }
+
+      .footer-container div {
+        margin: 20px;
+        max-width: 250px;
+      }
+
+      .footer-left p {
+        color: #bbb;
+        font-size: 14px;
+      }
+
+      .footer-links a,
+      .footer-social a {
+        display: block;
+        color: #bbb;
+        text-decoration: none;
+        margin: 6px 0;
+        transition: 0.3s;
+      }
+
+      .footer-links a:hover,
+      .footer-social a:hover {
+        color: cyan;
+        transform: translateX(5px);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding: 20px;
+        border-top: 1px solid #333;
+        font-size: 14px;
+        color: #888;
+        position: relative;
+      }
+
+      .footer-up {
+        margin-top: 10px;
+        font-size: 22px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .footer-up:hover {
+        color: cyan;
+        transform: translateY(-5px);
+      }
+      #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background: rgba(0, 0, 0, 0.95);
+
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        z-index: 9999;
+      }
+
+      .spinner {
+        width: 60px;
+        height: 60px;
+
+        border: 5px solid rgba(255, 255, 255, 0.2);
+        border-top: 5px solid cyan;
+
+        border-radius: 50%;
+
+        animation: spin 1s linear infinite;
+
+        margin-bottom: 20px;
+      }
+
+      @keyframes spin {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+        }
+        .hero-content h1 {
+          font-size: 38px;
+        }
+
+        .hero-content p {
+          font-size: 16px;
+        }
+        .container {
+          grid-template-columns: 1fr; /* 1 card per row on mobile */
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="stars"></div>
+
+    <header>
+      <div>
+        <img
+          src="assets/cogniverse.png"
+          alt="logo"
+          style="width: 240px; height: 50px"
+        />
+      </div>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="pages/physics.html">Explore</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <img
+        src="https://images.openai.com/static-rsc-4/IKJHi3GCmepMPnZo5sQ0Er1t8422b9B4m9Ammy8JnoPLJihb7SMT98NCUxPNP-52xhkNE3BamuNwIoVpgMR2Ud6I1sqrHWTKqfMY3zD5bqS8HM6RkniypJzfppatG-8My2NTdffyZK2-_IlAdSok6iht0un_ih9ay-8SHPYzNeGWGCAH1ghglSqJBBD5o1_p?purpose=inline"
+        alt="hero image"
+      />
+
+      <div class="hero-content">
+        <h1>Explore the Universe of Knowledge</h1>
+        <p>Explore knowledge across disciplines</p>
+
+        <button onclick="btn()">Start Exploring</button>
+      </div>
+    </section>
+    <p id="cards"></p>
+    <section class="section-heading">
+      <h2>Explore Domains of Knowledge</h2>
+      <p>
+        Dive into different fields that shape our understanding of the universe
+      </p>
+    </section>
+
+    <div class="container">
+      <div class="card">
+        <h3>Mathematics</h3>
+        <p class="tagline">The language of logic</p>
+        <p>Understand patterns, numbers, and problem-solving techniques.</p>
+        <button onclick="openPage('Math.html')">Explore</button>
+      </div>
+
+      <div class="card">
+        <h3>Physics</h3>
+        <p class="tagline">Laws of the universe</p>
+        <p>Discover motion, energy, and the nature of reality.</p>
+        <button onclick="openPage('physics.html')">Explore</button>
+      </div>
+
+      <div class="card">
+        <h3>Chemistry</h3>
+        <p class="tagline">Matter and change</p>
+        <p>Study substances, reactions, and transformations.</p>
+        <button onclick="openPage('chemistry.html')">Explore</button>
+      </div>
+
+      <div class="card">
+        <h3>Biology</h3>
+        <p class="tagline">Science of life</p>
+        <p>Explore living organisms and ecosystems.</p>
+        <button onclick="openPage('Biology.html')">Explore</button>
+      </div>
+
+      <div class="card">
+        <h3>Astronomy</h3>
+        <p class="tagline">Beyond Earth</p>
+        <p>Learn about stars, galaxies, and the cosmos.</p>
+        <button onclick="openPage('astronomy.html')">Explore</button>
+      </div>
+
+      <div class="card">
+        <h3>Philosophy</h3>
+        <p class="tagline">Thinking deeply</p>
+        <p>Explore existence, truth, and knowledge.</p>
+        <button onclick="openPage('philosophy.html')">Explore</button>
+      </div>
+    </div>
+
+    <footer id="footer">
+      <div class="footer-container">
+        <div class="footer-left">
+          <h3>Evolution of Science</h3>
+          <p>
+            Exploring the journey of knowledge from ancient discoveries to
+            modern breakthroughs.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="#">Home</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <a href="#">Explore</a>
+          <span id="userInfo"></span>
+        </div>
+
+        <div class="footer-social">
+          <h4>Connect</h4>
+          <a href="#"><i class="bi bi-github"></i> GitHub</a>
+          <a href="#"><i class="bi bi-linkedin"></i> LinkedIn</a>
+          <a href="#"><i class="bi bi-instagram"></i> Instagram</a>
+        </div>
+      </div>
+      <div id="loader">
+        <div class="spinner"></div>
+        <p><i class="bi bi-globe"></i> Universe is loading...</p>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Lakshya Pratap Singh | All Rights Reserved</p>
+        <div class="footer-up" onclick="scrollToTop()">
+          <i class="bi bi-arrow-up-circle"></i>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          document.getElementById("cards").scrollIntoView({
+            behavior: "smooth",
+          });
+        }, 2000);
+      });
+      function btn() {
+        setTimeout(() => {
+          document.getElementById("cards").scrollIntoView({
+            behavior: "smooth",
+          });
+        }, 200);
+      }
+      function openPage(page) {
+        const loader = document.getElementById("loader");
+
+        loader.style.display = "flex";
+
+        setTimeout(() => {
+          window.location.href = page;
+        }, 2000);
+      }
+    </script>
+  </body>
+</html>

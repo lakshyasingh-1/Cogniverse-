@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikola Tesla — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #07040f;
+    --paper: #f0ebfa;
+    --aged: #e2d9f3;
+    --rust: #5a1a9a;
+    --gold: #9b4dff;
+    --charcoal: #0e0818;
+    --fade: #6a4a8a;
+    --formula-bg: #07040f;
+    --formula-text: #c97aff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.45;
+  }
+
+  /* ─── LIGHTNING BOLT PATTERN ─── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        135deg,
+        transparent,
+        transparent 80px,
+        rgba(155,77,255,0.025) 80px,
+        rgba(155,77,255,0.025) 81px
+      ),
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 80px,
+        rgba(155,77,255,0.025) 80px,
+        rgba(155,77,255,0.025) 81px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(15%) contrast(1.1) brightness(0.85) hue-rotate(220deg);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+      linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  /* Electric arc overlay on photo */
+  .hero-image-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 70%, rgba(155,77,255,0.18) 0%, transparent 60%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+    z-index: 1;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(155,77,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Animated electric glow on hero */
+  .hero-right::after {
+    content: '';
+    position: absolute;
+    bottom: 40px; left: 40px;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(155,77,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.3); }
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--charcoal);
+    max-width: 420px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.694);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── SECTION STYLES ─── */
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+
+  /* ─── BIOGRAPHY ─── */
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list { list-style: none; }
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(240,235,250,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .achievement-list li:last-child { border-bottom: none; }
+  .achievement-list li::before {
+    content: '⚡';
+    color: var(--gold);
+    font-size: 13px;
+    line-height: 1.2;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ─── FORMULAS ─── */
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+  /* Lightning bolt decoration */
+  .formula-card::before {
+    content: '⚡';
+    position: absolute;
+    right: 18px;
+    top: 14px;
+    font-size: 22px;
+    color: rgba(201,122,255,0.07);
+    pointer-events: none;
+  }
+
+  /* Electric arc shimmer on hover */
+  .formula-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(155,77,255,0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .formula-card:hover { background: #120a1e; }
+  .formula-card:hover::after { opacity: 1; }
+
+  .formula-math {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.5vw, 34px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 16px;
+  }
+
+  .formula-explanation {
+    font-size: 17px;
+    color: rgba(240,235,250,0.65);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ─── CONTRIBUTIONS ─── */
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+  }
+  .contrib-item:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(155,77,255,0.08);
+  }
+  .contrib-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-top: 8px;
+  }
+
+  /* ─── PROBLEMS SOLVED ─── */
+  .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .problem-item:hover { background: rgba(155,77,255,0.04); }
+
+  .problem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  .problem-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+  .problem-source::before { content: '⊢ '; color: var(--gold); }
+  .problem-proof::before  { content: '✓ '; color: var(--gold); }
+
+  /* ─── PDF LINK BUTTON ─── */
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 7px 16px;
+    border: 1px solid var(--rust);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before {
+    content: '↓';
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(155,77,255,0.35);
+  }
+
+  /* ─── LIMITATIONS ─── */
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+    z-index: 1;
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card {
+    background: var(--paper);
+    padding: 28px 24px;
+    border-left: 4px solid var(--rust);
+  }
+
+  .limit-text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  /* ─── BOOKS ─── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(155,77,255,0.15);
+    border-color: transparent;
+  }
+
+  .book-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .book-arrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    text-transform: uppercase;
+  }
+
+  /* ─── PATENTS STRIP ─── */
+  .patents-strip {
+    background: var(--charcoal);
+    padding: 36px 40px;
+    margin: 0 -40px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+
+  .patents-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    opacity: 0.7;
+  }
+
+  .patents-scroll {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .patent-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: rgba(240,235,250,0.5);
+    border: 1px solid rgba(155,77,255,0.2);
+    padding: 6px 14px;
+    border-radius: 2px;
+    white-space: nowrap;
+    transition: all 0.25s;
+  }
+
+  .patent-tag:hover {
+    color: var(--formula-text);
+    border-color: rgba(155,77,255,0.6);
+    background: rgba(155,77,255,0.07);
+  }
+   /* ─── HOME BUTTON ─── */
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(232,160,96,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .home-btn:hover {
+    background: var(--rust);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  .home-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(240,235,250,0.5);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .error {
+    color: rgba(90,26,154,0.75);
+    font-size: large;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+    .patents-strip { margin: 0 -24px; padding: 36px 24px; }
+    .problem-meta { flex-direction: column; gap: 6px; }
+  }
+
+  /* ─── SCROLL ANIMATION ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+<a class="home-btn" href="physics.html" title="Go Home">
+Home
+</a>
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Tesla_circa_1890.jpeg/500px-Tesla_circa_1890.jpeg"
+           alt="Nikola Tesla">
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="nationality-tag">Serbian-American &nbsp;·&nbsp; Inventor &amp; Electrical Engineer</div>
+    <h1 class="hero-name">Nikola<br>Tesla</h1>
+    <p class="hero-era">1856 — 1943</p>
+    <p class="hero-tagline">He harnessed alternating current, tamed lightning, and dreamed of powering the whole Earth for free.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Fields</div>
+        <div class="meta-value">Electrical Engineering</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">Serbian-American</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Patents</div>
+        <div class="meta-value">300 + worldwide</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Known For</div>
+        <div class="meta-value">AC Power, Tesla Coil</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BIOGRAPHY ═══ -->
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">A Life That<br>Shocked the World</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Nikola Tesla was born at midnight during a lightning storm in Smiljan, Serbia (now Croatia) — an omen, locals said, for the man who would spend his life commanding electricity. After studying engineering in Graz and Prague, he moved to Budapest, then Paris, then New York in 1884, where he arrived with four cents in his pocket and a letter of introduction to Thomas Edison.
+        <br><br>
+        The famous split with Edison over alternating versus direct current — the <em>War of Currents</em> — defined both men. Tesla's AC system, backed by George Westinghouse, won decisively: it could transmit power over vast distances with minimal loss. The Niagara Falls power station of 1895, built on Tesla's AC patents, became the template for every electrical grid on Earth.
+        <br><br>
+        Tesla held over 300 patents across radio, rotating magnetic fields, the induction motor, fluorescent lighting, X-ray research, remote control, and wireless transmission of energy. Brilliant, eccentric, and ultimately penniless, he died alone in a New York hotel room in 1943 — yet the unit of magnetic flux density now bears his name, and the modern world runs on his inventions.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Achievements</div>
+        <ul class="achievement-list">
+          <li>Invented the AC induction motor and polyphase power system</li>
+          <li>Developed the Tesla Coil — resonant transformer circuit</li>
+          <li>Pioneered radio transmission (U.S. patent disputed with Marconi)</li>
+          <li>Designed the Niagara Falls AC hydroelectric power plant (1895)</li>
+          <li>First demonstrated wireless remote control (1898)</li>
+          <li>Conducted early X-ray experiments (1894–1895)</li>
+          <li>Proposed wireless global power transmission (Wardenclyffe Tower)</li>
+          <li>Over 300 patents across 26 countries</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ EQUATIONS & PRINCIPLES ═══ -->
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Principles &amp; Equations</div>
+    <h2 class="section-title">The Mathematics<br>of Alternating Power</h2>
+    <div class="formulas-grid">
+      <div class="formula-card">
+        <div class="formula-math">V(t) = V<sub style="font-size:0.6em">peak</sub> · sin(2πft)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Alternating voltage: the sinusoidal waveform Tesla championed — voltage oscillates at frequency f, enabling efficient long-distance power transmission impossible with Edison's DC.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">n<sub style="font-size:0.6em">s</sub> = 120f / p</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Synchronous speed of Tesla's rotating magnetic field: revolutions per minute equal 120 times frequency divided by number of poles — the heartbeat of every AC induction motor ever built.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">f<sub style="font-size:0.6em">r</sub> = 1 / (2π√LC)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Tesla Coil resonant frequency: when inductance L and capacitance C resonate together, the circuit achieves maximum energy transfer — producing the spectacular high-voltage discharges Tesla is famous for.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">P = √3 · V<sub style="font-size:0.6em">L</sub> · I<sub style="font-size:0.6em">L</sub> · cos φ</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Three-phase AC power: total power in Tesla's polyphase system. The √3 factor arises from the 120° phase offset between the three alternating currents — enabling smooth, constant power delivery.</div>
+      </div>
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">V<sub style="font-size:0.6em">s</sub> / V<sub style="font-size:0.6em">p</sub> = N<sub style="font-size:0.6em">s</sub> / N<sub style="font-size:0.6em">p</sub></div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Transformer turns ratio: the reason AC won the War of Currents. Voltage can be stepped up for lossless long-distance transmission, then stepped back down at the destination — an operation impossible with DC at the time.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTRIBUTIONS ═══ -->
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What He<br>Gave the World</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">AC induction motor and polyphase power system — the technology that powers virtually every electric motor, factory, and household appliance on Earth to this day.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">The Tesla Coil — a resonant transformer capable of producing extremely high voltages, still used in radio transmitters, plasma globes, and particle accelerator research.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">Radio — Tesla demonstrated wireless transmission in 1893, before Marconi's patents. The U.S. Supreme Court ruled in 1943 that Tesla's patents predated Marconi's key claims.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">First practical remote control — Tesla demonstrated a radio-controlled boat in Madison Square Garden in 1898, creating the conceptual blueprint for robotics and drone technology.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">Fluorescent and neon lighting — Tesla demonstrated fluorescent tubes in 1893, decades before they became commercially available, anticipating the lighting technology of the 20th century.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; opacity: 0.2; line-height: 1; flex-shrink: 0;">⚡</div>
+        <div style="color: rgba(240,235,250,0.6); font-size: 16px; padding-top: 8px; font-style: italic;">…and a vision of wireless global energy so far ahead of its time that the world is only now beginning to catch up.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROBLEMS SOLVED ═══ -->
+  <section class="reveal">
+    <div class="section-label">04 &nbsp; Problems Solved</div>
+    <h2 class="section-title">The Unsolvable,<br>Solved</h2>
+    <div class="problems-list">
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.01</div>
+          <div class="problem-text">Solved the fundamental limitation of DC power — its inability to be transmitted over long distances without enormous energy loss — by designing a complete polyphase AC system with motors, generators, and transformers.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">AC Polyphase System, 1887–1888</div>
+          <div class="problem-proof">U.S. Patents 381,968 – 390,721 (Westinghouse portfolio)</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://www.google.com/patents/US381968" target="_blank" rel="noopener">View Patent PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.02</div>
+          <div class="problem-text">Demonstrated that a rotating magnetic field produced by polyphase currents could drive a motor without brushes or commutators — eliminating the main source of wear and sparking in electric motors of the era.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">AC Induction Motor, 1887</div>
+          <div class="problem-proof">U.S. Patent 416,194 — Electromagnetic Motor</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://www.google.com/patents/US416194" target="_blank" rel="noopener">View Patent PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.03</div>
+          <div class="problem-text">Produced and studied X-rays independently of Röntgen in 1894–95, identifying the hazard of radiation and improving vacuum tube design — work cut short when his lab burned down in 1895.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">X-ray Research, 1894–1895</div>
+          <div class="problem-proof">Tesla's own laboratory notes; letter to Electrical Review, 1896</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://teslauniverse.com/nikola-tesla/articles/tesla-x-rays" target="_blank" rel="noopener">View Source PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.04</div>
+          <div class="problem-text">Designed the world's first large-scale hydroelectric AC power plant at Niagara Falls (1895), proving that a single power source could supply electricity to an entire city — the model for every national grid thereafter.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Niagara Falls Power Station, 1895</div>
+          <div class="problem-proof">Niagara Falls Power Co. commission records; Electrical World, 1895</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://babel.hathitrust.org/cgi/pt?id=uc1.b3243514" target="_blank" rel="noopener">View Archive PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.05</div>
+          <div class="problem-text">Demonstrated the first radio-controlled vehicle — a boat steered wirelessly via encoded radio signals in 1898 — solving the problem of remote mechanical control and establishing the conceptual basis for all unmanned vehicles.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Radio Remote Control, 1898</div>
+          <div class="problem-proof">U.S. Patent 613,809 — Method of and Apparatus for Controlling Mechanism of Moving Vessels</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://www.google.com/patents/US613809" target="_blank" rel="noopener">View Patent PDF</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ PATENTS STRIP ═══ -->
+<div class="patents-strip reveal">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="patents-label">Selected Patents &amp; Inventions</div>
+    <div class="patents-scroll">
+      <span class="patent-tag">US381968 — AC Motor</span>
+      <span class="patent-tag">US390721 — Dynamo Machine</span>
+      <span class="patent-tag">US416194 — EM Motor</span>
+      <span class="patent-tag">US445207 — Tesla Coil</span>
+      <span class="patent-tag">US511916 — Steam Engine</span>
+      <span class="patent-tag">US568176 — Apparatus for Producing Ozone</span>
+      <span class="patent-tag">US577671 — Apparatus for Producing Electrical Currents</span>
+      <span class="patent-tag">US613809 — Remote Control Vessel</span>
+      <span class="patent-tag">US645576 — System of Transmission of Electrical Energy</span>
+      <span class="patent-tag">US685012 — Means for Increasing Intensity of Electrical Oscillations</span>
+      <span class="patent-tag">US723188 — Method of Signaling</span>
+      <span class="patent-tag">US787412 — Art of Transmitting Electrical Energy through Natural Mediums</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LIMITATIONS (full-bleed) ═══ -->
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">05 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Where Even<br>Tesla Stumbled</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Wardenclyffe Tower — his grand vision of wireless global power transmission — was never completed. Financier J.P. Morgan withdrew funding in 1906, and the project collapsed, leaving Tesla bankrupt and the concept unproven at scale.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His feud with Thomas Edison was partly self-destructive — Tesla's refusal to compromise or commercialise incrementally meant he repeatedly lost financial backing and credit to more business-savvy rivals.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> He dismissed radio waves as a practical communication medium, believing they would never propagate beyond line of sight — a miscalculation that allowed Marconi to seize the commercial radio market while Tesla pursued wireless power.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His later years were marked by increasingly speculative and scientifically unfounded claims — a "death ray" (teleforce weapon), communication with Martians, and cosmic ray motors — damaging his credibility among physicists.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> He kept few systematic records and worked largely from memory and intuition. Unlike Edison's meticulous notebooks, Tesla's method made it hard to defend patent priority, costing him credit for radio and other inventions.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BOOKS ═══ -->
+  <section class="reveal">
+    <div class="section-label">06 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://www.amazon.com/My-Inventions-Autobiography-Nikola-Tesla/dp/1603864814" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">My Inventions: The Autobiography of Nikola Tesla</div>
+        <div class="book-arrow">By Tesla himself →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Tesla-Man-Out-Time-Cheney/dp/0743215362" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Tesla: Man Out of Time</div>
+        <div class="book-arrow">Margaret Cheney →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Wizard-West-Orange-Inventor-Changed/dp/0399173463" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">The Last Days of Night</div>
+        <div class="book-arrow">Graham Moore →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Tesla-Inventor-Electrical-Age-Bernard/dp/0691165610" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Tesla: Inventor of the Electrical Age</div>
+        <div class="book-arrow">W. Bernard Carlson →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"The present is theirs; the future, for which I really worked, is mine."</div>
+  <div>Nikola Tesla &nbsp;·&nbsp; 1856–1943 &nbsp;·&nbsp; Inventor of the AC Power System &nbsp;·&nbsp; 300+ Patents</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  document.querySelectorAll('.formula-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+</script>
+</body>
+</html>

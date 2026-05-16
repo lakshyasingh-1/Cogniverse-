@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Srinivasa Ramanujan — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0608;
+    --paper: #fdf6ed;
+    --aged: #f0e0c8;
+    --sepia: #c47820;
+    --rust: #b86010;
+    --gold: #e09030;
+    --charcoal: #1a0e04;
+    --fade: #806040;
+    --formula-bg: #0e0805;
+    --formula-text: #ffc060;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(30%) contrast(1.12) brightness(0.88) hue-rotate(10deg) saturate(0.5);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+                linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: clamp(44px, 5vw, 80px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--charcoal);
+    max-width: 420px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.694);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    animation: fadeUp 1s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+
+  /* ─── BIOGRAPHY ─── */
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list { list-style: none; }
+
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(253,246,237,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .achievement-list li:last-child { border-bottom: none; }
+  .achievement-list li::before {
+    content: '★';
+    color: var(--gold);
+    font-size: 14px;
+    line-height: 1;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ─── FORMULAS ─── */
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+  .formula-card:hover {
+    transform: scaleX(1.05);
+    background: #221205;
+  }
+
+  .formula-math {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.2vw, 30px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    line-height: 1.4;
+  }
+
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 16px;
+  }
+
+  .formula-explanation {
+    font-size: 18px;
+    color: rgba(253,246,237,0.65);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ─── CONTRIBUTIONS ─── */
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+  }
+  .contrib-item:hover {
+    border-color: var(--rust);
+    transform: translateY(-3px);
+  }
+  .contrib-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-top: 8px;
+  }
+
+ .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .problem-item:hover { background: rgba(61,158,53,0.04); }
+
+  .problem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  .problem-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+  .problem-source::before { content: '⊢ '; color: var(--gold); }
+  .problem-proof::before  { content: '✓ '; color: var(--gold); }
+
+  /* ─── PDF LINK BUTTON ─── */
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 7px 16px;
+    border: 1px solid var(--rust);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before {
+    content: '↓';
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(61,158,53,0.35);
+  }
+
+
+  /* ─── LIMITATIONS ─── */
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card {
+    background: white;
+    padding: 28px 24px;
+    border-left: 4px solid var(--rust);
+  }
+
+  .limit-text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  /* ─── BOOKS ─── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    border-color: transparent;
+  }
+
+  .book-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .book-arrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    text-transform: uppercase;
+  }
+   /* ─── HOME BUTTON ─── */
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(232,160,96,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .home-btn:hover {
+    background: var(--rust);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  .home-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(253,246,237,0.5);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .error {
+    color: rgba(184, 96, 16, 0.55);
+    font-size: large;
+  }
+</style>
+</head>
+<body>
+<a class="home-btn" href="Math.html" title="Go Home">
+  <span>Home</span>
+</a>
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Srinivasa_Ramanujan_-_OPC_-_1.jpg/500px-Srinivasa_Ramanujan_-_OPC_-_1.jpg"
+           alt="Srinivasa Ramanujan">
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="nationality-tag">Indian &nbsp;·&nbsp; Mathematician</div>
+    <h1 class="hero-name">Srinivasa<br>Ramanujan</h1>
+    <p class="hero-era">1887 — 1920</p>
+    <p class="hero-tagline">With no formal training, no library, and no collaborators, he discovered thousands of extraordinary mathematical identities — many still not fully understood today.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Field</div>
+        <div class="meta-value">Mathematics</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">Indian</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">FRS Elected</div>
+        <div class="meta-value">1918</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        <div class="meta-value">Trinity College, Cambridge</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BIOGRAPHY ═══ -->
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">The Man Who<br>Knew Infinity</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Srinivasa Ramanujan Iyengar was born on 22 December 1887 in Erode, in the Madras Presidency of British India. Raised in a Brahmin family of modest means in Kumbakonam, he showed an almost supernatural facility with numbers from childhood — by age twelve he had mastered a college-level trigonometry textbook; by sixteen, he had independently rediscovered Euler's results on continued fractions and divergent series.
+        <br><br>
+        So consumed was he by mathematics that he failed his university examinations twice, losing his scholarships and spending years in poverty, filling notebooks with results he could not publish or communicate. In 1913, in an act of extraordinary audacity, he wrote a letter to G. H. Hardy at Cambridge, filled with a hundred theorems and no proofs. Hardy, after sharing it with Littlewood, wrote back that Ramanujan must be a mathematician of the highest class. He arranged passage to England.
+        <br><br>
+        The five years at Cambridge (1914–1919) were among the most productive in mathematical history. Hardy and Ramanujan collaborated on the revolutionary circle method for number partitions. Ramanujan became the first Indian elected Fellow of the Royal Society, and the first Indian Fellow of Trinity College. He returned to India in 1919 gravely ill with tuberculosis, and died at 32 — leaving behind three notebooks and a mysterious "lost notebook" rediscovered in 1976, whose contents mathematicians are still proving today.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Achievements</div>
+        <ul class="achievement-list">
+          <li>Hardy–Ramanujan asymptotic formula for partitions</li>
+          <li>Ramanujan's tau function and mock theta functions</li>
+          <li>Infinite series for 1/π (basis of modern π algorithms)</li>
+          <li>Ramanujan prime &amp; Ramanujan conjecture</li>
+          <li>Rogers–Ramanujan identities</li>
+          <li>Taxicab numbers and highly composite numbers</li>
+          <li>FRS — first Indian Fellow of Trinity College, Cambridge</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FORMULAS ═══ -->
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Equations</div>
+    <h2 class="section-title">Identities from<br>Another World</h2>
+    <div class="formulas-grid">
+      <div class="formula-card">
+        <div class="formula-math">1/π = (2√2/9801) ∑ (4n)!(1103+26390n) / (n!)⁴ 396⁴ⁿ</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Ramanujan's series for 1/π: each term adds roughly 8 correct digits of π. It was the basis for the fastest algorithms to compute π for decades — including the first billion-digit calculations.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">p(n) ~ e<sup style="font-size:0.65em">π√(2n/3)</sup> / (4n√3)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Hardy–Ramanujan partition formula: an asymptotic count of how many ways a number n can be written as a sum of positive integers. It founded the circle method — the most powerful tool in analytic combinatorics.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">1 + 2 + 3 + ··· = −1/12</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Ramanujan summation of divergent series: in the sense of zeta regularisation, ζ(−1) = −1/12. This result appears in bosonic string theory and the Casimir effect — nature uses Ramanujan's sum.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">∑<sub style="font-size:0.55em">n=0</sub><sup style="font-size:0.55em">∞</sup> q<sup style="font-size:0.6em">n²</sup> = ∏<sub style="font-size:0.55em">n=1</sub><sup style="font-size:0.55em">∞</sup> (1−q<sup style="font-size:0.6em">5n</sup>)(1−q<sup style="font-size:0.6em">5n−1</sup>)<sup style="font-size:0.6em">−1</sup>…</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Rogers–Ramanujan identity: a breathtaking equality between a sum over squares and an infinite product. Rediscovered independently; its combinatorial meaning took decades to unlock, and it still appears in statistical mechanics.</div>
+      </div>
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">τ(n) = n<sup style="font-size:0.65em">11</sup> ∑<sub style="font-size:0.55em">d|n</sub> μ(d) · d<sup style="font-size:0.65em">−11</sup> · σ<sub style="font-size:0.55em">11</sub>(n/d) &nbsp;·&nbsp; Δ(z) = q ∏<sub style="font-size:0.55em">n=1</sub><sup style="font-size:0.55em">∞</sup>(1−qⁿ)<sup style="font-size:0.65em">24</sup></div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Ramanujan's tau function &amp; the discriminant modular form Δ(z): Ramanujan conjectured remarkable properties of τ(n) in 1916 — including that |τ(p)| ≤ 2p<sup>11/2</sup> for primes p. This conjecture, proved by Deligne in 1974 using the full machinery of algebraic geometry and earning him the Fields Medal, is one of the deepest results in 20th-century mathematics.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTRIBUTIONS ═══ -->
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What He<br>Gave Mathematics</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">The circle method (with Hardy) — a technique for extracting asymptotic information from generating functions, now the backbone of analytic combinatorics and additive number theory.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">Mock theta functions — mysterious objects introduced in his final letter to Hardy that defied classification for 80 years, until Zwegers resolved them in 2002 using the theory of harmonic Maass forms.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">Highly composite numbers — he systematically studied numbers with unusually many divisors, founding a theory with applications from signal processing to algorithm design.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">Infinite series for π — his formulas converge so rapidly they became the computational engine behind every record-breaking calculation of π digits in the modern era.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">The lost notebook — rediscovered by George Andrews in 1976 in a box at Trinity College Library, it contained over 600 results still being proved today, spawning entire new subfields.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; opacity: 0.2; line-height: 1; flex-shrink: 0;">∞</div>
+        <div style="color: rgba(253,246,237,0.6); font-size: 16px; padding-top: 8px; font-style: italic;">…and three notebooks of unproved results that mathematicians will spend the next century verifying.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROBLEMS SOLVED ═══ -->
+  <section class="reveal">
+    <div class="section-label">04 &nbsp; Problems Solved</div>
+    <h2 class="section-title">The Unsolvable,<br>Solved</h2>
+    <div class="problems-list">
+      <div class="problem-item">
+        <div class="problem-num">P.01</div>
+        <div class="problem-text">Found the asymptotic formula for p(n), the number of integer partitions of n — a problem that had resisted all previous attacks. With Hardy, the circle method made it exact.</div>
+        <div class="problem-source">Source: Combinatorics / Number Theory</div>
+        <div class="problem-proof">Proof: Hardy–Ramanujan (1918), Proc. London Math. Soc.</div>
+        <div class="solution-link"><a href="#P01">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.02</div>
+        <div class="problem-text">Produced over thirty rapidly converging series for 1/π of which no mathematician could explain the origin — each now the basis of a world-record π algorithm.</div>
+        <div class="problem-source">Source: Analysis / Pi Computation</div>
+        <div class="problem-proof">Proof: "Modular Equations and Approximations to π" (1914)</div>
+        <div class="solution-link"><a href="#P02">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.03</div>
+        <div class="problem-text">Discovered and stated the Rogers–Ramanujan identities — profound combinatorial equalities independently found by Rogers, whose paper Ramanujan had never read.</div>
+        <div class="problem-source">Source: Combinatorics / q-series</div>
+        <div class="problem-proof">Proof: Rediscovery confirmed by Rogers (1919), proved by Schur</div>
+        <div class="solution-link"><a href="#P03">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.04</div>
+        <div class="problem-text">Solved the taxicab problem implicitly — instantly recognising that 1729 = 12³ + 1³ = 10³ + 9³ is the smallest number expressible as the sum of two cubes in two different ways.</div>
+        <div class="problem-source">Source: Number Theory</div>
+        <div class="problem-proof">Proof: Anecdote with Hardy; Ramanujan's notebooks confirm prior knowledge</div>
+        <div class="solution-link"><a href="#P04">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.05</div>
+        <div class="problem-text">Conjectured deep properties of his tau function τ(n) — including the Ramanujan conjecture on its growth — which Deligne proved in 1974, requiring the full force of the Weil conjectures.</div>
+        <div class="problem-source">Source: Modular Forms / Algebraic Geometry</div>
+        <div class="problem-proof">Proof: Deligne (1974), Fields Medal awarded</div>
+        <div class="solution-link"><a href="#P05">View Solution pdf</a></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ LIMITATIONS (full-bleed) ═══ -->
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">05 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Where Even<br>Ramanujan Stumbled</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Ramanujan rarely provided proofs — his notebooks are full of results stated without justification. Some have been found to be wrong; others remain unverified a century later for want of a proof.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His early work on divergent series and the "sum" 1+2+3+⋯ = −1/12 was not rigorous by contemporary standards — it was intuitive and correct in the right sense, but required a century of formalism to properly justify.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> He independently rediscovered many known results — a consequence of his isolation from the mathematical literature. Much of his early energy was spent on mathematics that Europe had already settled.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His deep intuition did not extend uniformly across mathematics — his work was almost entirely in analysis, number theory, and combinatorics; geometry, algebra, and topology left few traces in his notebooks.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The loss of his life at 32 is itself the greatest limitation — Hardy later said that Ramanujan's death was the one great tragedy of his own mathematical life, and that what was lost can never be estimated.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BOOKS ═══ -->
+  <section class="reveal">
+    <div class="section-label">06 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://www.amazon.com/Man-Who-Knew-Infinity-Ramanujan/dp/1476763496" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">The Man Who Knew Infinity</div>
+        <div class="book-arrow">Robert Kanigel →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Ramanujans-Notebooks-Part-Bruce-Berndt/dp/0387961100" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Ramanujan's Notebooks (5 vols.)</div>
+        <div class="book-arrow">Bruce C. Berndt →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Number-Theory-Spirit-Ramanujan-Berndt/dp/0821841785" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Number Theory in the Spirit of Ramanujan</div>
+        <div class="book-arrow">Bruce C. Berndt →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Ramanujan-Letters-Commentary-History-Mathematics/dp/0821805347" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Ramanujan: Letters and Commentary</div>
+        <div class="book-arrow">Berndt &amp; Rankin →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"An equation has no meaning unless it expresses a thought of God."<br><span style="font-size:0.8em; opacity:0.7;">— attributed to Ramanujan</span></div>
+  <div style="margin-top: 16px;">Srinivasa Ramanujan &nbsp;·&nbsp; 1887–1920 &nbsp;·&nbsp; Fellow of the Royal Society</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  document.querySelectorAll('.formula-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+</script>
+</body>
+</html>

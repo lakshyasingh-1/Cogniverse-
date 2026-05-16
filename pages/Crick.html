@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Francis Crick — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0407;
+    --paper: #fdf0f4;
+    --aged: #f5d8e2;
+    --rust: #8b1535;
+    --gold: #c0284e;
+    --charcoal: #150408;
+    --fade: #7a3450;
+    --formula-bg: #0f0407;
+    --formula-text: #ff9ab8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+   /* ─── HOME BUTTON ─── */
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(232,160,96,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .home-btn:hover {
+    background: var(--rust);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  .home-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(20%) contrast(1.12) brightness(0.83) hue-rotate(300deg) saturate(0.7);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+      linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  .hero-image-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 35% 55%, rgba(192,40,78,0.16) 0%, transparent 60%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* DNA helix SVG on left panel */
+  .dna-helix {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  .helix-mark {
+    position: absolute;
+    bottom: 36px;
+    left: 20px;
+    z-index: 4;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255,154,184,0.22);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+    z-index: 1;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(192,40,78,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-right::after {
+    content: 'A·T·G·C';
+    position: absolute;
+    bottom: 40px; right: 52px;
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: rgba(192,40,78,0.042);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: 8px;
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--charcoal);
+    max-width: 430px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.694);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── SECTION STYLES ─── */
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+
+  /* ─── BIOGRAPHY ─── */
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list { list-style: none; }
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(253,240,244,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .achievement-list li:last-child { border-bottom: none; }
+  .achievement-list li::before {
+    content: '🧬';
+    font-size: 13px;
+    line-height: 1.3;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  /* ─── DNA BASE PAIRS STRIP ─── */
+  .bases-strip {
+    background: var(--charcoal);
+    padding: 48px 40px;
+    margin: 0 -40px;
+    position: relative;
+    z-index: 1;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .bases-inner { max-width: 1200px; margin: 0 auto; }
+
+  .bases-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0.7;
+  }
+
+  .bases-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: rgba(255,154,184,0.06);
+    margin-bottom: 32px;
+  }
+
+  .base-card {
+    background: rgba(15,4,7,0.95);
+    padding: 28px 20px;
+    text-align: center;
+    transition: background 0.25s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+  .base-card:hover { background: #200a10; }
+
+  .base-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .base-name {
+    font-family: 'Courier Prime';
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .base-pair {
+    font-size: 13px;
+    font-style: italic;
+    opacity: 0.5;
+  }
+
+  .base-a { border-top: 3px solid #f85579; }
+  .base-t { border-top: 3px solid #d16586; }
+  .base-g { border-top: 3px solid #c0284e; }
+  .base-c { border-top: 3px solid #8b1535; }
+
+  .base-a .base-letter { color: #ff6b8a; }
+  .base-t .base-letter { color: #ff9ab8; }
+  .base-g .base-letter { color: #c0284e; }
+  .base-c .base-letter { color: #864b5b; }
+
+  .base-a .base-name { color: rgba(255,107,138,0.6); }
+  .base-t .base-name { color: rgba(255,154,184,0.6); }
+  .base-g .base-name { color: rgba(192,40,78,0.6); }
+  .base-c .base-name { color: rgb(129, 90, 101); }
+
+  .base-pair { color: rgb(255, 255, 255); }
+
+  .pairing-rule {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .pairing-rule-item {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: rgba(253,240,244,0.7);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .pairing-rule-item span { color: var(--formula-text); }
+  .bond-dash { color: rgba(253,240,244,0.25); font-size: 13px; letter-spacing: 1px; }
+
+
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .formula-card::before {
+    content: '🧬';
+    position: absolute;
+    right: 18px;
+    top: 14px;
+    font-size: 20px;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  .formula-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(192,40,78,0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .formula-card:hover { background: #1f060e; }
+  .formula-card:hover::after { opacity: 1; }
+
+  .formula-math {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.2vw, 30px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+  }
+
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 16px;
+  }
+
+  .formula-explanation {
+    font-size: 17px;
+    color: rgba(253,240,244,0.65);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ─── CONTRIBUTIONS ─── */
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+  }
+  .contrib-item:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(192,40,78,0.08);
+  }
+  .contrib-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-top: 8px;
+  }
+
+  /* ─── PROBLEMS SOLVED ─── */
+  .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .problem-item:hover { background: rgba(192,40,78,0.04); }
+
+  .problem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  .problem-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+  
+
+  /* ─── PDF LINK BUTTON ─── */
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 7px 16px;
+    border: 1px solid var(--rust);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before {
+    content: '↓';
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--paper);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(192,40,78,0.35);
+  }
+
+  /* ─── LIMITATIONS ─── */
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+    z-index: 1;
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card {
+    background: var(--paper);
+    padding: 28px 24px;
+    border-left: 4px solid var(--rust);
+  }
+
+  .limit-text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  /* ─── BOOKS ─── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(192,40,78,0.14);
+    border-color: transparent;
+  }
+
+  .book-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .book-arrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    text-transform: uppercase;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(253,240,244,0.5);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  /* Footer home button */
+  .footer-home {
+    margin-top: 28px;
+  }
+  .footer-home a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(253,240,244,0.5);
+    border: 1px solid rgba(253,240,244,0.15);
+    padding: 9px 20px;
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .footer-home a:hover {
+    color: var(--paper);
+    border-color: var(--gold);
+    background: rgba(192,40,78,0.15);
+  }
+  .footer-home a::before { content: '← '; }
+
+  .error {
+    color: rgba(139,21,53,0.75);
+    font-size: large;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .home-btn { top: 16px; left: 16px; padding: 8px 14px; font-size: 11px; }
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .hero-right::after { display: none; }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    .bases-grid { grid-template-columns: repeat(2, 1fr); }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+    .bases-strip { margin: 0 -24px; padding: 40px 24px; }
+    .problem-meta { flex-direction: column; gap: 6px; }
+  }
+
+  /* ─── SCROLL ANIMATION ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<a class="home-btn" href="chemistry.html" title="Go Home">
+  <span>Home</span>
+</a>
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Francis_Crick_crop.jpg/500px-Francis_Crick_crop.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail"
+           alt="Francis Crick">
+    </div>
+
+  </div>
+
+  <div class="hero-right">
+    <div class="nationality-tag">British &nbsp;·&nbsp; Molecular Biologist &amp; Physicist</div>
+    <h1 class="hero-name">Francis<br>Crick</h1>
+    <p class="hero-era">1916 — 2004</p>
+    <p class="hero-tagline">He decoded the shape of life itself — the double helix that carries every instruction written in the language of four letters.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Fields</div>
+        <div class="meta-value">Molecular Biology</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">British</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nobel Prize</div>
+        <div class="meta-value">1962</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        <div class="meta-value">MRC Cambridge / Salk</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BIOGRAPHY ═══ -->
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">A Life That<br>Read the Book of Life</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Francis Harry Compton Crick was born in Northampton, England, the son of a shoe manufacturer. He studied physics at University College London, but World War II interrupted his doctorate — he spent the war designing naval mines for the Admiralty. After the war he pivoted to biology, drawn by Erwin Schrödinger's provocative 1944 book <em>What Is Life?</em>, which suggested that genetics might be governed by a physical "aperiodic crystal" encoding biological information.
+        <br><br>
+        At the Cavendish Laboratory in Cambridge, Crick met the young American James Watson in 1951. Their collaboration was unconventional — they were assigned to other projects, used other scientists' data, and built physical models out of tin and wire. But on 28 February 1953, they walked into the Eagle pub in Cambridge and announced they had "found the secret of life." The double helix — two antiparallel sugar-phosphate strands wound around each other, connected by specific base pairs (A with T, G with C) — explained both the storage and replication of genetic information in a single elegant structure.
+        <br><br>
+        Crick received the Nobel Prize in Physiology or Medicine in 1962 with Watson and Maurice Wilkins. He went on to formulate the Central Dogma of molecular biology, propose the adaptor hypothesis that led to the discovery of tRNA, and spend the last 28 years of his life at the Salk Institute studying the neuroscience of consciousness — a problem he pursued with the same restless intensity until his death in 2004.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Achievements</div>
+        <ul class="achievement-list">
+          <li>Co-discovered the double-helix structure of DNA (1953)</li>
+          <li>Nobel Prize in Physiology or Medicine (1962, with Watson &amp; Wilkins)</li>
+          <li>Formulated the Central Dogma of molecular biology</li>
+          <li>Proposed the adaptor hypothesis — predicted tRNA before its discovery</li>
+          <li>Cracked the genetic code's comma-free structure (with Griffith &amp; Orgel, 1957)</li>
+          <li>Wobble hypothesis — explained how one tRNA reads multiple codons</li>
+          <li>Pioneered the scientific study of consciousness (Salk Institute, 1976–2004)</li>
+          <li>Co-proposed directed panspermia hypothesis with Leslie Orgel (1973)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRINCIPLES & EQUATIONS ═══ -->
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Principles &amp; Models</div>
+    <h2 class="section-title">The Logic<br>of Heredity</h2>
+    <div class="formulas-grid">
+
+      <div class="formula-card">
+        <div class="formula-math">A–T, &nbsp; G–C &nbsp; (antiparallel)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Watson-Crick base pairing: adenine bonds only with thymine (2 hydrogen bonds), guanine only with cytosine (3 hydrogen bonds). The specificity of pairing is the molecular basis of heredity and makes semi-conservative replication possible.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">DNA → RNA → Protein</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The Central Dogma (Crick, 1958): genetic information flows in one direction — from DNA to RNA by transcription, from RNA to protein by translation. Information cannot flow back from protein to nucleic acid. The governing principle of all molecular biology.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">64 codons → 20 amino acids</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The genetic code — Crick's theoretical framework showed the code must be triplet (3 bases per codon), non-overlapping, and degenerate (multiple codons per amino acid). This framework guided Nirenberg, Khorana, and others in fully cracking the code by 1966.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">tRNA : adaptor for codon → aa</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The adaptor hypothesis (Crick, 1955): Crick predicted, before any molecular evidence, that a small RNA adaptor molecule must exist to translate nucleotide sequence into amino acid sequence. Transfer RNA was discovered two years later, confirming the prediction exactly.</div>
+      </div>
+
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">p = 3.4 Å/bp, &nbsp; d = 20 Å, &nbsp; 10 bp/turn (B-DNA)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Structural parameters of the B-form DNA double helix — derived from Rosalind Franklin's X-ray diffraction data (Photo 51) and Crick's helical diffraction theory: rise per base pair 3.4 ångströms, helix diameter 20 Å, 10 base pairs per full turn. These numbers, decoded by Crick from the X-ray patterns, confirmed the double helix model and remain the canonical dimensions of DNA.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ CONTRIBUTIONS ═══ -->
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What He<br>Gave Biology</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">The double helix — the structure of DNA revealed how genetic information is stored in base sequence and copied through strand separation, transforming biology from a descriptive to a molecular science.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">The Central Dogma — DNA → RNA → protein: the one-way flow of genetic information that organises all of molecular biology, cell biology, and biotechnology.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">The adaptor hypothesis — predicted transfer RNA before anyone knew it existed, one of the most successful theoretical predictions in the history of biology.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">Genetic code theory — established the theoretical constraints (triplet, non-overlapping, degenerate) that guided the experimental cracking of the entire 64-codon code between 1961 and 1966.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">Neuroscience of consciousness — spent his final three decades at the Salk Institute with Christof Koch developing the Neural Correlates of Consciousness framework, transforming consciousness from philosophy into experimental neuroscience.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; opacity: 0.18; line-height: 1; flex-shrink: 0;">🧬</div>
+        <div style="color: rgba(253,240,244,0.6); font-size: 16px; padding-top: 8px; font-style: italic;">…and the framework that made genetic engineering, PCR, gene sequencing, CRISPR, and the entire biotechnology industry conceptually possible.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROBLEMS SOLVED ═══ -->
+  <section class="reveal">
+    <div class="section-label">04 &nbsp; Problems Solved</div>
+    <h2 class="section-title">The Unsolvable,<br>Solved</h2>
+    <div class="problems-list">
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.01</div>
+          <div class="problem-text">Determined the three-dimensional structure of DNA — the double helix — by combining Rosalind Franklin's X-ray diffraction data, Chargaff's base-ratio rules, and physical model building to produce a structure that immediately explained both genetic storage and replication.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Structure of DNA, 1953</div>
+          <div class="problem-proof">A Structure for Deoxyribose Nucleic Acid — Nature, Vol. 171, pp. 737–738, 25 April 1953</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://www.nature.com/articles/171737a0" target="_blank" rel="noopener">View Paper PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.02</div>
+          <div class="problem-text">Solved the problem of how DNA replicates — showing that the antiparallel complementary strands separate and each serves as a template, predicting semi-conservative replication, confirmed by Meselson and Stahl in 1958 using nitrogen isotope labelling.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">DNA Replication Mechanism, 1953</div>
+          <div class="problem-proof">Genetical Implications of the Structure of DNA — Nature, Vol. 171, pp. 964–967, 30 May 1953</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://www.nature.com/articles/171964b0" target="_blank" rel="noopener">View Paper PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.03</div>
+          <div class="problem-text">Proposed the Central Dogma of molecular biology — that information flows from nucleic acid to protein but never from protein back to nucleic acid — providing the organising principle that unified genetics, biochemistry, and cell biology into a single coherent framework.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Central Dogma, 1958</div>
+          <div class="problem-proof">On Protein Synthesis — Symposia of the Society for Experimental Biology, Vol. 12, pp. 138–163, 1958</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://profiles.nlm.nih.gov/spotlight/sc/catalog/nlm:nlmuid-101584582X31-doc" target="_blank" rel="noopener">View Source PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.04</div>
+          <div class="problem-text">Proved that the genetic code is a triplet code — by the elegant frameshift experiment with Brenner and Barnett using bacteriophage T4 mutants, showing that adding or deleting single bases disrupts the reading frame while adding three restores it, confirming codons are three bases long.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Triplet Genetic Code, 1961</div>
+          <div class="problem-proof">General Nature of the Genetic Code for Proteins — Nature, Vol. 192, pp. 1227–1232, 1961</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://www.nature.com/articles/1921227a0" target="_blank" rel="noopener">View Paper PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.05</div>
+          <div class="problem-text">Explained the wobble phenomenon — how a single tRNA anticodon can recognise multiple codons differing only in the third position, using non-standard base pairing at the wobble position — resolving the apparent paradox that 61 sense codons are read by far fewer than 61 tRNA molecules.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Wobble Hypothesis, 1966</div>
+          <div class="problem-proof">Codon-Anticodon Pairing: The Wobble Hypothesis — Journal of Molecular Biology, Vol. 19, pp. 548–555, 1966</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://www.sciencedirect.com/science/article/abs/pii/S0022283666800846" target="_blank" rel="noopener">View Paper PDF</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ DNA BASE PAIRS STRIP ═══ -->
+<div class="bases-strip reveal">
+  <div class="bases-inner">
+    <div class="bases-label">The Four Bases of the Genetic Code — Watson-Crick Pairing</div>
+    <div class="bases-grid">
+      <div class="base-card base-a">
+        <div class="base-letter">A</div>
+        <div class="base-name">Adenine</div>
+        <div class="base-pair">pairs with T · 2 H-bonds</div>
+      </div>
+      <div class="base-card base-t">
+        <div class="base-letter">T</div>
+        <div class="base-name">Thymine</div>
+        <div class="base-pair">pairs with A · 2 H-bonds</div>
+      </div>
+      <div class="base-card base-g">
+        <div class="base-letter">G</div>
+        <div class="base-name">Guanine</div>
+        <div class="base-pair">pairs with C · 3 H-bonds</div>
+      </div>
+      <div class="base-card base-c">
+        <div class="base-letter">C</div>
+        <div class="base-name">Cytosine</div>
+        <div class="base-pair">pairs with G · 3 H-bonds</div>
+      </div>
+    </div>
+    <div class="pairing-rule">
+      <div class="pairing-rule-item">
+        <span>A</span>
+        <span class="bond-dash">═══</span>
+        <span>T</span>
+        <span style="color:rgba(253,240,244,0.35); font-size:13px; margin-left:4px;">(2 bonds, weaker)</span>
+      </div>
+      <div class="pairing-rule-item">
+        <span>G</span>
+        <span class="bond-dash">═══</span>
+        <span>C</span>
+        <span style="color:rgba(253,240,244,0.35); font-size:13px; margin-left:4px;">(3 bonds, stronger)</span>
+      </div>
+      <div style="font-family:'Courier Prime',monospace; font-size:12px; color:rgba(253,240,244,0.3); margin-left:auto; letter-spacing:2px;">
+        Chargaff's Rules: %A = %T &nbsp;·&nbsp; %G = %C
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LIMITATIONS ═══ -->
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">05 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Where Even<br>Crick Stumbled</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Crick and Watson used Rosalind Franklin's X-ray diffraction data — particularly Photo 51 — without her knowledge or direct consent, mediated through their MRC colleague Max Perutz and through Watson seeing the photo via Wilkins. Franklin died in 1958 and could not share the Nobel; the ethical questions about credit remain contested to this day.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The Central Dogma, while broadly correct, was later found to have exceptions: retroviruses use reverse transcriptase to copy RNA back into DNA, and prions transmit information via protein conformation. Crick later clarified the dogma's precise meaning but the popular version overstated its universality.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Directed panspermia — the hypothesis Crick proposed with Orgel that life on Earth was seeded by microbes sent deliberately by an alien civilisation — is considered by most biologists a scientifically unfalsifiable speculation with no supporting evidence, regarded as one of his least credible ideas.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His later work on consciousness — while conceptually important in legitimising the field — has been criticised for over-emphasising the role of the claustrum as the "seat of consciousness," a hypothesis that has not been confirmed and may reflect a search for a single anatomical locus where none exists.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Crick held strongly reductionist and materialist views about the mind — expressed in his book <em>The Astonishing Hypothesis</em> — which many philosophers and neuroscientists found philosophically naive, dismissing the hard problem of consciousness rather than engaging with it rigorously.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BOOKS ═══ -->
+  <section class="reveal">
+    <div class="section-label">06 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://www.amazon.com/What-Mad-Pursuit-Personal-Scientist/dp/0465091385" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">What Mad Pursuit: A Personal View of Scientific Discovery</div>
+        <div class="book-arrow">By Crick himself →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Double-Helix-Norton-Critical-Editions/dp/0393950751" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">The Double Helix</div>
+        <div class="book-arrow">James Watson →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Rosalind-Franklin-Dark-Lady-DNA/dp/0060983078" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Rosalind Franklin: The Dark Lady of DNA</div>
+        <div class="book-arrow">Brenda Maddox →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Astonishing-Hypothesis-Scientific-Search-Soul/dp/0684801582" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">The Astonishing Hypothesis</div>
+        <div class="book-arrow">By Crick himself →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"If you want to understand function, study structure."</div>
+  <div>Francis Crick &nbsp;·&nbsp; 1916–2004 &nbsp;·&nbsp; Nobel Laureate in Physiology or Medicine, 1962</div>
+  
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(r => observer.observe(r));
+
+  document.querySelectorAll('.formula-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+</script>
+</body>
+</html>

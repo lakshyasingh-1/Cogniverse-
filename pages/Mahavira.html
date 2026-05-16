@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahavira — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0906;
+    --paper: #faf4e8;
+    --aged: #f0e4c8;
+    --rust: #8b5e10;
+    --gold: #c89030;
+    --charcoal: #1a1008;
+    --fade: #7a5a28;
+    --formula-bg: #100a02;
+    --formula-text: #e8c060;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(232,192,96,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    cursor: pointer;
+  }
+  .home-btn:hover {
+    background: var(--rust);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  .home-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(30%) contrast(1.08) brightness(0.86) hue-rotate(15deg) saturate(0.5);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+                linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  .dharma-wheel {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    opacity: 0.18;
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--charcoal);
+    max-width: 420px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.694);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .achievement-list { list-style: none; }
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(250,244,232,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .achievement-list li:last-child { border-bottom: none; }
+  .achievement-list li::before {
+    content: '★';
+    color: var(--gold);
+    font-size: 14px;
+    line-height: 1;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .five-vows {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+    margin-bottom: 48px;
+  }
+  .vow-card {
+    background: var(--formula-bg);
+    padding: 32px 28px;
+    cursor: default;
+    transition: all 0.4s ease;
+  }
+  .vow-card:hover {
+    background: #201408;
+    transform: scaleX(1.04);
+  }
+  .vow-number {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(232,192,96,0.5);
+    margin-bottom: 8px;
+  }
+  .vow-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2vw, 26px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+  .vow-sanskrit {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(232,192,96,0.45);
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+  .vow-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 12px;
+  }
+  .vow-text {
+    font-size: 16px;
+    color: rgba(250,244,232,0.62);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    transition: all 0.5s ease;
+  }
+  .formula-card:hover {
+    transform: scaleX(1.05);
+    background: #1e1004;
+  }
+  .formula-math {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.2vw, 30px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    line-height: 1.4;
+  }
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 16px;
+  }
+  .formula-explanation {
+    font-size: 18px;
+    color: rgba(250,244,232,0.65);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .contrib-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+  }
+  .contrib-item:hover {
+    border-color: var(--rust);
+    transform: translateY(-3px);
+  }
+  .contrib-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-top: 8px;
+  }
+
+  .problems-list { display: grid; gap: 0; }
+  .problem-item {
+    padding: 32px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .problem-item:hover { background: rgba(0,0,0,0.02); }
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--fade);
+    padding-top: 4px;
+  }
+  .problem-text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+  .problem-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .problem-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: rgba(139,94,16,0.08);
+    color: var(--rust);
+    padding: 4px 10px;
+    border: 1px solid rgba(139,94,16,0.18);
+  }
+  .solution-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 8px 18px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+    margin-top: 4px;
+  }
+  .solution-btn:hover {
+    background: var(--gold);
+    color: var(--charcoal);
+    transform: translateY(-1px);
+  }
+  .solution-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .limit-card {
+    background: white;
+    padding: 28px 24px;
+    border-left: 4px solid var(--rust);
+  }
+  .limit-text { font-size: 16px; line-height: 1.65; color: var(--charcoal); }
+
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    transition: all 0.3s;
+    background: var(--paper);
+    border-radius: 4px;
+  }
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    border-color: transparent;
+  }
+  .book-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+  .book-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; line-height: 1.4; margin-bottom: 12px; }
+  .book-arrow { font-family: 'Courier Prime', monospace; font-size: 12px; letter-spacing: 2px; color: var(--rust); text-transform: uppercase; }
+
+  footer {
+    background: var(--charcoal);
+    color: rgba(250,244,232,0.5);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .bio-layout { grid-template-columns: 1fr; }
+    .five-vows { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+    .pdf-modal-body { padding: 28px 24px; }
+    .problem-item { grid-template-columns: 60px 1fr; gap: 16px; }
+    .home-btn span { display: none; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .error { color: rgba(139,94,16,0.55); font-size: large; }
+</style>
+</head>
+<body>
+<a class="home-btn" href="philosophy.html" title="Go Home">
+Home
+</a>
+
+
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Mahavira_sculpture.jpg/500px-Mahavira_sculpture.jpg"
+           alt="Mahavira">
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="nationality-tag">Indian &nbsp;·&nbsp; Philosopher &amp; Tirthankara</div>
+    <h1 class="hero-name">Mahavira</h1>
+    <p class="hero-era">c. 599 BCE — c. 527 BCE</p>
+    <p class="hero-tagline">The 24th Tirthankara — he renounced the world at thirty, achieved omniscience through twelve years of austerity, and gave humanity the most radical philosophy of non-violence ever articulated.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Field</div>
+        <div class="meta-value">Philosophy &amp; Ethics</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Tradition</div>
+        <div class="meta-value">Jainism</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Key Teaching</div>
+        <div class="meta-value">Ahimsa &amp; Anekāntavāda</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Attainment</div>
+        <div class="meta-value">Moksha · Vaishali</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">A Life of<br>Radical Renunciation</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Vardhamana — later honoured as Mahavira, the Great Hero — was born around 599 BCE in Kundagrama, near present-day Vaishali in Bihar, India, into the Kshatriya warrior caste. His father was Siddhartha, a chief of the Licchavi clan; his mother Trishala, a queen of noble lineage. From his earliest years he is said to have displayed extraordinary fearlessness, compassion, and philosophical temperament — the Jain tradition holds that even in the womb he resolved to minimise movement lest he disturb his mother.
+        <br><br>
+        At thirty, having lived as a householder and witnessed the suffering woven into every layer of worldly life, Mahavira renounced his wealth, family, and clothing — adopting the life of an unclothed ascetic. For twelve years and five months he wandered the Gangetic plain in total silence, practising extreme austerity, fasting for weeks at a time, enduring cold, heat, insect bites, and the hostility of villagers without retaliation or complaint. He accepted no shelter, owned nothing, harmed no living being — not an insect, not a microorganism if he could help it.
+        <br><br>
+        At forty-two, meditating under a Sal tree on the banks of the river Rijupalika, he attained <em>Kevala Jnana</em> — omniscience, complete and perfect knowledge of all things past, present, and future. For thirty years thereafter he taught across the kingdoms of northeastern India, establishing the philosophical system that synthesised and radicalised the earlier Jain tradition: an absolute ethics of non-violence (Ahimsa), a sophisticated epistemology of plural perspectives (Anekāntavāda), and a metaphysics in which the soul's liberation depends on its own effort, entirely independent of any god or creator.
+        <br><br>
+        He died — or in Jain terms, attained <em>Moksha</em>, liberation from the cycle of rebirth — at Pavapuri around 527 BCE. His teachings were preserved by his eleven principal disciples (<em>Ganadharas</em>) and form the canonical Agamas of Jainism. His philosophical legacy shaped Gandhi's doctrine of non-violent resistance, influenced Buddhism, and remains one of the most rigorously worked-out ethical systems in the history of human thought.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Teachings</div>
+        <ul class="achievement-list">
+          <li>Ahimsa — absolute non-violence toward all living beings</li>
+          <li>Anekāntavāda — the doctrine of many-sidedness</li>
+          <li>Syādvāda — seven-fold predication logic</li>
+          <li>Aparigraha — non-possessiveness as spiritual law</li>
+          <li>Satya — absolute truthfulness</li>
+          <li>Karma as a physical substance binding the soul</li>
+          <li>Moksha through self-effort, no divine intermediary</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; The Five Great Vows</div>
+    <h2 class="section-title">The Pañca Mahāvratas —<br>Five Absolute Renunciations</h2>
+    <div class="five-vows">
+      <div class="vow-card">
+        <div class="vow-number">Vow I</div>
+        <div class="vow-name">Ahimsa</div>
+        <div class="vow-sanskrit">अहिंसा — Non-Violence</div>
+        <div class="vow-divider"></div>
+        <div class="vow-text">The renunciation of all violence — in thought, word, and deed — toward every living being, from humans to microscopic organisms. The most absolute formulation of non-harm in any philosophical tradition. Not a guideline but an unconditional prohibition.</div>
+      </div>
+      <div class="vow-card">
+        <div class="vow-number">Vow II</div>
+        <div class="vow-name">Satya</div>
+        <div class="vow-sanskrit">सत्य — Truthfulness</div>
+        <div class="vow-divider"></div>
+        <div class="vow-text">The renunciation of all false speech. Truth is not merely a social virtue but a metaphysical imperative: untruth injures reality itself. Mahavira subordinated Satya to Ahimsa — if truth would cause harm, silence is required.</div>
+      </div>
+      <div class="vow-card">
+        <div class="vow-number">Vow III</div>
+        <div class="vow-name">Asteya</div>
+        <div class="vow-sanskrit">अस्तेय — Non-Stealing</div>
+        <div class="vow-divider"></div>
+        <div class="vow-text">The renunciation of taking anything not freely given — including attention, credit, or advantage. Extends far beyond property to any appropriation of what belongs to another being, including the earth's resources beyond what sustains bare life.</div>
+      </div>
+      <div class="vow-card">
+        <div class="vow-number">Vow IV</div>
+        <div class="vow-name">Brahmacharya</div>
+        <div class="vow-sanskrit">ब्रह्मचर्य — Celibacy</div>
+        <div class="vow-divider"></div>
+        <div class="vow-text">The renunciation of sensual pleasure. Not as punishment but as the recognition that desire binds the soul to the cycle of rebirth. Liberation requires the dissolution of all attachment, of which erotic attachment is the most tenacious.</div>
+      </div>
+      <div class="vow-card" style="grid-column: 1 / -1;">
+        <div class="vow-number">Vow V</div>
+        <div class="vow-name">Aparigraha</div>
+        <div class="vow-sanskrit">अपरिग्रह — Non-Possessiveness</div>
+        <div class="vow-divider"></div>
+        <div class="vow-text">The renunciation of all possessiveness — the deepest of the five. Mahavira himself possessed nothing: no clothing, no bowl, no shelter. Aparigraha extends to psychological possession — the need to own outcomes, opinions, relationships, and identity. It is the philosophical root of all five vows, the recognition that the self that clings to things is the very self that must be dissolved for liberation to occur.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">03 &nbsp; Philosophical Doctrines</div>
+    <h2 class="section-title">The Logic of<br>Many-Sidedness</h2>
+    <div class="formulas-grid">
+      <div class="formula-card">
+        <div class="formula-math">Anekāntavāda: Reality has ∞ aspects</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The doctrine of non-absolutism: no single perspective can capture the full nature of any reality. Every philosophical claim is true from some standpoint and false from another. This is not relativism — it is the recognition that reality is inexhaustibly complex and that every finite perspective sees a real but partial truth.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">Syādvāda: "Syāt" + 7 predicates</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Seven-fold predication: every statement about reality must be qualified by "syāt" (perhaps, in some respect). The seven forms: (1) perhaps it is; (2) perhaps it is not; (3) perhaps it is and is not; (4) perhaps it is indescribable; (5–7) combinations. A formal logic of epistemic humility 2,500 years before analytic philosophy.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">Karma = material substance + Jīva</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Mahavira taught karma not as abstract moral accounting but as a literal fine-grained matter (karma-pudgala) that adheres to the soul (Jīva) through passionate action, obscuring its innate omniscience and bliss. Liberation is the removal of all accumulated karma through austerity and right conduct.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">Moksha: Jīva − Karma = Siddha</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Liberation equation: when all karma is shed, the soul (Jīva) attains the state of Siddha — pure, omniscient, liberated consciousness that rises to the apex of the universe and abides there in perfect, motionless bliss, never returning to the cycle of rebirth.</div>
+      </div>
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">Ahimsa Paramo Dharma — अहिंसा परमो धर्म</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Non-violence is the supreme religion — the axiomatic foundation of Mahavira's entire ethical system. This single principle, taken with absolute seriousness, generates all the other vows and all of Jain practice: the vegetarianism, the care not to harm insects, the wearing of masks by monks, the refusal of agriculture (which injures root vegetables and soil organisms), and the embrace of the most radical asceticism in human history. Gandhi called this the greatest gift India had given the world.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="section-label">04 &nbsp; Contributions</div>
+    <h2 class="section-title">What He<br>Gave Philosophy</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">Anekāntavāda — the first systematic philosophical doctrine of perspectivism: the recognition that every claim is true from some standpoint, anticipating by 2,500 years debates central to modern epistemology and philosophy of language.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">Ahimsa as absolute principle — transformed non-violence from a cultural preference into a rigorously argued philosophical imperative, applicable to every living being without exception or degree.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">Syādvāda — a seven-valued predicate logic that formalises epistemic humility; one of the earliest examples of multi-valued logic in the history of philosophy, predating Łukasiewicz by two millennia.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">Karma as physical matter — a materialist theory of moral causation, in which karma is a real substance rather than a metaphor, allowing a causal account of how actions bind and liberate the soul.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">Atheistic liberation theology — a complete soteriology (theory of liberation) with no role for a creator god; the soul liberates itself through its own effort, establishing the most rigorous philosophical case for self-reliance in the history of religion.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; opacity: 0.2; line-height: 1; flex-shrink: 0;">∞</div>
+        <div style="color: rgba(250,244,232,0.6); font-size: 16px; padding-top: 8px; font-style: italic;">…and the philosophical foundation for every non-violent movement in human history, from Gandhi to Mandela.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="section-label">05 &nbsp; Problems Addressed</div>
+    <h2 class="section-title">The Unanswerable,<br>Answered</h2>
+    <div class="problems-list">
+
+      <div class="problem-item">
+        <div class="problem-num">P.01</div>
+        <div class="problem-body">
+          <div class="problem-text">The problem of violence in existence — how can a living being survive and act without causing harm? Mahavira's answer was graduated: minimise harm at every level, accept what is unavoidable, and calibrate action by the degree of consciousness of the beings involved.</div>
+          <div class="problem-meta">
+            <span class="problem-tag">Domain: Ethics</span>
+            <span class="problem-tag">Teaching: Ahimsa Gradation</span>
+          </div>
+          <button class="solution-btn" onclick="openModal('P01')">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+            View Teaching PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-num">P.02</div>
+        <div class="problem-body">
+          <div class="problem-text">The problem of dogmatism — how can competing philosophical schools all claim absolute truth? Mahavira's Anekāntavāda resolved this: each school grasps a real aspect of a reality too complex for any single perspective to capture wholly.</div>
+          <div class="problem-meta">
+            <span class="problem-tag">Domain: Epistemology</span>
+            <span class="problem-tag">Teaching: Anekāntavāda</span>
+          </div>
+          <button class="solution-btn" onclick="openModal('P02')">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+            View Teaching PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-num">P.03</div>
+        <div class="problem-body">
+          <div class="problem-text">The problem of suffering and its cause — why do souls suffer? Mahavira's answer: because karma — attracted by passion and violence — obscures the soul's innate omniscience and bliss. Remove karma through austerity and right conduct, and liberation follows necessarily.</div>
+          <div class="problem-meta">
+            <span class="problem-tag">Domain: Metaphysics</span>
+            <span class="problem-tag">Teaching: Karma Theory</span>
+          </div>
+          <button class="solution-btn" onclick="openModal('P03')">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+            View Teaching PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-num">P.04</div>
+        <div class="problem-body">
+          <div class="problem-text">The problem of divine authority — can liberation depend on a god's grace? Mahavira's answer was unequivocal: no. The soul is inherently free and omniscient; its bondage is self-created through karma; its liberation is self-achieved through right knowledge, right faith, and right conduct.</div>
+          <div class="problem-meta">
+            <span class="problem-tag">Domain: Soteriology</span>
+            <span class="problem-tag">Teaching: Triratna — Three Jewels</span>
+          </div>
+          <button class="solution-btn" onclick="openModal('P04')">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+            View Teaching PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-num">P.05</div>
+        <div class="problem-body">
+          <div class="problem-text">The problem of possession and identity — what is the self that clings to things, and why does clinging cause suffering? Mahavira's Aparigraha doctrine: possession is not a legal or economic category but a psychological one — the self's compulsive need to extend itself into objects, relationships, and ideas, which generates the very anxiety it seeks to resolve.</div>
+          <div class="problem-meta">
+            <span class="problem-tag">Domain: Psychology &amp; Ethics</span>
+            <span class="problem-tag">Teaching: Aparigraha</span>
+          </div>
+          <button class="solution-btn" onclick="openModal('P05')">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+            View Teaching PDF
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">06 &nbsp; Tensions &amp; Critiques</div>
+    <h2 class="section-title">Where the Philosophy<br>Faces Challenges</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The rigour of Ahimsa creates an impossible standard for lay life — strict Jain ascetics cannot cook (fire kills organisms), farm (ploughing harms soil creatures), or even walk carelessly. Critics argue that an ethics that can only be fully practised by renunciants is not a complete ethics for human society.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Anekāntavāda risks self-refutation: if all views are partially true, is the view that "all views are partially true" itself only partially true? The doctrine must either claim a privileged standpoint — which contradicts it — or be subject to its own relativising.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The karma doctrine, while philosophically sophisticated, relies on a metaphysical entity — the soul (Jīva) — whose existence cannot be empirically verified. Buddhist critics argued that Mahavira's substantialist soul contradicts the observable reality of impermanence and interdependence.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The historical record is sparse and filtered through centuries of hagiographic tradition. Distinguishing Mahavira's original teachings from the accretions of the Jain canonical tradition — compiled centuries after his death — is a problem analogous to separating the historical Jesus from the Gospels.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The radical asceticism Mahavira embodied and recommended — including the practice of Sallekhana (fasting unto death as the ultimate renunciation) — has been criticised as life-denying rather than life-honouring, and in modern legal terms has been challenged in Indian courts as a form of suicide.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section class="reveal">
+    <div class="section-label">07 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://www.amazon.com/Acaranga-Sutra-Jacobi/dp/1015677924" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Acaranga Sutra</div>
+        <div class="book-arrow">Jain canonical text →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Jaina-Philosophy-Religion-Muni-Mahendra/dp/8120808746" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Jaina Philosophy and Religion</div>
+        <div class="book-arrow">Muni Mahendra Kumar →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Outlines-Jainism-Jagmanderlal-Jaini/dp/8120819276" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Outlines of Jainism</div>
+        <div class="book-arrow">Jagmanderlal Jaini →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Jains-India-Dundas/dp/0415266068" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">The Jains</div>
+        <div class="book-arrow">Paul Dundas →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"Do not injure, abuse, oppress, enslave, insult, torment, torture, or kill any creature or living being."</div>
+  <div style="margin-top:16px;">Mahavira &nbsp;·&nbsp; c. 599–527 BCE &nbsp;·&nbsp; 24th Tirthankara of Jainism</div>
+</footer>
+
+<script>
+
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(r => observer.observe(r));
+
+document.querySelectorAll('.formula-card').forEach((c,i) => {
+  c.style.transitionDelay = `${i*80}ms`;
+});
+</script>
+</body>
+</html>

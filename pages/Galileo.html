@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galileo Galilei — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Abril+Fatface&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1007;
+    --paper: #faf6ee;
+    --aged: #ede4d0;
+    --mid: #f2eadb;
+    --amber: #b06000;
+    --gold: #d4890a;
+    --deep: #2e1a06;
+    --fade: #7a5230;
+    --dark-bg: #120a02;
+    --formula-bg: #0e0703;
+    --formula-text: #f5c842;
+    --muted: #8b4513;
+    --border: rgba(176,96,0,0.22);
+    --lens: #4a90d9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Spectral', serif;
+    font-size: 18px;
+    line-height: 1.85;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.55;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--dark-bg);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(35%) contrast(1.08) brightness(0.72) saturate(0.55);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 38%, var(--dark-bg) 100%),
+                linear-gradient(to right, transparent 52%, var(--dark-bg) 100%);
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--amber);
+  }
+
+  .hero-name {
+    font-family: 'Abril Fatface', serif;
+    font-size: clamp(44px, 5.8vw, 86px);
+    font-weight: 400;
+    line-height: 0.93;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 14px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Spectral', serif;
+    font-style: italic;
+    font-size: 21px;
+    color: var(--deep);
+    max-width: 440px;
+    line-height: 1.65;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(176,96,0,0.5);
+    border-bottom: 1px solid rgba(176,96,0,0.15);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+
+  .meta-value {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    font-family: 'Spectral', serif;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.09);
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Abril Fatface', serif;
+    font-size: clamp(30px, 3.8vw, 52px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+  }
+
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.95;
+    color: var(--deep);
+    font-weight: 300;
+  }
+
+  .bio-sidebar {
+    background: var(--dark-bg);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+    border: 1px solid var(--border);
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--formula-text);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list { list-style: none; }
+
+  .achievement-list li {
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    color: rgba(250,246,238,0.82);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-family: 'Spectral', serif;
+    font-weight: 300;
+  }
+
+  .achievement-list li:last-child { border-bottom: none; }
+
+  .achievement-list li::before {
+    content: '✦';
+    color: var(--formula-text);
+    font-size: 10px;
+    line-height: 1.9;
+    flex-shrink: 0;
+  }
+
+  .discovery-showcase {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .discovery-card {
+    background: var(--formula-bg);
+    border: 1px solid var(--border);
+    padding: 24px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .discovery-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(212,137,10,0.07), transparent);
+  }
+
+  .discovery-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(212,137,10,0.2);
+  }
+
+  .discovery-glyph {
+    font-family: 'Abril Fatface', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--formula-text);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .discovery-name {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: rgba(245,200,66,0.6);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .discovery-note {
+    font-size: 12px;
+    color: rgba(245,200,66,0.5);
+    font-style: italic;
+    margin-top: 10px;
+    font-family: 'Spectral', serif;
+    line-height: 1.55;
+    font-weight: 300;
+  }
+
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--amber);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .formula-card:hover {
+    transform: scaleX(1.04);
+    background: #180e03;
+  }
+
+  .formula-math {
+    font-family: 'Spectral', serif;
+    font-size: clamp(16px, 1.9vw, 26px);
+    font-weight: 600;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+  }
+
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .formula-explanation {
+    font-size: 16px;
+    color: rgba(250,246,238,0.58);
+    line-height: 1.78;
+    font-style: italic;
+    font-family: 'Spectral', serif;
+    font-weight: 300;
+  }
+
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Abril Fatface', serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--amber);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+    opacity: 0.65;
+  }
+
+  .contrib-item:hover {
+    border-color: var(--amber);
+    transform: translateY(-3px);
+  }
+
+  .contrib-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--deep);
+    padding-top: 10px;
+    font-weight: 300;
+  }
+
+  .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.09);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .problem-item:hover { background: rgba(212,137,10,0.04); }
+
+  .problem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text {
+    font-size: 17px;
+    line-height: 1.78;
+    color: var(--deep);
+    font-weight: 300;
+  }
+
+  .problem-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+
+  .problem-source::before { content: '⊢ '; color: var(--gold); }
+  .problem-proof::before  { content: '✓ '; color: var(--gold); }
+
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--muted);
+    padding: 7px 16px;
+    border: 1px solid var(--muted);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before {
+    content: '↓';
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212,137,10,0.38);
+  }
+
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card {
+    background: white;
+    padding: 28px 24px;
+    border-left: 4px solid var(--muted);
+  }
+
+  .limit-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--deep);
+    font-weight: 300;
+  }
+
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    border: 1px solid var(--border);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.11);
+    border-color: var(--gold);
+  }
+
+  .book-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+
+  .book-title {
+    font-family: 'Spectral', serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.45;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+
+  .book-arrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--amber);
+    text-transform: uppercase;
+  }
+
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--dark-bg);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+  }
+
+  .home-btn:hover {
+    background: var(--muted);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+  }
+
+  .home-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  footer {
+    background: var(--dark-bg);
+    color: rgba(250,246,238,0.42);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-quote {
+    font-family: 'Spectral', serif;
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--formula-text);
+    margin-bottom: 20px;
+    max-width: 840px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .error {
+    color: rgba(139,69,19,0.62);
+    font-size: large;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    .discovery-showcase { grid-template-columns: repeat(2, 1fr); }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<a class="home-btn" href="astronomy.html" title="Go Home">
+Home
+</a>
+
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Galileo_Galilei_%281564-1642%29_RMG_BHC2700.tiff/lossy-page1-440px-Galileo_Galilei_%281564-1642%29_RMG_BHC2700.tiff.jpg"
+           alt="Galileo Galilei">
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="nationality-tag">Italian &nbsp;·&nbsp; Astronomer &amp; Physicist</div>
+    <h1 class="hero-name">Galileo<br>Galilei</h1>
+    <p class="hero-era">1564 — 1642</p>
+    <p class="hero-tagline">He pointed a telescope at the sky and shattered the ancient cosmos — then proved, through experiment, that the universe speaks the language of mathematics.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Field</div>
+        <div class="meta-value">Astronomy &amp; Physics</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">Italian</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Key Work</div>
+        <div class="meta-value">Sidereus Nuncius (1610)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        <div class="meta-value">Univ. of Padua</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">The Man Who<br>Looked Up</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Galileo Galilei was born on 15 February 1564 in Pisa, the eldest son of Vincenzo Galilei, a lutenist and music theorist who taught his son to distrust authority and test claims against evidence. He enrolled at the University of Pisa to study medicine but was seduced by geometry, abandoning medicine for mathematics over his father's objections. By 1589 he held the chair of mathematics at Pisa; by 1592 he had moved to the far more prestigious University of Padua, where he would spend eighteen of the most productive years of his life.
+        <br><br>
+        In 1609, hearing reports of a Dutch device that made distant objects appear near, he constructed his own telescope — rapidly improving it to thirty times magnification. What he saw through it over the winter of 1609–1610 overturned two millennia of cosmology in a matter of weeks. He published his findings in <em>Sidereus Nuncius</em> (The Starry Messenger) in March 1610: mountains on the Moon, four moons orbiting Jupiter, a vastly greater number of stars than the naked eye could see, and the puzzling appearance of Saturn. He had demonstrated, beyond question, that not all heavenly bodies orbit Earth.
+        <br><br>
+        His championing of Copernicus brought him into mounting conflict with the Church. In 1616 he was warned to abandon the heliocentric position. He complied in silence — until 1632, when he published the <em>Dialogue Concerning the Two Chief World Systems</em>, which barely concealed its advocacy for Copernicus. The Inquisition summoned him to Rome. Now seventy and ailing, he recanted under threat of torture and was sentenced to house arrest for the remainder of his life. He spent those years dictating his final and greatest work, <em>Two New Sciences</em> (1638), which laid the foundations of modern mechanics and kinematics — the science the recantation could not unwrite.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Achievements</div>
+        <ul class="achievement-list">
+          <li>Discovered the four Galilean moons of Jupiter (1610)</li>
+          <li>Observed lunar mountains, sunspots, and the phases of Venus</li>
+          <li>Established the law of falling bodies — all objects fall at the same rate</li>
+          <li>Formulated the principle of inertia, foundational to Newton</li>
+          <li>Published Sidereus Nuncius — the first telescopic astronomical report</li>
+          <li>Pioneered the experimental method in physics</li>
+          <li>Laid the mathematical groundwork for classical mechanics</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Laws &amp; Discoveries</div>
+    <h2 class="section-title">The Logic<br>Behind the Lens</h2>
+
+    <div style="margin-bottom: 16px;">
+      <div style="font-family: 'Courier Prime', monospace; font-size: 11px; letter-spacing: 3px; color: var(--fade); margin-bottom: 16px; text-transform: uppercase;">Landmark Telescopic Discoveries — Winter 1609–1610</div>
+      <div class="discovery-showcase">
+        <div class="discovery-card">
+          <div class="discovery-glyph">☽⛰</div>
+          <div class="discovery-name">Lunar Mountains</div>
+          <div class="discovery-note">The Moon is not a perfect sphere — its surface is rough, earthlike</div>
+        </div>
+        <div class="discovery-card">
+          <div class="discovery-glyph">♃✦✦✦✦</div>
+          <div class="discovery-name">Jovian Moons</div>
+          <div class="discovery-note">Four moons orbit Jupiter — proof not everything circles Earth</div>
+        </div>
+        <div class="discovery-card">
+          <div class="discovery-glyph">♀◑</div>
+          <div class="discovery-name">Phases of Venus</div>
+          <div class="discovery-note">Venus shows full phases — it must orbit the Sun, not the Earth</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="formulas-grid">
+      <div class="formula-card">
+        <div class="formula-math">d = ½ g t²</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Law of falling bodies: distance fallen is proportional to the square of elapsed time, regardless of the object's weight. Demolished Aristotle's claim that heavier objects fall faster. Established by experiment on inclined planes, not — as legend has it — from the Tower of Pisa.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">v = g t &nbsp;·&nbsp; Δv ∝ Δt (uniform acceleration)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Kinematic law of uniform acceleration: velocity increases linearly with time under constant force. The first precise mathematical description of motion under gravity, published in Two New Sciences (1638) and directly absorbed by Newton's second law.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">A body in motion stays in motion (proto-inertia)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Galileo's principle of inertia: a body moving on a frictionless horizontal surface would move forever — no continuous force is needed to maintain motion. This overturned Aristotle's requirement of a mover and became Newton's First Law verbatim.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">x(t) = v₀t &nbsp;,&nbsp; y(t) = ½gt² &nbsp;→ parabola</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Projectile motion: horizontal and vertical components are independent and combine to produce a parabolic trajectory. The first application of the superposition principle in mechanics — a conceptual leap that remains in every introductory physics course.</div>
+      </div>
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">"The book of nature is written in the language of mathematics" — Galileo, Il Saggiatore (1623)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The deepest claim Galileo ever made — and the founding statement of mathematical physics. Nature does not merely admit mathematical description; mathematics is its native language. Triangles, circles, and other geometrical figures are the characters in which it is written. This conviction, more than any individual discovery, defined the scientific revolution and every branch of physics that followed. Newton, Maxwell, Einstein, and Dirac each inherited it directly.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What He<br>Gave Science</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">The experimental method — he established that physical claims must be tested against careful, quantitative measurement, not derived from philosophical authority. He is the first recognisably modern experimental physicist.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">The law of falling bodies — his inclined-plane experiments proved acceleration is uniform and independent of mass, demolishing 1,900 years of Aristotelian physics and providing Newton with the kinematics of gravitational motion.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">The principle of inertia — his insight that motion requires no cause to sustain it, only a force to change it, is the conceptual revolution at the heart of all classical mechanics. Newton formalised it; Galileo discovered it.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">Telescopic astronomy — his observations of Jupiter's moons, the phases of Venus, lunar topography, and sunspots each independently demolished the Ptolemaic system and provided direct observational evidence for Copernican heliocentrism.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">Galilean relativity — he showed that no mechanical experiment can distinguish uniform motion from rest. A cannonball dropped from the mast of a moving ship lands at the base of the mast, not behind it. This principle of relativity became the seed of Einstein's special relativity three centuries later.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--dark-bg); border: 1px solid var(--border);">
+        <div style="color: var(--formula-text); font-family: 'Abril Fatface', serif; font-size: 64px; font-weight: 400; opacity: 0.18; line-height: 1; flex-shrink: 0;">∞</div>
+        <div style="color: rgba(250,246,238,0.52); font-size: 15px; padding-top: 8px; font-style: italic; font-family: 'Spectral', serif; font-weight: 300;">…and the willingness to be condemned for an idea rather than renounce the evidence of his own instruments — which made science, not theology, the arbiter of physical truth.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="section-label">04 &nbsp; Problems Solved</div>
+    <h2 class="section-title">The Unsolvable,<br>Solved</h2>
+
+    <div class="problems-list">
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.01</div>
+          <div class="problem-text">
+            Refuted Aristotle's claim that heavier bodies fall faster — through systematic inclined-plane experiments measuring time with a water clock, he proved all bodies undergo the same uniform acceleration under gravity, regardless of mass. Every skydiver and spacecraft trajectory depends on this result.
+          </div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Mechanics / Kinematics</div>
+          <div class="problem-proof">Proof: Two New Sciences (1638), Third Day</div>
+        </div>
+        <div class="solution-link"><a href="#P01">View Solution pdf</a></div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.02</div>
+          <div class="problem-text">
+            Proved that not all celestial bodies orbit Earth — by observing four moons circling Jupiter night after night in January 1610, he provided the first direct observational evidence that Earth is not the unique centre of all heavenly motion, fatally undermining the Ptolemaic system.
+          </div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Observational Astronomy</div>
+          <div class="problem-proof">Proof: Sidereus Nuncius (1610)</div>
+        </div>
+        <div class="solution-link"><a href="#P02">View Solution pdf</a></div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.03</div>
+          <div class="problem-text">
+            Demonstrated that Venus orbits the Sun — by tracking the full cycle of Venus's phases (from crescent to full and back), he showed its orbit must enclose the Sun, not Earth. This was the single most decisive observational refutation of the pure Ptolemaic model.
+          </div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Heliocentric Astronomy</div>
+          <div class="problem-proof">Proof: Letters to Castelli and Clavius (1610–1611)</div>
+        </div>
+        <div class="solution-link"><a href="#P03">View Solution pdf</a></div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.04</div>
+          <div class="problem-text">
+            Resolved the problem of projectile motion — by decomposing it into independent horizontal (uniform) and vertical (uniformly accelerated) components, he derived the parabolic trajectory and calculated the range of a projectile as a function of launch angle, founding the science of ballistics.
+          </div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Mechanics</div>
+          <div class="problem-proof">Proof: Two New Sciences (1638), Fourth Day</div>
+        </div>
+        <div class="solution-link"><a href="#P04">View Solution pdf</a></div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.05</div>
+          <div class="problem-text">
+            Established the isochrony of the pendulum — that a pendulum's period depends only on its length, not the amplitude of its swing (for small angles). He proposed using it as a timing device; the pendulum clock, realised by Huygens in 1656, became the world's most precise timekeeper for two centuries.
+          </div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Physics / Horology</div>
+          <div class="problem-proof">Proof: Described in Galileo's notes c. 1602; confirmed experimentally</div>
+        </div>
+        <div class="solution-link"><a href="#P05">View Solution pdf</a></div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">05 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Where Even<br>Galileo Stumbled</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Galileo dismissed Kepler's elliptical orbits and clung to circular motion for the planets — even after receiving Kepler's Astronomia Nova. He preferred his own telescopic authority to Kepler's mathematics, missing the synthesis that Newton would later achieve from both men's work.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> He rejected Kepler's correct explanation of tides as caused by the Moon's gravitational pull, dismissing it as occult fantasy. Galileo believed tides were caused by the combined rotation and revolution of the Earth — a theory that is simply wrong, and which he used as a key argument for heliocentrism.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Despite inventing mathematical physics, he had no concept of force in the Newtonian sense, no theory of gravity, and no idea why falling bodies accelerate. He described kinematics with precision but left dynamics entirely to his successors.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The recantation of 1633 — whether forced or tactical — meant that the Dialogue was suppressed and his work on heliocentrism could not be openly followed up in Catholic Europe for decades, slowing the Italian scientific tradition he had himself created.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His combative rhetorical style made him powerful enemies. The Dialogue's thinly veiled mockery of Pope Urban VIII — who had been a personal friend — transformed a theological dispute into a personal one and sealed his conviction. A more diplomatic Galileo might have changed history's timeline considerably.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section class="reveal">
+    <div class="section-label">06 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://www.amazon.com/Sidereal-Messenger-Galileo-Galilei/dp/0226279030" target="_blank" rel="noopener">
+        <span class="book-icon">📖</span>
+        <div class="book-title">Sidereus Nuncius — The Starry Messenger</div>
+        <div class="book-arrow">Galileo Galilei →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Two-New-Sciences-Galileo-Galilei/dp/0802099556" target="_blank" rel="noopener">
+        <span class="book-icon">📖</span>
+        <div class="book-title">Two New Sciences</div>
+        <div class="book-arrow">Galileo Galilei →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Galileo-Dava-Sobel/dp/0140280278" target="_blank" rel="noopener">
+        <span class="book-icon">📖</span>
+        <div class="book-title">Galileo's Daughter</div>
+        <div class="book-arrow">Dava Sobel →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Galileo-Heretic-Pietro-Redondi/dp/069102426X" target="_blank" rel="noopener">
+        <span class="book-icon">📖</span>
+        <div class="book-title">Galileo Heretic</div>
+        <div class="book-arrow">Pietro Redondi →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"The book of nature is written in the language of mathematics."</div>
+  <div style="margin-top: 16px;">Galileo Galilei &nbsp;·&nbsp; 1564–1642 &nbsp;·&nbsp; University of Padua &amp; Florence</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  document.querySelectorAll('.formula-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+</script>
+</body>
+</html>

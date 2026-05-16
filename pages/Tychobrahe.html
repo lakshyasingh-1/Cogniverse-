@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tycho Brahe — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0a04;
+    --paper: #f2ede3;
+    --aged: #e0d8c4;
+    --sepia: #6b4a1e;
+    --rust: #7a3a10;
+    --gold: #c89428;
+    --charcoal: #130e06;
+    --fade: #5e4a2e;
+    --formula-bg: #0c0804;
+    --formula-text: #e8c068;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(40%) contrast(1.1) brightness(0.82) saturate(0.6);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+                linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: clamp(46px, 5.5vw, 82px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--charcoal);
+    max-width: 420px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.694);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    animation: fadeUp 1s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+
+
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list { list-style: none; }
+
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(242,237,227,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .achievement-list li:last-child { border-bottom: none; }
+  .achievement-list li::before {
+    content: '★';
+    color: var(--gold);
+    font-size: 14px;
+    line-height: 1;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+
+  .star-showcase {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .star-card {
+    background: var(--formula-bg);
+    border: 1px solid rgba(200,148,40,0.3);
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .star-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(200,148,40,0.08), transparent);
+  }
+
+  .star-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(200,148,40,0.2);
+  }
+
+  .star-glyph {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--formula-text);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .star-name {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: rgba(232,192,104,0.7);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .star-note {
+    font-size: 11px;
+    color: rgba(232,192,104,0.6);
+    font-style: italic;
+    margin-top: 8px;
+    font-family: 'EB Garamond', serif;
+  }
+
+
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+  .formula-card:hover {
+    transform: scaleX(1.05);
+    background: #160f04;
+  }
+
+  .formula-math {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.2vw, 32px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    line-height: 1.4;
+  }
+
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 16px;
+  }
+
+  .formula-explanation {
+    font-size: 18px;
+    color: rgba(242,237,227,0.65);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ─── CONTRIBUTIONS ─── */
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+  }
+  .contrib-item:hover {
+    border-color: var(--rust);
+    transform: translateY(-3px);
+  }
+  .contrib-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-top: 8px;
+  }
+
+  /* ─── PROBLEMS SOLVED ─── */
+  .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .problem-item:hover { background: rgba(200,148,40,0.04); }
+
+  .problem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  .problem-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+
+
+
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 7px 16px;
+    border: 1px solid var(--rust);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before {
+    content: '↓';
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(200,148,40,0.35);
+  }
+
+  /* ─── LIMITATIONS ─── */
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card {
+    background: white;
+    padding: 28px 24px;
+    border-left: 4px solid var(--rust);
+  }
+
+  .limit-text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    border-color: transparent;
+  }
+
+  .book-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .book-arrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    text-transform: uppercase;
+  }
+
+
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(200,148,40,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .home-btn:hover {
+    background: var(--rust);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  .home-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(242,237,227,0.5);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    .star-showcase { grid-template-columns: repeat(2, 1fr); }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .error {
+    color: rgba(122, 58, 16, 0.65);
+    font-size: large;
+  }
+</style>
+</head>
+<body>
+
+<a class="home-btn" href="astronomy.html" title="Go Home">
+Home
+</a>
+
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Tycho_Brahe.JPG/440px-Tycho_Brahe.JPG"
+           alt="Tycho Brahe">
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="nationality-tag">Danish &nbsp;·&nbsp; Astronomer &amp; Nobleman</div>
+    <h1 class="hero-name">Tycho<br>Brahe</h1>
+    <p class="hero-era">1546 — 1601</p>
+    <p class="hero-tagline">He measured the heavens with an accuracy no man before him had achieved — and his data, inherited by Kepler, cracked open the laws of planetary motion.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Field</div>
+        <div class="meta-value">Astronomy</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">Danish</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Key Work</div>
+        <div class="meta-value">Star Catalogue (1598)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Observatory</div>
+        <div class="meta-value">Uraniborg, Hven</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BIOGRAPHY ═══ -->
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">The Nobleman Who<br>Measured the Sky</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Tycho Brahe was born on 14 December 1546 into Danish nobility at Knutstorp Castle in Scania. At the age of thirteen he witnessed a partial solar eclipse — and was transfixed not by the spectacle, but by the fact that astronomers had predicted it. The idea that human minds could foretell celestial events set the course of his entire life.
+        <br><br>
+        In 1572, a new star blazed into view in the constellation Cassiopeia — what we now call a supernova. Brahe observed it meticulously and published his findings in <em>De Nova Stella</em> (1573), demonstrating through parallax measurements that it lay far beyond the Moon, in the supposedly unchanging realm of the fixed stars. This directly challenged the Aristotelian doctrine that the heavens were perfect and immutable. It made his name across Europe.
+        <br><br>
+        King Frederick II of Denmark was so impressed that he gifted Brahe the island of Hven in 1576, along with funding to construct an observatory. Brahe built Uraniborg — the Castle of Urania — and later the underground Stjerneborg. For over twenty years, he and his assistants made naked-eye measurements of planetary positions and stellar locations with instruments of his own design, achieving an accuracy of roughly one arc-minute: the best pre-telescopic observations ever made. When King Frederick died and his successor withdrew support, Brahe left Denmark and eventually settled in Prague under Emperor Rudolf II, where he was joined in 1600 by a young assistant named Johannes Kepler. He died the following year, and his data passed to Kepler — who used it to derive the three laws of planetary motion.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Achievements</div>
+        <ul class="achievement-list">
+          <li>Observed the 1572 supernova, proving the heavens are not immutable</li>
+          <li>Built Uraniborg — the first purpose-built research observatory</li>
+          <li>Catalogued 777 stars with unprecedented accuracy</li>
+          <li>Measured planetary positions to within 1–2 arc-minutes</li>
+          <li>Proposed the Tychonic cosmological system</li>
+          <li>Discovered the variation in the Moon's motion</li>
+          <li>His data enabled Kepler's three laws of planetary motion</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Laws &amp; Observations</div>
+    <h2 class="section-title">The Precision<br>Behind the Sky</h2>
+
+
+    <div style="margin-bottom: 16px;">
+      <div style="font-family: 'Courier Prime', monospace; font-size: 13px; letter-spacing: 3px; color: var(--fade); margin-bottom: 16px; text-transform: uppercase;">Landmark Celestial Observations</div>
+      <div class="star-showcase">
+        <div class="star-card">
+          <div class="star-glyph">✦</div>
+          <div class="star-name">Nova Stella</div>
+          <div class="star-note">Supernova of 1572 — proved the heavens change</div>
+        </div>
+        <div class="star-card">
+          <div class="star-glyph">☄</div>
+          <div class="star-name">Comet of 1577</div>
+          <div class="star-note">Showed comets travel beyond the Moon's sphere</div>
+        </div>
+        <div class="star-card">
+          <div class="star-glyph">☽</div>
+          <div class="star-name">Lunar Variation</div>
+          <div class="star-note">Discovered a new inequality in the Moon's motion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="formulas-grid">
+      <div class="formula-card">
+        <div class="formula-math">Δθ ≤ 1′ &nbsp;(arc-minute)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Brahe's observational precision — his stellar and planetary positions were accurate to within one arc-minute of arc. No astronomer before him came close. This accuracy was the raw material Kepler needed.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">parallax(star) ≈ 0 &nbsp;→&nbsp; d ≫ d<sub style="font-size:0.6em">Moon</sub></div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">By measuring the parallax (or lack thereof) of the 1572 nova, Brahe proved it lay vastly further than the Moon — shattering Aristotle's immutable celestial sphere and transforming cosmology.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">☉ orbits Earth &nbsp;·&nbsp; planets orbit ☉</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The Tychonic System — a geo-heliocentric compromise. Earth is stationary, the Sun orbits it, but the five other planets orbit the Sun. Mathematically equivalent to Copernicus but preserved Earth's central position.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">r<sub style="font-size:0.6em">comet</sub> &gt; r<sub style="font-size:0.6em">Moon</sub></div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Brahe tracked the Great Comet of 1577 and showed, by parallax, that it passed through the region supposedly occupied by the solid crystalline spheres — implying those spheres could not exist. The heavens were fluid.</div>
+      </div>
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">Kepler's 1st Law: &nbsp; r = p / (1 + ε·cosθ) &nbsp;[derived from Brahe's Mars data]</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The ultimate legacy: Kepler's elliptical orbit law was derived entirely from Brahe's precise measurements of Mars. Kepler himself stated it plainly — without Tycho's data, the laws of planetary motion could not have been found. Brahe never lived to see what his twenty years of observation had made possible.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What He<br>Gave Science</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">The first research observatory — Uraniborg on Hven was purpose-built for systematic astronomical observation, setting the template for scientific institutions for centuries.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">The most accurate pre-telescopic star catalogue — 777 stars measured to within one arc-minute, used by astronomers for decades and underpinning all of Kepler's work.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">Proof that the heavens are mutable — his observations of the 1572 supernova and 1577 comet dismantled the Aristotelian doctrine of celestial perfection and opened the cosmos to empirical investigation.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">Discovery of the lunar variation — a new inequality in the Moon's motion not previously described, later explained by Newton's gravitational theory as a consequence of the Sun's perturbing influence.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">The Tychonic system — a cosmological model that, while incorrect, provided a mathematically coherent bridge between Ptolemy and Copernicus and was widely adopted in Catholic Europe.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; opacity: 0.2; line-height: 1; flex-shrink: 0;">∞</div>
+        <div style="color: rgba(242,237,227,0.6); font-size: 16px; padding-top: 8px; font-style: italic;">…and twenty years of nightly measurement — the greatest act of observational patience in the history of astronomy, which quietly made the Scientific Revolution possible.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="reveal">
+    <div class="section-label">04 &nbsp; Problems Solved</div>
+    <h2 class="section-title">The Unsolvable,<br>Solved</h2>
+
+    <div class="problems-list">
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.01</div>
+          <div class="problem-text">
+            Resolved the ancient debate on the nature of comets — previously thought to be atmospheric phenomena, Brahe's parallax measurements of the 1577 comet proved it was a supralunar body, moving freely through the supposed crystalline spheres.
+          </div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Cosmology</div>
+          <div class="problem-proof">Proof: De Mundi Aetherei Recentioribus Phaenomenis (1588)</div>
+        </div>
+        <div class="solution-link"><a href="#P01">View Solution pdf</a></div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.02</div>
+          <div class="problem-text">
+            Shattered the doctrine of immutable heavens — by precisely measuring the lack of parallax of the 1572 nova and showing it was not atmospheric, he proved new objects could appear and vanish in the supposedly eternal stellar realm.
+          </div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Stellar Astronomy</div>
+          <div class="problem-proof">Proof: De Nova Stella (1573)</div>
+        </div>
+        <div class="solution-link"><a href="#P02">View Solution pdf</a></div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.03</div>
+          <div class="problem-text">
+            Reduced accumulated errors in planetary position tables — existing Ptolemaic and Copernican tables were off by degrees; Brahe's observations reduced the positional error to arc-minutes, making precise prediction of planetary motions possible for the first time.
+          </div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Observational Astronomy</div>
+          <div class="problem-proof">Proof: Accuracy confirmed by Kepler's orbital calculations (1609)</div>
+        </div>
+        <div class="solution-link"><a href="#P03">View Solution pdf</a></div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.04</div>
+          <div class="problem-text">
+            Discovered the lunar variation — a periodic inequality in the Moon's longitude not accounted for in any prior model, adding a key correction to lunar theory that Newton later explained as a gravitational perturbation from the Sun.
+          </div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Lunar Theory</div>
+          <div class="problem-proof">Proof: Described in Astronomiae Instauratae Progymnasmata (published 1602)</div>
+        </div>
+        <div class="solution-link"><a href="#P04">View Solution pdf</a></div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.05</div>
+          <div class="problem-text">
+            Provided the empirical foundation for Kepler's three laws of planetary motion — his twenty-year record of Mars positions supplied the data Kepler required to establish that planetary orbits are ellipses, not circles, ending 2,000 years of circular cosmology.
+          </div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Orbital Mechanics</div>
+          <div class="problem-proof">Proof: Kepler, Astronomia Nova (1609): "without Tycho's observations I could have done nothing"</div>
+        </div>
+        <div class="solution-link"><a href="#P05">View Solution pdf</a></div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">05 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Where Even<br>Brahe Stumbled</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Brahe rejected the heliocentric model of Copernicus on both observational and theological grounds, devising instead the Tychonic system — a clever but ultimately incorrect compromise that kept Earth at the centre of the universe.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> He withheld his complete observational records from Kepler during much of their brief collaboration, fearing Kepler would derive more glory from the data than Brahe himself. Only Brahe's death released the full archive.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Despite his extraordinary accuracy, Brahe never attempted a full mathematical theory of planetary motion from his own data — he collected without fully interpreting, leaving that revolutionary step entirely to Kepler.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His refusal to accept that stellar parallax was simply undetectable (rather than absent) led him to incorrectly argue against Earth's motion — he could not conceive of stars being far enough away that parallax would be invisible to his instruments.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Despite measuring the heavens with scientific rigour, Brahe was a committed astrologer who cast horoscopes for the Danish nobility — he never fully separated empirical astronomy from astrological practice.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+
+  <section class="reveal">
+    <div class="section-label">06 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://www.amazon.com/Tycho-Brahe-Picture-Scientific-Life/dp/0486219933" target="_blank" rel="noopener">
+        <span class="book-icon">📖</span>
+        <div class="book-title">Tycho Brahe: A Picture of Scientific Life and Work in the Sixteenth Century</div>
+        <div class="book-arrow">J.L.E. Dreyer →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Astronomia-Nova-Johannes-Kepler/dp/0877503079" target="_blank" rel="noopener">
+        <span class="book-icon">📖</span>
+        <div class="book-title">Astronomia Nova</div>
+        <div class="book-arrow">Johannes Kepler (the harvest of Brahe's data) →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Heavenly-Intrigue-Brahe-Kepler-Spectacular/dp/0385508441" target="_blank" rel="noopener">
+        <span class="book-icon">📖</span>
+        <div class="book-title">Heavenly Intrigue</div>
+        <div class="book-arrow">Joshua &amp; Anne-Lee Gilder →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Sleepwalkers-History-Mans-Changing-Universe/dp/0140192468" target="_blank" rel="noopener">
+        <span class="book-icon">📖</span>
+        <div class="book-title">The Sleepwalkers</div>
+        <div class="book-arrow">Arthur Koestler →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"Those who study the stars have God for a teacher."</div>
+  <div style="margin-top:16px;">Tycho Brahe &nbsp;·&nbsp; 1546–1601 &nbsp;·&nbsp; Uraniborg, Island of Hven</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  document.querySelectorAll('.formula-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socrates — Profile</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;600;700;900&family=Courier+Prime:ital,wght@0,400;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #1a1208;
+        --paper: #f5f0e6;
+        --aged: #e8e0cc;
+        --stone: #c8b890;
+        --terracotta: #8b4513;
+        --gold: #b8860b;
+        --deep: #2c1a08;
+        --fade: #6b5230;
+        --dark-bg: #110c04;
+        --formula-text: #e8c87a;
+        --muted: #4a3520;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 19px;
+        line-height: 1.8;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 1000;
+        opacity: 0.6;
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-left {
+        background: var(--dark-bg);
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+      }
+
+      .hero-image-wrap {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+
+      .hero-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+        filter: sepia(50%) contrast(1.05) brightness(0.75) saturate(0.5);
+      }
+
+      .hero-image-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(to bottom, transparent 35%, var(--dark-bg) 100%),
+          linear-gradient(to right, transparent 55%, var(--dark-bg) 100%);
+      }
+
+      .hero-right {
+        background: var(--paper);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 80px 64px;
+        position: relative;
+        border-left: 3px solid var(--ink);
+      }
+
+      .nationality-tag {
+        font-family: "Courier Prime", monospace;
+        font-size: 14px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--terracotta);
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nationality-tag::before {
+        content: "";
+        display: inline-block;
+        width: 40px;
+        height: 1px;
+        background: var(--terracotta);
+      }
+
+      .hero-name {
+        font-family: "Cinzel", serif;
+        font-size: clamp(52px, 6vw, 92px);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -1px;
+        margin-bottom: 8px;
+        color: var(--ink);
+      }
+
+      .hero-era {
+        font-family: "Courier Prime", monospace;
+        font-size: 15px;
+        color: var(--fade);
+        margin-bottom: 32px;
+        letter-spacing: 2px;
+      }
+
+      .hero-tagline {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 22px;
+        color: var(--deep);
+        max-width: 420px;
+        line-height: 1.6;
+        border-left: 3px solid var(--gold);
+        padding-left: 20px;
+        margin-bottom: 48px;
+        font-weight: 300;
+      }
+
+      .meta-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+      }
+
+      .meta-item {
+        padding: 16px 20px;
+        border-right: 1px solid rgba(0, 0, 0, 0.65);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      }
+
+      .meta-label {
+        font-family: "Courier Prime", monospace;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--fade);
+        margin-bottom: 4px;
+      }
+
+      .meta-value {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--ink);
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      section {
+        padding: 80px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .section-label {
+        font-family: "Courier Prime", monospace;
+        font-size: 13px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--terracotta);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .section-title {
+        font-family: "Cinzel", serif;
+        font-size: clamp(28px, 3.5vw, 48px);
+        font-weight: 700;
+        line-height: 1.15;
+        margin-bottom: 40px;
+        color: var(--ink);
+        letter-spacing: 0.5px;
+      }
+
+      .bio-layout {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 60px;
+        align-items: start;
+      }
+
+      .bio-text {
+        font-size: 19px;
+        line-height: 1.9;
+        color: var(--deep);
+        font-weight: 300;
+      }
+
+      .bio-sidebar {
+        background: var(--dark-bg);
+        color: var(--paper);
+        padding: 32px;
+        position: sticky;
+        top: 40px;
+      }
+
+      .sidebar-title {
+        font-family: "Courier Prime", monospace;
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--formula-text);
+        margin-bottom: 20px;
+      }
+
+      .achievement-list {
+        list-style: none;
+      }
+
+      .achievement-list li {
+        font-size: 15px;
+        line-height: 1.55;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        color: rgba(245, 240, 230, 0.82);
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      .achievement-list li:last-child {
+        border-bottom: none;
+      }
+
+      .achievement-list li::before {
+        content: "◆";
+        color: var(--formula-text);
+        font-size: 10px;
+        line-height: 1.6;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+
+      .dialogue-showcase {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-bottom: 48px;
+      }
+
+      .dialogue-card {
+        background: var(--dark-bg);
+        border: 1px solid rgba(184, 134, 11, 0.3);
+        padding: 24px 20px;
+        text-align: center;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .dialogue-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(184, 134, 11, 0.07),
+          transparent
+        );
+      }
+
+      .dialogue-card:hover {
+        border-color: var(--gold);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(184, 134, 11, 0.2);
+      }
+
+      .dialogue-glyph {
+        font-family: "Cinzel", serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--formula-text);
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .dialogue-name {
+        font-family: "Courier Prime", monospace;
+        font-size: 10px;
+        color: rgba(232, 200, 122, 0.65);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+
+      .dialogue-note {
+        font-size: 12px;
+        color: rgba(232, 200, 122, 0.55);
+        font-style: italic;
+        margin-top: 10px;
+        font-family: "Cormorant Garamond", serif;
+        line-height: 1.5;
+      }
+
+      .formulas-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+        background: var(--ink);
+      }
+
+      .formula-card {
+        background: var(--dark-bg);
+        padding: 40px 36px;
+        cursor: default;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s ease;
+      }
+
+      .formula-card:hover {
+        transform: scaleX(1.04);
+        background: #1c1106;
+      }
+
+      .formula-math {
+        font-family: "Cinzel", serif;
+        font-size: clamp(15px, 1.8vw, 24px);
+        font-weight: 600;
+        color: var(--formula-text);
+        margin-bottom: 16px;
+        letter-spacing: 0.5px;
+        line-height: 1.5;
+      }
+
+      .formula-divider {
+        width: 90px;
+        height: 1px;
+        background: var(--terracotta);
+        margin-bottom: 16px;
+      }
+
+      .formula-explanation {
+        font-size: 17px;
+        color: rgba(245, 240, 230, 0.6);
+        line-height: 1.7;
+        font-style: italic;
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 300;
+      }
+
+      .contrib-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+
+      .contrib-item {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        padding: 24px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+      }
+
+      .contrib-num {
+        font-family: "Cinzel", serif;
+        font-size: 44px;
+        font-weight: 900;
+        color: var(--terracotta);
+        line-height: 1;
+        flex-shrink: 0;
+        width: 56px;
+        opacity: 0.7;
+      }
+
+      .contrib-item:hover {
+        border-color: var(--terracotta);
+        transform: translateY(-3px);
+      }
+
+      .contrib-text {
+        font-size: 17px;
+        line-height: 1.65;
+        color: var(--deep);
+        padding-top: 8px;
+        font-weight: 300;
+      }
+
+      .problems-list {
+        display: grid;
+        gap: 0;
+      }
+
+      .problem-item {
+        padding: 28px 24px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        transition: background 0.2s;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .problem-item:hover {
+        background: rgba(184, 134, 11, 0.04);
+      }
+
+      .problem-header {
+        display: flex;
+        align-items: baseline;
+        gap: 18px;
+      }
+
+      .problem-num {
+        font-family: "Courier Prime", monospace;
+        font-size: 12px;
+        letter-spacing: 2px;
+        color: var(--gold);
+        flex-shrink: 0;
+      }
+
+      .problem-text {
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--deep);
+        font-weight: 300;
+      }
+
+      .problem-meta {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-top: 4px;
+      }
+
+      .problem-source,
+      .problem-proof {
+        font-family: "Courier Prime", monospace;
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: var(--fade);
+      }
+
+      .problem-source::before {
+        content: "⊢ ";
+        color: var(--gold);
+      }
+      .problem-proof::before {
+        content: "✓ ";
+        color: var(--gold);
+      }
+
+      .solution-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 6px;
+        width: fit-content;
+      }
+
+      .solution-link a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        font-family: "Courier Prime", monospace;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--paper);
+        background: var(--terracotta);
+        padding: 7px 16px;
+        border: 1px solid var(--terracotta);
+        transition:
+          background 0.25s,
+          color 0.25s,
+          transform 0.2s,
+          box-shadow 0.25s;
+        border-radius: 2px;
+      }
+
+      .solution-link a::before {
+        content: "↓";
+        font-size: 13px;
+        line-height: 1;
+      }
+
+      .solution-link a:hover {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--dark-bg);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(184, 134, 11, 0.35);
+      }
+
+      .limits-section {
+        background: var(--aged);
+        margin: 0 -40px;
+        padding: 80px 40px;
+        border-top: 3px solid var(--ink);
+        border-bottom: 3px solid var(--ink);
+      }
+
+      .limits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 24px;
+        margin-top: 40px;
+      }
+
+      .limit-card {
+        background: white;
+        padding: 28px 24px;
+        border-left: 4px solid var(--terracotta);
+      }
+
+      .limit-text {
+        font-size: 16px;
+        line-height: 1.7;
+        color: var(--deep);
+        font-weight: 300;
+      }
+
+      .books-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 24px;
+      }
+
+      .book-card {
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        padding: 28px 24px;
+        text-decoration: none;
+        color: var(--ink);
+        display: block;
+        position: relative;
+        transition: all 0.3s;
+        background: var(--paper);
+        overflow: hidden;
+        border-radius: 4px;
+      }
+
+      .book-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+        border-color: transparent;
+      }
+
+      .book-icon {
+        font-size: 32px;
+        margin-bottom: 16px;
+        display: block;
+      }
+
+      .book-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.4;
+        margin-bottom: 12px;
+      }
+
+      .book-arrow {
+        font-family: "Courier Prime", monospace;
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--terracotta);
+        text-transform: uppercase;
+      }
+
+      .home-btn {
+        position: fixed;
+        top: 24px;
+        left: 24px;
+        z-index: 500;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--dark-bg);
+        color: var(--paper);
+        font-family: "Courier Prime", monospace;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 10px 18px;
+        border: 1px solid rgba(184, 134, 11, 0.25);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .home-btn:hover {
+        background: var(--terracotta);
+        border-color: var(--gold);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+      }
+
+      .home-btn svg {
+        width: 14px;
+        height: 14px;
+        fill: currentColor;
+        flex-shrink: 0;
+      }
+
+      footer {
+        background: var(--dark-bg);
+        color: rgba(245, 240, 230, 0.45);
+        text-align: center;
+        padding: 48px 40px;
+        font-family: "Courier Prime", monospace;
+        font-size: 12px;
+        letter-spacing: 2px;
+      }
+
+      .footer-quote {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 22px;
+        font-weight: 300;
+        color: var(--formula-text);
+        margin-bottom: 20px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.7;
+      }
+
+      .error {
+        color: rgba(139, 69, 19, 0.6);
+        font-size: large;
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr;
+          grid-template-rows: 55vh auto;
+        }
+        .hero-right {
+          padding: 48px 32px;
+          border-left: none;
+          border-top: 3px solid var(--ink);
+        }
+        .bio-layout {
+          grid-template-columns: 1fr;
+        }
+        .formulas-grid {
+          grid-template-columns: 1fr;
+        }
+        .contrib-grid {
+          grid-template-columns: 1fr;
+        }
+        .dialogue-showcase {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        main {
+          padding: 0 24px;
+        }
+        .limits-section {
+          margin: 0 -24px;
+          padding: 60px 24px;
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <a class="home-btn" href="philosophy.html" title="Go Home"> Home </a>
+    <div class="hero">
+      <div class="hero-left">
+        <div class="hero-image-wrap">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Socrates_Louvre.jpg/500px-Socrates_Louvre.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail"
+            alt="Socrates — Marble Bust, Louvre"
+          />
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="nationality-tag">
+          Athenian &nbsp;·&nbsp; Philosopher &amp; Gadfly
+        </div>
+        <h1 class="hero-name">Socrates</h1>
+        <p class="hero-era">c. 470 — 399 BC</p>
+        <p class="hero-tagline">
+          He wrote nothing, built nothing, and held no office — yet he founded
+          the Western philosophical tradition by refusing to stop asking
+          questions.
+        </p>
+        <div class="meta-grid">
+          <div class="meta-item">
+            <div class="meta-label">Field</div>
+            <div class="meta-value">Philosophy</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Nationality</div>
+            <div class="meta-value">Athenian, Greek</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Key Method</div>
+            <div class="meta-value">Socratic Dialectic</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Student</div>
+            <div class="meta-value">Plato</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section class="reveal">
+        <div class="section-label">01 &nbsp; Biography</div>
+        <h2 class="section-title">The Man Who<br />Knew Nothing</h2>
+        <div class="bio-layout">
+          <div class="bio-text">
+            Socrates was born around 470 BC in Athens to Sophroniscus, a
+            stonemason, and Phaenarete, a midwife — a detail he used to describe
+            his own method: as his mother delivered bodies, he delivered minds
+            of ideas they did not know they were carrying. He served with
+            distinction as a hoplite soldier in the Peloponnesian War,
+            demonstrating physical courage at Potidaea, Amphipolis, and Delium.
+            But it was in the agora, the marketplace of Athens, that he
+            conducted his true work.
+            <br /><br />
+            He wrote nothing. Everything we know of him comes through others,
+            primarily the dialogues of his student Plato, the memoirs of
+            Xenophon, and the satirical portrait in Aristophanes' comedy
+            <em>The Clouds</em>. This presents an irreducible problem — the
+            "Socratic problem" — of separating the historical man from the
+            literary character. What seems consistent across sources is his
+            method: the elenchus, or cross-examination. He would approach
+            citizens, poets, craftsmen, and statesmen who claimed expertise, and
+            by gentle questioning expose that they did not actually know what
+            they thought they knew. He believed this was a service to Athens,
+            inspired by the Oracle at Delphi's declaration that no man was wiser
+            than Socrates — which he interpreted to mean only that he alone knew
+            he knew nothing. <br /><br />
+            In 399 BC he was tried before a jury of five hundred Athenians on
+            charges of impiety and corrupting the youth of Athens. He refused to
+            flee, refused to grovel, refused to propose a sufficient penalty. He
+            was convicted by a narrow margin and executed by hemlock, dying in
+            the company of his friends while discussing the immortality of the
+            soul — a death so philosophically composed that it became the
+            founding image of the philosopher as one who lives and dies by
+            reason alone.
+          </div>
+          <div class="bio-sidebar">
+            <div class="sidebar-title">&nbsp; Major Contributions</div>
+            <ul class="achievement-list">
+              <li>Invented the Socratic method of philosophical inquiry</li>
+              <li>Founded moral philosophy as a rigorous discipline</li>
+              <li>Established the examined life as the philosophical ideal</li>
+              <li>
+                Taught Plato, who taught Aristotle — the lineage of Western
+                thought
+              </li>
+              <li>Defined virtue as knowledge and vice as ignorance</li>
+              <li>
+                Introduced the concept of the psyche (soul) as the seat of moral
+                character
+              </li>
+              <li>
+                His trial and death shaped the idea of the philosopher's duty to
+                truth
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal" style="padding-top: 0">
+        <div class="section-label">02 &nbsp; Methods &amp; Ideas</div>
+        <h2 class="section-title">The Logic<br />Behind the Questions</h2>
+
+        <div style="margin-bottom: 16px">
+          <div
+            style="
+              font-family: &quot;Courier Prime&quot;, monospace;
+              font-size: 12px;
+              letter-spacing: 3px;
+              color: var(--fade);
+              margin-bottom: 16px;
+              text-transform: uppercase;
+            "
+          >
+            Key Platonic Dialogues Featuring Socrates
+          </div>
+          <div class="dialogue-showcase">
+            <div class="dialogue-card">
+              <div class="dialogue-glyph">Μένων</div>
+              <div class="dialogue-name">Meno</div>
+              <div class="dialogue-note">
+                Can virtue be taught? Knowledge as recollection
+              </div>
+            </div>
+            <div class="dialogue-card">
+              <div class="dialogue-glyph">Ἀπολογία</div>
+              <div class="dialogue-name">Apology</div>
+              <div class="dialogue-note">
+                His defence at trial — the examined life
+              </div>
+            </div>
+            <div class="dialogue-card">
+              <div class="dialogue-glyph">Φαίδων</div>
+              <div class="dialogue-name">Phaedo</div>
+              <div class="dialogue-note">
+                His final hours — on the soul's immortality
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="formulas-grid">
+          <div class="formula-card">
+            <div class="formula-math">
+              Claim → Elenchus → Aporia → Deeper Inquiry
+            </div>
+            <div class="formula-divider"></div>
+            <div class="formula-explanation">
+              The Socratic Method: accept a claim, draw out its implications
+              through questioning, reveal the contradiction or ignorance at its
+              root (aporia), and use the resulting discomfort as the engine of
+              genuine inquiry. The world's first systematic philosophical
+              procedure.
+            </div>
+          </div>
+          <div class="formula-card">
+            <div class="formula-math">
+              Virtue = Knowledge &nbsp;·&nbsp; Vice = Ignorance
+            </div>
+            <div class="formula-divider"></div>
+            <div class="formula-explanation">
+              His most radical ethical thesis: no one does wrong willingly.
+              Wrongdoing is always a failure of understanding — if one truly
+              knew the good, one would do it. Moral failure is an epistemic
+              failure. Ethics and epistemology are inseparable.
+            </div>
+          </div>
+          <div class="formula-card">
+            <div class="formula-math">"I know that I know nothing"</div>
+            <div class="formula-divider"></div>
+            <div class="formula-explanation">
+              Socratic irony — the paradox at the heart of his philosophy.
+              Genuine wisdom begins with the acknowledgment of ignorance. The
+              unexamined assumption is more dangerous than acknowledged
+              ignorance. This epistemological humility is itself a form of
+              knowledge.
+            </div>
+          </div>
+          <div class="formula-card">
+            <div class="formula-math">
+              Care of Soul &gt; Care of Body or Wealth
+            </div>
+            <div class="formula-divider"></div>
+            <div class="formula-explanation">
+              His most persistent moral exhortation: the psyche is what we truly
+              are, and its condition — its virtue — is what matters above all
+              else. Wealth, reputation, and comfort that come at the cost of the
+              soul's integrity are not gains but losses.
+            </div>
+          </div>
+          <div class="formula-card" style="grid-column: 1 / -1">
+            <div class="formula-math">
+              The Examined Life &nbsp;·&nbsp; "ὁ δὲ ἀνεξέταστος βίος οὐ βιωτὸς
+              ἀνθρώπῳ"
+            </div>
+            <div class="formula-divider"></div>
+            <div class="formula-explanation">
+              "The unexamined life is not worth living" — spoken at his own
+              trial, when he refused to accept exile as a penalty because it
+              would have required giving up philosophy. The statement is not a
+              truism but a provocation: most human lives, spent in the pursuit
+              of money, pleasure, and status without reflection on what is good,
+              are in some meaningful sense not fully human lives at all. It is
+              the founding sentence of the Western philosophical tradition.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <div class="section-label">03 &nbsp; Contributions</div>
+        <h2 class="section-title">What He<br />Gave Philosophy</h2>
+        <div class="contrib-grid">
+          <div class="contrib-item">
+            <div class="contrib-num">01</div>
+            <div class="contrib-text">
+              The Socratic Method — the elenctic technique of inquiry through
+              questioning, still the foundational pedagogical tool of
+              philosophy, law, and medicine two and a half millennia later.
+            </div>
+          </div>
+          <div class="contrib-item">
+            <div class="contrib-num">02</div>
+            <div class="contrib-text">
+              The turn to ethics — he redirected philosophy from cosmology and
+              natural science (the Pre-Socratics) to the question of how one
+              ought to live. He made the human moral situation the central
+              problem of philosophy.
+            </div>
+          </div>
+          <div class="contrib-item">
+            <div class="contrib-num">03</div>
+            <div class="contrib-text">
+              The concept of the psyche as moral locus — he was the first to
+              argue that the soul is not merely the animating principle of the
+              body but the seat of moral character, and that its care is the
+              supreme obligation of every person.
+            </div>
+          </div>
+          <div class="contrib-item">
+            <div class="contrib-num">04</div>
+            <div class="contrib-text">
+              The idea of universal definitions — his insistence on finding what
+              courage, piety, and justice are in themselves (not just examples
+              of them) launched the entire tradition of conceptual analysis and
+              abstract thought.
+            </div>
+          </div>
+          <div class="contrib-item">
+            <div class="contrib-num">05</div>
+            <div class="contrib-text">
+              The intellectual lineage — through Plato and then Aristotle,
+              Socrates stands at the origin of the entire Western philosophical
+              tradition: logic, metaphysics, ethics, politics, and epistemology
+              all trace back to his conversations.
+            </div>
+          </div>
+          <div
+            class="contrib-item"
+            style="background: var(--dark-bg); border: none"
+          >
+            <div
+              style="
+                color: var(--formula-text);
+                font-family: &quot;Cinzel&quot;, serif;
+                font-size: 64px;
+                font-weight: 900;
+                opacity: 0.18;
+                line-height: 1;
+                flex-shrink: 0;
+              "
+            >
+              Ψ
+            </div>
+            <div
+              style="
+                color: rgba(245, 240, 230, 0.55);
+                font-size: 16px;
+                padding-top: 8px;
+                font-style: italic;
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-weight: 300;
+              "
+            >
+              …and a model of intellectual integrity — that one must follow the
+              argument wherever it leads, even to one's own condemnation, and
+              that death is preferable to the abandonment of philosophy.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <div class="section-label">04 &nbsp; Problems Solved</div>
+        <h2 class="section-title">The Unsolvable,<br />Confronted</h2>
+
+        <div class="problems-list">
+          <div class="problem-item">
+            <div class="problem-header">
+              <div class="problem-num">P.01</div>
+              <div class="problem-text">
+                Exposed the false knowledge of the Sophists — the professional
+                teachers who claimed to sell virtue and wisdom for money.
+                Through cross-examination he demonstrated that their supposed
+                expertise was rhetorical skill masquerading as genuine
+                understanding, distinguishing persuasion from truth.
+              </div>
+            </div>
+            <div class="problem-meta">
+              <div class="problem-source">Source: Epistemology / Ethics</div>
+              <div class="problem-proof">
+                Proof: Plato's Gorgias, Protagoras, Euthydemus
+              </div>
+            </div>
+            <div class="solution-link">
+              <a href="#P01">View Solution pdf</a>
+            </div>
+          </div>
+
+          <div class="problem-item">
+            <div class="problem-header">
+              <div class="problem-num">P.02</div>
+              <div class="problem-text">
+                Established that piety, courage, and justice cannot be defined
+                by listing examples — they must have a universal essence. His
+                demand for definitions launched the philosophical problem of
+                universals that occupied Plato, Aristotle, and the medieval
+                scholastics for two millennia.
+              </div>
+            </div>
+            <div class="problem-meta">
+              <div class="problem-source">
+                Source: Metaphysics / Conceptual Analysis
+              </div>
+              <div class="problem-proof">
+                Proof: Plato's Euthyphro, Laches, Charmides
+              </div>
+            </div>
+            <div class="solution-link">
+              <a href="#P02">View Solution pdf</a>
+            </div>
+          </div>
+
+          <div class="problem-item">
+            <div class="problem-header">
+              <div class="problem-num">P.03</div>
+              <div class="problem-text">
+                Resolved the question of civil disobedience — in the Crito,
+                imprisoned and facing death, he argued that escaping would
+                undermine the laws of Athens whose authority he had benefited
+                from his entire life. He chose to obey an unjust sentence rather
+                than destabilise just institutions.
+              </div>
+            </div>
+            <div class="problem-meta">
+              <div class="problem-source">Source: Political Philosophy</div>
+              <div class="problem-proof">Proof: Plato's Crito</div>
+            </div>
+            <div class="solution-link">
+              <a href="#P03">View Solution pdf</a>
+            </div>
+          </div>
+
+          <div class="problem-item">
+            <div class="problem-header">
+              <div class="problem-num">P.04</div>
+              <div class="problem-text">
+                Demonstrated that virtue cannot simply be taught as a body of
+                knowledge — the Meno's paradox of learning ("how can you seek
+                what you don't know?") and his midwife analogy proposed instead
+                that philosophical education is a process of drawing out truths
+                already latent in the mind.
+              </div>
+            </div>
+            <div class="problem-meta">
+              <div class="problem-source">
+                Source: Philosophy of Education / Epistemology
+              </div>
+              <div class="problem-proof">Proof: Plato's Meno</div>
+            </div>
+            <div class="solution-link">
+              <a href="#P04">View Solution pdf</a>
+            </div>
+          </div>
+
+          <div class="problem-item">
+            <div class="problem-header">
+              <div class="problem-num">P.05</div>
+              <div class="problem-text">
+                Confronted the relationship between reason and death — his final
+                hours, recounted in the Phaedo, offered multiple philosophical
+                arguments for the soul's immortality. Whether or not the
+                arguments convince, he established the model of dying
+                philosophically: fear of death is irrational for one who has
+                spent life practising the separation of soul from bodily
+                distraction.
+              </div>
+            </div>
+            <div class="problem-meta">
+              <div class="problem-source">
+                Source: Metaphysics / Philosophy of Mind
+              </div>
+              <div class="problem-proof">Proof: Plato's Phaedo</div>
+            </div>
+            <div class="solution-link">
+              <a href="#P05">View Solution pdf</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="limits-section reveal">
+      <div style="max-width: 1200px; margin: 0 auto">
+        <div class="section-label" style="margin-bottom: 12px">
+          05 &nbsp; Limitations &amp; Blind Spots
+        </div>
+        <h2 class="section-title">Where Even<br />Socrates Stumbled</h2>
+        <div class="limits-grid">
+          <div class="limit-card">
+            <div class="limit-text">
+              <span class="error">⚠</span> The Socratic method is devastatingly
+              effective at destroying claimed knowledge but weak at constructing
+              positive doctrine. He was the supreme critic but left almost no
+              systematic account of what he actually believed virtue, justice,
+              or the good life consisted in.
+            </div>
+          </div>
+          <div class="limit-card">
+            <div class="limit-text">
+              <span class="error">⚠</span> His equation of virtue with knowledge
+              has been challenged ever since Aristotle: people often know what
+              is right and do wrong anyway (akrasia — weakness of will). The
+              purely intellectualist account of moral failure seems to leave no
+              room for passion, habit, or character.
+            </div>
+          </div>
+          <div class="limit-card">
+            <div class="limit-text">
+              <span class="error">⚠</span> He accepted without question the
+              institution of slavery, the exclusion of women from political and
+              philosophical life, and the deep class hierarchies of Athenian
+              democracy. His celebrated universalism about reason coexisted with
+              the profound social prejudices of his time.
+            </div>
+          </div>
+          <div class="limit-card">
+            <div class="limit-text">
+              <span class="error">⚠</span> His complete reliance on oral
+              dialogue meant he left no writings. Everything we have is mediated
+              — primarily through Plato, who became increasingly his own
+              philosopher. The "Socratic problem" of separating the man from his
+              literary avatar is arguably insoluble.
+            </div>
+          </div>
+          <div class="limit-card">
+            <div class="limit-text">
+              <span class="error">⚠</span> His method could be experienced as
+              humiliation rather than illumination. Aristophanes lampooned him;
+              the Athenians ultimately killed him. His habit of publicly
+              exposing the ignorance of prominent citizens made him enemies —
+              and raises questions about whether philosophical antagonism is
+              always a productive form of engagement.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section class="reveal">
+        <div class="section-label">06 &nbsp; Further Reading</div>
+        <h2 class="section-title">Go Deeper</h2>
+        <div class="books-grid">
+          <a
+            class="book-card"
+            href="https://www.amazon.com/Trial-Death-Socrates-Plato/dp/0872205541"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="book-icon">📖</span>
+            <div class="book-title">
+              Trial and Death of Socrates — Euthyphro, Apology, Crito, Phaedo
+            </div>
+            <div class="book-arrow">Plato →</div>
+          </a>
+          <a
+            class="book-card"
+            href="https://www.amazon.com/Meno-Plato/dp/0872200418"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="book-icon">📖</span>
+            <div class="book-title">Meno</div>
+            <div class="book-arrow">Plato →</div>
+          </a>
+          <a
+            class="book-card"
+            href="https://www.amazon.com/Socrates-Man-His-Mission/dp/1015693237"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="book-icon">📖</span>
+            <div class="book-title">Socrates: A Man and His Mission</div>
+            <div class="book-arrow">A.E. Taylor →</div>
+          </a>
+          <a
+            class="book-card"
+            href="https://www.amazon.com/Socrates-Cambridge-Companion-Philosophy/dp/0521436103"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="book-icon">📖</span>
+            <div class="book-title">The Cambridge Companion to Socrates</div>
+            <div class="book-arrow">Donald R. Morrison (ed.) →</div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-quote">"The unexamined life is not worth living."</div>
+      <div style="margin-top: 16px">
+        Socrates &nbsp;·&nbsp; c. 470–399 BC &nbsp;·&nbsp; Athens, Greece
+      </div>
+    </footer>
+
+    <script>
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      reveals.forEach((r) => observer.observe(r));
+
+      document.querySelectorAll(".formula-card").forEach((card, i) => {
+        card.style.transitionDelay = `${i * 80}ms`;
+      });
+    </script>
+  </body>
+</html>

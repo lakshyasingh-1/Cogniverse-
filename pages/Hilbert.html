@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>David Hilbert — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #04060f;
+    --paper: #eceef8;
+    --aged: #d8dced;
+    --rust: #1a2a7a;
+    --gold: #3a5acc;
+    --charcoal: #060810;
+    --fade: #3a4470;
+    --formula-bg: #04060f;
+    --formula-text: #8aa4ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.45;
+  }
+
+  /* ─── AXIOMATIC GRID PATTERN ─── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(58,90,204,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(58,90,204,0.035) 1px, transparent 1px),
+      linear-gradient(rgba(58,90,204,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(58,90,204,0.015) 1px, transparent 1px);
+    background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(20%) contrast(1.1) brightness(0.84) hue-rotate(195deg) saturate(0.75);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+      linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  .hero-image-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 35% 55%, rgba(58,90,204,0.16) 0%, transparent 65%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Axiom watermark on hero left */
+  .axiom-mark {
+    position: absolute;
+    bottom: 40px;
+    left: 24px;
+    z-index: 4;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(138,164,255,0.25);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+    z-index: 1;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(58,90,204,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* 23 problems counter accent */
+  .hero-right::after {
+    content: '23';
+    position: absolute;
+    bottom: 48px; right: 56px;
+    font-family: 'Playfair Display', serif;
+    font-size: 160px;
+    font-weight: 900;
+    color: rgba(58,90,204,0.05);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -8px;
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--charcoal);
+    max-width: 430px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.694);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── SECTION STYLES ─── */
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+
+  /* ─── BIOGRAPHY ─── */
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list { list-style: none; }
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(236,238,248,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .achievement-list li:last-child { border-bottom: none; }
+  .achievement-list li::before {
+    content: '□';
+    font-family: 'Courier Prime', monospace;
+    color: var(--gold);
+    font-size: 14px;
+    line-height: 1.2;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  /* ─── 23 PROBLEMS SHOWCASE ─── */
+  .problems-showcase {
+    background: var(--charcoal);
+    padding: 48px 40px;
+    margin: 0 -40px;
+    position: relative;
+    z-index: 1;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .problems-showcase-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hilbert-problems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2px;
+    margin-top: 32px;
+    background: rgba(138,164,255,0.08);
+  }
+
+  .hp-card {
+    background: rgba(6,8,16,0.92);
+    padding: 18px 16px;
+    position: relative;
+    transition: background 0.25s;
+    cursor: default;
+  }
+
+  .hp-card:hover { background: #0d1228; }
+
+  .hp-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(138,164,255,0.4);
+    margin-bottom: 6px;
+  }
+
+  .hp-name {
+    font-size: 13px;
+    line-height: 1.45;
+    color: rgba(236,238,248,0.72);
+  }
+
+  .hp-status {
+    margin-top: 8px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .hp-status.solved   { color: #4af0a0; }
+  .hp-status.partial  { color: #f0c84a; }
+  .hp-status.open     { color: #ff6b6b; }
+  .hp-status.moot     { color: rgba(138,164,255,0.4); }
+
+  /* ─── FORMULAS ─── */
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .formula-card::before {
+    content: '∀';
+    position: absolute;
+    right: 18px;
+    top: 12px;
+    font-size: 30px;
+    font-family: 'Playfair Display', serif;
+    color: rgba(138,164,255,0.05);
+    pointer-events: none;
+  }
+
+  .formula-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(58,90,204,0.06) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .formula-card:hover { background: #0a0c1e; }
+  .formula-card:hover::after { opacity: 1; }
+
+  .formula-math {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.4vw, 32px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+  }
+
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 16px;
+  }
+
+  .formula-explanation {
+    font-size: 17px;
+    color: rgba(236,238,248,0.65);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ─── CONTRIBUTIONS ─── */
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+  }
+  .contrib-item:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(58,90,204,0.08);
+  }
+  .contrib-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-top: 8px;
+  }
+
+  /* ─── PROBLEMS SOLVED ─── */
+  .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .problem-item:hover { background: rgba(58,90,204,0.04); }
+
+  .problem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  .problem-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+  .problem-source::before { content: '⊢ '; color: var(--gold); }
+  .problem-proof::before  { content: '✓ '; color: var(--gold); }
+
+  /* ─── PDF LINK BUTTON ─── */
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 7px 16px;
+    border: 1px solid var(--rust);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before {
+    content: '↓';
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(58,90,204,0.35);
+  }
+
+  /* ─── LIMITATIONS ─── */
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+    z-index: 1;
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card {
+    background: var(--paper);
+    padding: 28px 24px;
+    border-left: 4px solid var(--rust);
+  }
+
+  .limit-text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  /* ─── BOOKS ─── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(58,90,204,0.14);
+    border-color: transparent;
+  }
+
+  .book-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .book-arrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    text-transform: uppercase;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(236,238,248,0.5);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .error {
+    color: rgba(26,42,122,0.75);
+    font-size: large;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .hero-right::after { display: none; }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+    .problems-showcase { margin: 0 -24px; padding: 48px 24px; }
+    .hilbert-problems-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    .problem-meta { flex-direction: column; gap: 6px; }
+  }
+   /* ─── HOME BUTTON ─── */
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(232,160,96,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .home-btn:hover {
+    background: var(--rust);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  .home-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+  /* ─── SCROLL ANIMATION ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+<a class="home-btn" href="Math.html" title="Go Home">
+  <span>Home</span>
+</a>
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Hilbert.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled"
+           alt="David Hilbert">
+    </div>
+    <div class="axiom-mark">Wir müssen wissen — Wir werden wissen</div>
+  </div>
+
+  <div class="hero-right">
+    <div class="nationality-tag">German &nbsp;·&nbsp; Mathematician</div>
+    <h1 class="hero-name">David<br>Hilbert</h1>
+    <p class="hero-era">1862 — 1943</p>
+    <p class="hero-tagline">He tried to axiomatise all of mathematics — and in failing, revealed the deepest truth about the limits of human reason.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Field</div>
+        <div class="meta-value">Mathematics</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">German</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Famous For</div>
+        <div class="meta-value">23 Hilbert Problems</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        <div class="meta-value">University of Göttingen</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BIOGRAPHY ═══ -->
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">A Life That<br>Axiomatised the World</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        David Hilbert was born in Königsberg, Prussia (now Kaliningrad, Russia), into a family of lawyers and judges. He studied at the University of Königsberg, where he befriended Hermann Minkowski — a friendship that would shape both men's careers. In 1895 he was appointed to the mathematics chair at Göttingen, which he transformed into the undisputed world capital of mathematics, drawing Einstein, Weyl, von Neumann, Noether, and Courant to its orbit.
+        <br><br>
+        His early masterwork, <em>Grundlagen der Geometrie</em> (1899), placed Euclidean geometry on a rigorous axiomatic foundation for the first time — closing gaps that had stood for two thousand years. Then, at the 1900 International Congress of Mathematicians in Paris, he presented his legendary list of 23 unsolved problems — a programme that defined the research agenda for twentieth-century mathematics.
+        <br><br>
+        Hilbert's greatest ambition — his <em>Programm</em> — was to show that all of mathematics could be grounded in a finite, complete, consistent set of axioms. In 1931, Kurt Gödel's incompleteness theorems demonstrated this was impossible: any sufficiently powerful axiomatic system must contain truths it cannot prove. It was the most profound defeat of an intellectual programme in modern history — and yet it was Hilbert's programme that made it possible to even ask the question. He died in 1943, aged 81, in a Göttingen emptied of mathematicians by the Nazi purges.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Achievements</div>
+        <ul class="achievement-list">
+          <li>Grundlagen der Geometrie — rigorous axiomatisation of Euclidean geometry (1899)</li>
+          <li>Presented 23 Problems at ICM Paris (1900) — the century's research agenda</li>
+          <li>Hilbert spaces — infinite-dimensional inner product spaces foundational to QM</li>
+          <li>Hilbert's Basis Theorem — founding algebraic geometry (1890)</li>
+          <li>Formulated the Hilbert Programme for foundations of mathematics</li>
+          <li>Spectral theory of integral equations (1904–1910)</li>
+          <li>Derived the Einstein field equations independently (Nov 1915)</li>
+          <li>Göttingen school — trained and attracted the greatest mathematicians of the era</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ EQUATIONS ═══ -->
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Theorems &amp; Structures</div>
+    <h2 class="section-title">The Architecture<br>of Mathematical Rigour</h2>
+    <div class="formulas-grid">
+
+      <div class="formula-card">
+        <div class="formula-math">ℋ = { f : ∫|f|² dμ &lt; ∞ }</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Hilbert space — a complete infinite-dimensional inner product space. The natural language of quantum mechanics: every quantum state is a vector in a Hilbert space, and observables are self-adjoint operators on it.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">⟨f, g⟩ = ∫ f(x) g̅(x) dμ(x)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Inner product on a function space — Hilbert's generalisation of the dot product to infinite dimensions. Orthogonality, projection, and Fourier series all emerge from this single definition.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">If I ⊂ k[x₁…xₙ] ⟹ I is f.g.</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Hilbert's Basis Theorem (1890): every ideal in a polynomial ring over a field is finitely generated. Proved by pure existence argument — no construction — shocking contemporaries and founding modern commutative algebra.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">Tφₙ = λₙφₙ, &nbsp; {φₙ} complete</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Spectral theorem for self-adjoint operators: every such operator on a Hilbert space decomposes into eigenvalues and eigenvectors. The mathematical core of quantum measurement and atomic spectra.</div>
+      </div>
+
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">Con(F) ⟹ ∃ sentence φ : F ⊬ φ &nbsp; ∧ &nbsp; F ⊬ ¬φ</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Gödel's First Incompleteness Theorem (1931) — the answer to Hilbert's Programme: any consistent formal system F powerful enough to express arithmetic contains a true statement that F cannot prove. Hilbert's dream of a complete axiomatisation of mathematics was provably impossible. The most consequential theorem of the twentieth century.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ CONTRIBUTIONS ═══ -->
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What He<br>Gave Mathematics</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">Hilbert spaces — infinite-dimensional generalisations of Euclidean space that became the indispensable language of quantum mechanics, functional analysis, and signal processing.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">Axiomatic geometry — <em>Grundlagen der Geometrie</em> replaced Euclid's intuitive postulates with a complete, independent, consistent set of 20 axioms, setting the standard for mathematical rigour.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">The 23 Problems — presented at Paris 1900, they shaped an entire century of mathematics; solving one remains among the highest honours in the field, with the Riemann Hypothesis still open.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">Invariant theory and algebraic geometry — his Basis Theorem and Nullstellensatz revolutionised algebra, proving deep existence theorems without explicit constructions and founding modern algebraic geometry.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">General relativity — Hilbert independently derived the Einstein field equations from a variational principle (the Hilbert action) in November 1915, submitting just days after Einstein's final paper.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; opacity: 0.18; line-height: 1; flex-shrink: 0;">∀</div>
+        <div style="color: rgba(236,238,248,0.6); font-size: 16px; padding-top: 8px; font-style: italic;">…and the Hilbert Programme itself — whose noble failure, via Gödel, revealed that mathematics is inexhaustible: no finite system can ever capture all mathematical truth.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROBLEMS SOLVED ═══ -->
+  <section class="reveal">
+    <div class="section-label">04 &nbsp; Problems Solved</div>
+    <h2 class="section-title">The Unsolvable,<br>Solved</h2>
+    <div class="problems-list">
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.01</div>
+          <div class="problem-text">Proved Gordan's Conjecture — that every system of algebraic invariants has a finite basis — by a revolutionary non-constructive existence proof that Paul Gordan famously dismissed as "theology, not mathematics," yet which founded modern algebra.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Invariant Theory / Basis Theorem, 1890</div>
+          <div class="problem-proof">Über die Theorie der algebraischen Formen — Math. Annalen, Vol. 36, pp. 473–534, 1890</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://gdz.sub.uni-goettingen.de/id/PPN235181684_0036" target="_blank" rel="noopener">View Paper PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.02</div>
+          <div class="problem-text">Placed Euclidean geometry on a complete, independent, consistent axiomatic foundation — replacing Euclid's 2000-year-old intuitive framework with 20 rigorous axioms and resolving every logical gap that had accumulated since antiquity.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Foundations of Geometry, 1899</div>
+          <div class="problem-proof">Grundlagen der Geometrie — Teubner, Leipzig, 1899 (13 editions through 1987)</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://archive.org/details/grundlagenderge00hilbgoog" target="_blank" rel="noopener">View Source PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.03</div>
+          <div class="problem-text">Developed the spectral theory of integral equations and self-adjoint operators — extending Fourier's ideas to general function spaces and providing the rigorous mathematical framework that Heisenberg and Schrödinger's quantum mechanics required.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Spectral Theory / Integral Equations, 1904–1910</div>
+          <div class="problem-proof">Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen — Teubner, 1912</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://archive.org/details/grundzgeeineralg00hilbuoft" target="_blank" rel="noopener">View Source PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.04</div>
+          <div class="problem-text">Derived the correct field equations of general relativity from a variational principle — the Einstein-Hilbert action — independently of Einstein and days before his final paper, demonstrating the deep connection between geometry and physics through Lagrangian methods.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">General Relativity / Hilbert Action, 1915</div>
+          <div class="problem-proof">Die Grundlagen der Physik — Nachrichten Ges. Wiss. Göttingen, pp. 395–407, Nov. 1915</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://gdz.sub.uni-goettingen.de/id/PPN252457811_1915" target="_blank" rel="noopener">View Paper PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.05</div>
+          <div class="problem-text">Proved Waring's Problem (Hilbert's Problem 7 analogue) — that for every integer k, every sufficiently large integer can be expressed as the sum of a bounded number of k-th powers — resolving a question posed by Waring in 1770 that had resisted all attack for 139 years.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Waring's Problem / Number Theory, 1909</div>
+          <div class="problem-proof">Beweis für die Darstellbarkeit der ganzen Zahlen durch eine feste Anzahl n-ter Potenzen — Math. Annalen, Vol. 67, 1909</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://gdz.sub.uni-goettingen.de/id/PPN235181684_0067" target="_blank" rel="noopener">View Paper PDF</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ 23 PROBLEMS SHOWCASE ═══ -->
+<div class="problems-showcase reveal">
+  <div class="problems-showcase-inner">
+    <div class="section-label" style="margin-bottom:8px;">05 &nbsp; The 23 Hilbert Problems</div>
+    <h2 class="section-title" style="margin-bottom:0; color: rgba(236,238,248,0.9);">A Century's<br>Research Agenda</h2>
+    <div class="hilbert-problems-grid">
+      <div class="hp-card"><div class="hp-num">H·01</div><div class="hp-name">Continuum Hypothesis</div><div class="hp-status moot">Independent of ZFC</div></div>
+      <div class="hp-card"><div class="hp-num">H·02</div><div class="hp-name">Consistency of Arithmetic</div><div class="hp-status open">Gödel: unprovable</div></div>
+      <div class="hp-card"><div class="hp-num">H·03</div><div class="hp-name">Equality of Volumes</div><div class="hp-status solved">Solved — Dehn 1900</div></div>
+      <div class="hp-card"><div class="hp-num">H·04</div><div class="hp-name">Straight-line geometries</div><div class="hp-status partial">Partial</div></div>
+      <div class="hp-card"><div class="hp-num">H·05</div><div class="hp-name">Lie Groups without differentiability</div><div class="hp-status solved">Solved — 1952</div></div>
+      <div class="hp-card"><div class="hp-num">H·06</div><div class="hp-name">Axioms of Physics</div><div class="hp-status partial">Partial</div></div>
+      <div class="hp-card"><div class="hp-num">H·07</div><div class="hp-name">Irrationality of certain powers</div><div class="hp-status solved">Solved — Gelfond 1934</div></div>
+      <div class="hp-card"><div class="hp-num">H·08</div><div class="hp-name">Riemann Hypothesis</div><div class="hp-status open">Open</div></div>
+      <div class="hp-card"><div class="hp-num">H·09</div><div class="hp-name">Reciprocity Laws</div><div class="hp-status partial">Partial</div></div>
+      <div class="hp-card"><div class="hp-num">H·10</div><div class="hp-name">Diophantine Equations</div><div class="hp-status solved">Solved — MRDP 1970</div></div>
+      <div class="hp-card"><div class="hp-num">H·11</div><div class="hp-name">Quadratic Forms</div><div class="hp-status partial">Partial</div></div>
+      <div class="hp-card"><div class="hp-num">H·12</div><div class="hp-name">Kronecker's Theorem Extension</div><div class="hp-status partial">Partial</div></div>
+      <div class="hp-card"><div class="hp-num">H·13</div><div class="hp-name">7-variable Equations</div><div class="hp-status partial">Partial</div></div>
+      <div class="hp-card"><div class="hp-num">H·14</div><div class="hp-name">Finiteness of Invariants</div><div class="hp-status solved">Solved — Nagata 1959</div></div>
+      <div class="hp-card"><div class="hp-num">H·15</div><div class="hp-name">Schubert Calculus</div><div class="hp-status partial">Partial</div></div>
+      <div class="hp-card"><div class="hp-num">H·16</div><div class="hp-name">Topology of Curves &amp; Surfaces</div><div class="hp-status partial">Partial</div></div>
+      <div class="hp-card"><div class="hp-num">H·17</div><div class="hp-name">Positive Semidefinite Forms</div><div class="hp-status solved">Solved — Artin 1927</div></div>
+      <div class="hp-card"><div class="hp-num">H·18</div><div class="hp-name">Space-filling by Polyhedra</div><div class="hp-status solved">Solved — 1910/1998</div></div>
+      <div class="hp-card"><div class="hp-num">H·19</div><div class="hp-name">Analytic Solutions of Variational Problems</div><div class="hp-status solved">Solved — De Giorgi 1957</div></div>
+      <div class="hp-card"><div class="hp-num">H·20</div><div class="hp-name">Boundary Value Problems</div><div class="hp-status solved">Solved</div></div>
+      <div class="hp-card"><div class="hp-num">H·21</div><div class="hp-name">Differential Equations with Given Monodromy</div><div class="hp-status solved">Solved — 1908/1989</div></div>
+      <div class="hp-card"><div class="hp-num">H·22</div><div class="hp-name">Uniformisation by Automorphic Functions</div><div class="hp-status solved">Solved — 1907</div></div>
+      <div class="hp-card"><div class="hp-num">H·23</div><div class="hp-name">Calculus of Variations</div><div class="hp-status partial">Partial</div></div>
+    </div>
+    <div style="margin-top:20px; font-family:'Courier Prime',monospace; font-size:13px; display:flex; gap:24px; flex-wrap:wrap;">
+      <span><span style="color:#4af0a0">■</span> &nbsp;Solved</span>
+      <span><span style="color:#f0c84a">■</span> &nbsp;Partial / Ongoing</span>
+      <span><span style="color:#ff6b6b">■</span> &nbsp;Open</span>
+      <span><span style="color:rgba(138,164,255,0.4)">■</span> &nbsp;Moot / Reformulated</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LIMITATIONS (full-bleed) ═══ -->
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">06 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Where Even<br>Hilbert Stumbled</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The Hilbert Programme was shattered by Gödel's incompleteness theorems in 1931 — proving that no consistent axiomatic system powerful enough for arithmetic can be both complete and prove its own consistency. Hilbert never fully accepted this verdict.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His formalist philosophy — that mathematics is a game with symbols, requiring no semantic meaning beyond consistency — was directly refuted by Gödel. Mathematical truth, it turned out, transcends any particular formal system.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The priority dispute with Einstein over the field equations of general relativity remains historically contested. Hilbert's November 1915 submission predates Einstein's final paper, but Einstein's earlier drafts contain the physical ideas and field equations in recognisable form. Most historians credit Einstein with the physics, Hilbert with the elegant variational derivation.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> He badly underestimated the pace of Nazi destruction of German academia. His optimistic declaration "Wir müssen wissen, wir werden wissen" — made in 1930 — was followed within three years by the wholesale expulsion of Jewish mathematicians from Göttingen, which he did not publicly resist.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Several of his 23 Problems were imprecisely stated — Problem 6 (axiomatise physics) remains so broad as to be essentially undefinable, and Problems 4, 13, and 16 have generated debate about whether stated "solutions" actually resolve what Hilbert intended.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BOOKS ═══ -->
+  <section class="reveal">
+    <div class="section-label">07 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://www.amazon.com/Foundations-Geometry-David-Hilbert/dp/1602064873" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Foundations of Geometry</div>
+        <div class="book-arrow">By Hilbert himself →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Hilbert-Constance-Reid/dp/0387946748" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Hilbert</div>
+        <div class="book-arrow">Constance Reid →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Godel-Escher-Bach-Eternal-Golden/dp/0465026567" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Gödel, Escher, Bach</div>
+        <div class="book-arrow">Douglas Hofstadter →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Mathematics-Its-History-John-Stillwell/dp/144196052X" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Mathematics and Its History</div>
+        <div class="book-arrow">John Stillwell →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"We must know. We will know."</div>
+  <div>David Hilbert &nbsp;·&nbsp; 1862–1943 &nbsp;·&nbsp; University of Göttingen &nbsp;·&nbsp; 23 Problems That Shaped Mathematics</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(r => observer.observe(r));
+
+  document.querySelectorAll('.formula-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+</script>
+</body>
+</html>

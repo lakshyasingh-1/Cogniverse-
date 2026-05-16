@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plato — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0a04;
+    --paper: #f5f0e8;
+    --aged: #e8e0cc;
+    --rust: #8b4a0a;
+    --gold: #c4962a;
+    --charcoal: #12100a;
+    --fade: #6b5a3a;
+    --formula-bg: #0c0904;
+    --formula-text: #e8c87a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Crimson Pro', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap { width: 100%; height: 100%; position: relative; }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(60%) contrast(1.15) brightness(0.78) saturate(0.6);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+                linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(56px, 6.5vw, 96px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 14px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 21px;
+    color: var(--charcoal);
+    max-width: 420px;
+    line-height: 1.6;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.6);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+
+  .meta-value { font-size: 18px; font-weight: 600; color: var(--ink); }
+
+  main { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  section { padding: 80px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(28px, 3.5vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 40px;
+    color: var(--ink);
+    letter-spacing: 2px;
+  }
+
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text { font-size: 18px; line-height: 1.9; color: var(--charcoal); }
+
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list { list-style: none; }
+
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(245,240,232,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .achievement-list li:last-child { border-bottom: none; }
+
+  .achievement-list li::before {
+    content: 'Ω';
+    color: var(--gold);
+    font-size: 13px;
+    line-height: 1.2;
+    margin-top: 2px;
+    flex-shrink: 0;
+    font-family: 'Cinzel', serif;
+  }
+
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .formula-card:hover { transform: scaleX(1.05); background: #180e04; }
+
+  .formula-math {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(16px, 1.8vw, 26px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    line-height: 1.5;
+  }
+
+  .formula-divider { width: 90px; height: 1px; background: var(--rust); margin-bottom: 16px; }
+
+  .formula-explanation {
+    font-size: 16px;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.7;
+    font-style: italic;
+    font-family: 'Crimson Pro', serif;
+  }
+
+  .element-showcase {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .element-card {
+    background: var(--formula-bg);
+    border: 1px solid rgba(196,150,42,0.3);
+    padding: 24px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .element-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(196,150,42,0.08), transparent);
+  }
+
+  .element-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(196,150,42,0.15);
+  }
+
+  .element-number {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: rgba(232,200,122,0.4);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .element-symbol {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--formula-text);
+    line-height: 1.2;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .element-name {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: rgba(232,200,122,0.6);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .element-note {
+    font-size: 12px;
+    color: rgba(232,200,122,0.5);
+    font-style: italic;
+    margin-top: 10px;
+    font-family: 'Crimson Pro', serif;
+    line-height: 1.4;
+  }
+
+  .contrib-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Cinzel', serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+    opacity: 0.7;
+  }
+
+  .contrib-item:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .contrib-text { font-size: 17px; line-height: 1.65; color: var(--charcoal); padding-top: 8px; }
+
+  .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .problem-item:hover { background: rgba(196,150,42,0.04); }
+
+  .problem-header { display: flex; align-items: baseline; gap: 18px; }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text { font-size: 18px; line-height: 1.65; color: var(--charcoal); }
+
+  .problem-meta { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 4px; }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+
+  .problem-source::before { content: '⊢ '; color: var(--gold); }
+  .problem-proof::before  { content: '✓ '; color: var(--gold); }
+
+  .solution-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; width: fit-content; }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 7px 16px;
+    border: 1px solid var(--rust);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before { content: '↓'; font-size: 14px; line-height: 1; }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(196,150,42,0.3);
+  }
+
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card { background: white; padding: 28px 24px; border-left: 4px solid var(--rust); }
+  .limit-text { font-size: 16px; line-height: 1.65; color: var(--charcoal); }
+
+  .books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .book-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); border-color: transparent; }
+  .book-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+  .book-title { font-family: 'Cinzel', serif; font-size: 15px; font-weight: 700; line-height: 1.5; margin-bottom: 12px; letter-spacing: 0.5px; }
+  .book-arrow { font-family: 'Courier Prime', monospace; font-size: 11px; letter-spacing: 2px; color: var(--rust); text-transform: uppercase; }
+
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(196,150,42,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .home-btn:hover { background: var(--rust); border-color: var(--gold); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
+  .home-btn svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+  footer {
+    background: var(--charcoal);
+    color: rgba(245,240,232,0.45);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .footer-quote {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    .element-showcase { grid-template-columns: repeat(2, 1fr); }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .error { color: rgba(139,74,10,0.55); font-size: large; }
+</style>
+</head>
+<body>
+
+<a class="home-btn" href="philosophy.html" title="Go Home">
+Home
+</a>
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Plato_Silanion_Musei_Capitolini_MC1377.png/500px-Plato_Silanion_Musei_Capitolini_MC1377.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail">
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="nationality-tag">Ancient Greek &nbsp;·&nbsp; Philosopher</div>
+    <h1 class="hero-name">Plato</h1>
+    <p class="hero-era">428/427 BC — 348/347 BC</p>
+    <p class="hero-tagline">He built the first sustained attempt to answer every fundamental question at once — what is real, what is good, what is just, and how the soul should live — and the West has been arguing with him ever since.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Field</div>
+        <div class="meta-value">Philosophy</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">Ancient Greek</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Key Work</div>
+        <div class="meta-value">The Republic (~375 BC)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        <div class="meta-value">The Academy, Athens</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">The Man Who<br>Invented Philosophy</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Plato was born around 428 BC in Athens, into one of the city's most distinguished aristocratic families. His given name was Aristocles; "Plato" — meaning broad — was reportedly a wrestling nickname, a reminder that the greatest philosopher in Western history was also a formidable athlete. He was expected to enter Athenian political life. Instead, as a young man, he encountered Socrates.
+        <br><br>
+        The relationship transformed him. For perhaps a decade, he followed Socrates through the agora, listening to him interrogate politicians, poets, craftsmen, and generals about things they assumed they knew — justice, piety, courage, love — and demonstrating, relentlessly, that they did not. When Athens put Socrates to death in 399 BC on charges of impiety and corrupting the young, Plato never recovered from the horror of it. The execution of the most just man he had ever known by democratic vote convinced him that democracy was a fundamentally disordered form of government.
+        <br><br>
+        He left Athens, travelled widely — including visits to Syracuse in Sicily, where he made disastrous attempts to educate its tyrant rulers into philosopher-kings — and returned around 387 BC to found the Academy, the ancient world's first institution of higher learning, which would operate for nearly nine centuries. There he taught, wrote, and refined his ideas for the rest of his long life. His student Aristotle arrived at the Academy at age seventeen and stayed for twenty years. Between teacher and student, virtually the entire framework of Western philosophy was established.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title">&nbsp; Major Works</div>
+        <ul class="achievement-list">
+          <li>The Republic — justice, the ideal state, philosopher-kings</li>
+          <li>Symposium — the nature and ascent of Eros and love</li>
+          <li>Phaedo — the immortality of the soul; final hours of Socrates</li>
+          <li>Meno — whether virtue can be taught; theory of recollection</li>
+          <li>Timaeus — cosmology; the Demiurge and the creation of the world</li>
+          <li>Parmenides — rigorous self-critique of the Theory of Forms</li>
+          <li>Founded the Academy (~387 BC) — first European university</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Doctrines &amp; Arguments</div>
+    <h2 class="section-title">The Architecture<br>of His Thought</h2>
+
+    <div style="margin-bottom: 16px;">
+      <div style="font-family: 'Courier Prime', monospace; font-size: 11px; letter-spacing: 3px; color: var(--fade); margin-bottom: 16px; text-transform: uppercase;">Three Pillars of Platonic Philosophy</div>
+      <div class="element-showcase">
+        <div class="element-card">
+          <div class="element-number">Metaphysics</div>
+          <div class="element-symbol">The Forms</div>
+          <div class="element-name">Theory of Ideas</div>
+          <div class="element-note">Eternal, perfect archetypes of which all visible things are imperfect copies</div>
+        </div>
+        <div class="element-card">
+          <div class="element-number">Epistemology</div>
+          <div class="element-symbol">Anamnesis</div>
+          <div class="element-name">Theory of Recollection</div>
+          <div class="element-note">All learning is remembering what the soul knew before birth</div>
+        </div>
+        <div class="element-card">
+          <div class="element-number">Politics</div>
+          <div class="element-symbol">Kallipolis</div>
+          <div class="element-name">The Just City</div>
+          <div class="element-note">A state ruled by philosopher-kings who know the Form of the Good</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="formulas-grid">
+      <div class="formula-card">
+        <div class="formula-math">Appearance ≠ Reality<br>Sensible ≠ Intelligible</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The Two Worlds doctrine: the visible world of changing, perishable things is not the real world. The real world is the realm of Forms — eternal, unchanging, knowable only by reason. The Allegory of the Cave dramatises exactly this distinction.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">Knowledge → True Belief + Account (λόγος)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The Meno-Theaetetus definition of knowledge: true belief alone is not enough — one must be able to give a reasoned account. This is the ancestor of the justified true belief analysis that dominated epistemology for two millennia.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">Soul: Reason · Spirit · Appetite</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The tripartite soul of the Republic: justice in the individual is each part performing its proper function, with reason ruling spirit and appetite. The parallel structure of soul and city is the Republic's central argument.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">The Good → Truth → Beauty → Love</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Diotima's Ladder in the Symposium: Eros ascends from physical beauty to beautiful souls to beautiful practices to knowledge itself, culminating in the Form of Beauty — the unchanging, eternal source of all particular beautiful things.</div>
+      </div>
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">The Allegory: Cave → Fire → Sun → The Form of the Good (τοῦ ἀγαθοῦ ἰδέα)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The most famous image in the history of philosophy: prisoners in a cave mistake shadows on a wall for reality. One escapes into the sunlight — philosophy — and sees the sun itself, the Form of the Good, which illuminates all other Forms just as the sun illuminates all visible things. The philosopher who returns to tell the prisoners is Socrates. The prisoners who kill him are Athens. Plato never forgave them.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What He<br>Gave Philosophy</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">I</div>
+        <div class="contrib-text">The Theory of Forms — the first systematic metaphysics: the claim that abstract entities (Justice, Beauty, Equality) are more real than the physical objects that imperfectly instantiate them.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">II</div>
+        <div class="contrib-text">The Socratic dialogue as philosophical method — rigorous, relentless questioning (elenchus) as the tool for exposing false beliefs and moving toward genuine understanding.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">III</div>
+        <div class="contrib-text">Political philosophy — the first sustained analysis of justice, the ideal state, the corruption of constitutions, and the relationship between individual psychology and political order.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">IV</div>
+        <div class="contrib-text">Epistemology — the first careful distinction between knowledge and opinion, and the theory that genuine knowledge requires not just true belief but justified rational grounding.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">V</div>
+        <div class="contrib-text">Philosophy of love and beauty — the Symposium's account of Eros as a form of longing for immortality and the transcendent, which shaped centuries of Christian mysticism, Neoplatonism, and Romantic aesthetics.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Cinzel', serif; font-size: 60px; font-weight: 900; opacity: 0.15; line-height: 1; flex-shrink: 0;">Φ</div>
+        <div style="color: rgba(245,240,232,0.6); font-size: 16px; padding-top: 8px; font-style: italic; font-family: 'Crimson Pro', serif;">"The safest general characterisation of the European philosophical tradition is that it consists of a series of footnotes to Plato." — Alfred North Whitehead</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="section-label">04 &nbsp; Problems Addressed</div>
+    <h2 class="section-title">The Questions<br>He Dared to Answer</h2>
+    <div class="problems-list">
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.01</div>
+          <div class="problem-text">What is Justice? — The Republic's central question. Plato answered: justice is each part of a whole (city or soul) performing its proper function, coordinated under the rule of reason.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Political & Moral Philosophy</div>
+          <div class="problem-proof">Proof: Republic, Books I–IV (Thrasymachus refuted; tripartite soul established)</div>
+        </div>
+        <div class="solution-link"><a href="#P01">View Solution pdf</a></div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.02</div>
+          <div class="problem-text">How is knowledge possible? — Against the sophist claim that truth is relative, Plato argued that the Forms provide stable, objective objects of genuine knowledge, accessible to reason alone.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Epistemology</div>
+          <div class="problem-proof">Proof: Meno (theory of recollection); Theaetetus (knowledge as justified true belief)</div>
+        </div>
+        <div class="solution-link"><a href="#P02">View Solution pdf</a></div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.03</div>
+          <div class="problem-text">Is the soul immortal? — The Phaedo provides four arguments for the soul's immortality: the cyclical argument, recollection, affinity to Forms, and the form-of-life argument. All were later criticised; all were enormously influential.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Philosophy of Mind / Metaphysics</div>
+          <div class="problem-proof">Proof: Phaedo (arguments given in Socrates's final hours before drinking hemlock)</div>
+        </div>
+        <div class="solution-link"><a href="#P03">View Solution pdf</a></div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.04</div>
+          <div class="problem-text">What is the nature of Eros? — The Symposium presents six speeches on love, culminating in Diotima's account of erotic ascent from particular beauty to the Form of Beauty — a philosophical ladder from desire to wisdom.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Philosophy of Love & Aesthetics</div>
+          <div class="problem-proof">Proof: Symposium (Diotima's speech through Socrates)</div>
+        </div>
+        <div class="solution-link"><a href="#P04">View Solution pdf</a></div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.05</div>
+          <div class="problem-text">How did the cosmos come to be? — The Timaeus presents the Demiurge, a divine craftsman who shapes the physical world according to the Forms, producing the best possible cosmos out of pre-existing chaos and necessity.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Source: Cosmology & Natural Philosophy</div>
+          <div class="problem-proof">Proof: Timaeus (enormously influential on medieval Christian cosmology via Latin translation)</div>
+        </div>
+        <div class="solution-link"><a href="#P05">View Solution pdf</a></div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">05 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Where Even<br>Plato Erred</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The Theory of Forms is never rigorously defended against the Third Man Argument — a regress objection Plato himself raised in the Parmenides and never satisfactorily resolved. Aristotle considered it fatal.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The Republic endorses censorship of poets, suppression of individual ambition, and a "noble lie" told to citizens about their birth — positions deeply hostile to intellectual freedom and modern liberal values.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His distrust of democracy, rooted in personal grief over Socrates's execution, led him toward philosopher-kingship — a political ideal that has historically been used to justify authoritarian rule.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His cosmology in the Timaeus, though poetic and influential, is empirically baseless — the five Platonic solids as foundations of the elements, and the world-soul as a mathematical proportion, are not physics.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His attitude toward women was ambivalent: the Republic controversially allows women as Guardians, yet he elsewhere treats femininity as a lower stage of the soul's incarnation — a contradiction never reconciled.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section class="reveal">
+    <div class="section-label">06 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://www.amazon.com/Republic-Plato/dp/0140455116" target="_blank" rel="noopener">
+        <span class="book-icon">🏛️</span>
+        <div class="book-title">The Republic</div>
+        <div class="book-arrow">Plato — trans. Desmond Lee →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Symposium-Plato-Dover-Thrift-Editions/dp/0486277984" target="_blank" rel="noopener">
+        <span class="book-icon">🍷</span>
+        <div class="book-title">The Symposium</div>
+        <div class="book-arrow">Plato — trans. Benjamin Jowett →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Plato-Introduction-Paul-Shorey/dp/1015648398" target="_blank" rel="noopener">
+        <span class="book-icon">📜</span>
+        <div class="book-title">Plato: An Introduction</div>
+        <div class="book-arrow">Paul Shorey →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Plato-Complete-Works/dp/0872203492" target="_blank" rel="noopener">
+        <span class="book-icon">📚</span>
+        <div class="book-title">Plato: Complete Works</div>
+        <div class="book-arrow">Ed. John M. Cooper →</div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-quote">"The price good men pay for indifference to public affairs is to be ruled by evil men."</div>
+  <div style="margin-top:16px;">Plato &nbsp;·&nbsp; 428/427 – 348/347 BC &nbsp;·&nbsp; The Academy, Athens</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+  document.querySelectorAll('.formula-card').forEach((card, i) => { card.style.transitionDelay = `${i * 80}ms`; });
+</script>
+
+</body>
+</html>

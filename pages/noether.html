@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emmy Noether — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #060b08;
+    --paper: #f0f5f1;
+    --aged: #d8ead9;
+    --sepia: #3a7a4a;
+    --rust: #2a6838;
+    --gold: #7ab87a;
+    --charcoal: #0a1a0c;
+    --fade: #3e6645;
+    --formula-bg: #050d06;
+    --formula-text: #90d890;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(15%) contrast(1.1) brightness(0.9) hue-rotate(80deg) saturate(0.4);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+                linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--charcoal);
+    max-width: 420px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.694);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    animation: fadeUp 1s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+
+  /* ─── BIOGRAPHY ─── */
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list { list-style: none; }
+
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(240,245,241,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .achievement-list li:last-child { border-bottom: none; }
+  .achievement-list li::before {
+    content: '★';
+    color: var(--gold);
+    font-size: 14px;
+    line-height: 1;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ─── FORMULAS ─── */
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+  .formula-card:hover {
+    transform: scaleX(1.05);
+    background: #0c1e0e;
+  }
+
+  .formula-math {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.2vw, 32px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    line-height: 1.4;
+  }
+
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 16px;
+  }
+
+  .formula-explanation {
+    font-size: 18px;
+    color: rgba(240,245,241,0.65);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ─── CONTRIBUTIONS ─── */
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+  }
+  .contrib-item:hover {
+    border-color: var(--rust);
+    transform: translateY(-3px);
+  }
+  .contrib-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-top: 8px;
+  }
+
+  .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .problem-item:hover { background: rgba(61,158,53,0.04); }
+
+  .problem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  .problem-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+  .problem-source::before { content: '⊢ '; color: var(--gold); }
+  .problem-proof::before  { content: '✓ '; color: var(--gold); }
+
+  /* ─── PDF LINK BUTTON ─── */
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 7px 16px;
+    border: 1px solid var(--rust);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before {
+    content: '↓';
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(61,158,53,0.35);
+  }
+
+
+  /* ─── LIMITATIONS ─── */
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card {
+    background: white;
+    padding: 28px 24px;
+    border-left: 4px solid var(--rust);
+  }
+
+  .limit-text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+   /* ─── HOME BUTTON ─── */
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(232,160,96,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .home-btn:hover {
+    background: var(--rust);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  .home-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+  /* ─── BOOKS ─── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    border-color: transparent;
+  }
+
+  .book-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .book-arrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    text-transform: uppercase;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(240,245,241,0.5);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .error {
+    color: rgba(42, 104, 56, 0.55);
+    font-size: large;
+  }
+</style>
+</head>
+<body>
+<a class="home-btn" href="Math.html" title="Go Home">
+  <span>Home</span>
+</a>
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Emmy_Noether_%283x4_cropped%29.jpg/500px-Emmy_Noether_%283x4_cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail"
+           alt="Emmy Noether">
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="nationality-tag">German–American &nbsp;·&nbsp; Mathematician</div>
+    <h1 class="hero-name">Emmy<br>Noether</h1>
+    <p class="hero-era">1882 — 1935</p>
+    <p class="hero-tagline">She built abstract algebra from the ground up, then proved the theorem that every conservation law in physics is secretly a symmetry — the deepest idea in all of science.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Field</div>
+        <div class="meta-value">Abstract Algebra &amp; Physics</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">German–American</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Doctoral Advisor</div>
+        <div class="meta-value">Paul Gordan</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        <div class="meta-value">Göttingen &amp; Bryn Mawr</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BIOGRAPHY ═══ -->
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">The Most Significant<br>Creative Genius</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Amalie Emmy Noether was born on 23 March 1882 in Erlangen, Bavaria, the daughter of the mathematician Max Noether. In an era when women could not officially enrol at German universities, she audited classes at Erlangen for two years before the rules changed, then completed her doctorate in 1907 under Paul Gordan — at the time one of only two women to receive a mathematics doctorate in Germany.
+        <br><br>
+        Hilbert and Klein, recognising her as the greatest algebraist alive, invited her to Göttingen in 1915 — just as Einstein needed help with the mathematics of general relativity. She stayed for eighteen years, teaching without pay or title for years while male colleagues blocked her appointment. In 1918 she proved the two theorems that now bear her name: Noether's theorem, which established that every differentiable symmetry of a physical system corresponds to a conservation law, is one of the most profound results in the history of science. Einstein wrote to Hilbert calling it the work of a significant mathematical talent.
+        <br><br>
+        In 1933 the Nazis expelled her from Göttingen along with all Jewish academics. She emigrated to the United States, taking a position at Bryn Mawr College and lecturing at Princeton's Institute for Advanced Study. She died suddenly in 1935 following an ovarian tumour operation, aged 53. Einstein's obituary in the <em>New York Times</em> called her the most significant creative mathematical genius thus far produced.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Achievements</div>
+        <ul class="achievement-list">
+          <li>Noether's theorem — symmetry ↔ conservation laws</li>
+          <li>Founded modern abstract algebra (ring theory)</li>
+          <li>Noetherian rings — foundational to algebraic geometry</li>
+          <li>Ascending chain condition in module theory</li>
+          <li>Unified treatment of ideal theory in rings</li>
+          <li>Contributions to algebraic topology (Betti groups)</li>
+          <li>Helped Einstein with the mathematics of GR (1915)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FORMULAS ═══ -->
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Equations</div>
+    <h2 class="section-title">The Mathematics<br>of Symmetry &amp; Structure</h2>
+    <div class="formulas-grid">
+      <div class="formula-card">
+        <div class="formula-math">∂<sub style="font-size:0.6em">μ</sub> j<sup style="font-size:0.6em">μ</sup> = 0 &nbsp;⟺&nbsp; δ𝓛/δε = 0</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Noether's theorem: every continuous symmetry of the Lagrangian (δ𝓛/δε = 0) produces a conserved current (∂<sub>μ</sub>j<sup>μ</sup> = 0). Time symmetry → energy. Space symmetry → momentum. Rotation symmetry → angular momentum.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">R ⊇ I₁ ⊆ I₂ ⊆ I₃ ⊆ ··· stabilises</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Ascending chain condition: a Noetherian ring is one in which every ascending chain of ideals eventually stabilises. This single condition unlocks a vast theory and is the cornerstone of modern commutative algebra and algebraic geometry.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">(R/I) / (J/I) ≅ R/J</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Third isomorphism theorem for rings — one of the fundamental Noether isomorphism theorems that restructured algebra. Every algebraist uses these daily without always knowing whose name they carry.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">Ext<sup style="font-size:0.6em">n</sup>(M, N) &amp; Tor<sub style="font-size:0.6em">n</sub>(M, N)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Derived functors in homological algebra — Noether's conceptual framework for modules and ideals seeded the machinery of Ext and Tor, which became central to algebraic topology, number theory, and string theory.</div>
+      </div>
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">Q = ∫ j⁰ d³x &nbsp;,&nbsp; dQ/dt = 0 &nbsp;&nbsp;⟵&nbsp;&nbsp; 𝓛(q, q̇, t) invariant under q → q + ε·δq</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The conserved Noether charge Q: for every continuous symmetry of a system's Lagrangian, integrate the zeroth component of the Noether current over all space to get a conserved charge Q. This single framework produces electric charge conservation (from U(1) symmetry), colour charge (from SU(3)), and every other conserved quantity in the Standard Model of particle physics.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTRIBUTIONS ═══ -->
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What She<br>Gave Mathematics</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">Noether's theorem — proved that every continuous symmetry of a physical system implies a conservation law, the deepest unifying principle in all of theoretical physics.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">Abstract algebra — shifted mathematics from the study of specific objects (numbers, polynomials) to the study of abstract structures (groups, rings, modules), founding the modern approach.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">Noetherian rings — introduced the ascending chain condition; the resulting theory of Noetherian rings is foundational to all of algebraic geometry, commutative algebra, and algebraic number theory.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">Ideal theory — unified and vastly generalised the theory of ideals in rings, providing the algebraic language in which modern number theory and algebraic geometry are written.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">Representation theory — her work on algebras and their representations transformed the field, with deep applications to quantum mechanics and the theory of group representations.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; opacity: 0.2; line-height: 1; flex-shrink: 0;">∞</div>
+        <div style="color: rgba(240,245,241,0.6); font-size: 16px; padding-top: 8px; font-style: italic;">…and a completely new way of thinking that made the 20th century's mathematics possible.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROBLEMS SOLVED ═══ -->
+  <section class="reveal">
+    <div class="section-label">04 &nbsp; Problems Solved</div>
+    <h2 class="section-title">The Unsolvable,<br>Solved</h2>
+    <div class="problems-list">
+      <div class="problem-item">
+        <div class="problem-num">P.01</div>
+        <div class="problem-text">Explained why energy, momentum, and angular momentum are conserved in physics — each is the consequence of a symmetry (time, space, rotation), unified in a single theorem.</div>
+        <div class="problem-source">Source: Theoretical Physics</div>
+        <div class="problem-proof">Proof: "Invariante Variationsprobleme" (1918)</div>
+        <div class="solution-link"><a href="#P01">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.02</div>
+        <div class="problem-text">Resolved a problem in general relativity about energy conservation — Einstein and Hilbert were puzzled; Noether's second theorem (on gauge symmetries) settled it definitively in 1918.</div>
+        <div class="problem-source">Source: General Relativity</div>
+        <div class="problem-proof">Proof: Noether's second theorem (1918)</div>
+        <div class="solution-link"><a href="#P02">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.03</div>
+        <div class="problem-text">Gave the first axiomatic treatment of the theory of ideals in arbitrary commutative rings, replacing a patchwork of specific results with a unified structural theory.</div>
+        <div class="problem-source">Source: Abstract Algebra</div>
+        <div class="problem-proof">Proof: "Idealtheorie in Ringbereichen" (1921)</div>
+        <div class="solution-link"><a href="#P03">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.04</div>
+        <div class="problem-text">Proved the Lasker–Noether theorem — that every ideal in a Noetherian ring has a primary decomposition, a sweeping generalisation of the fundamental theorem of arithmetic.</div>
+        <div class="problem-source">Source: Commutative Algebra</div>
+        <div class="problem-proof">Proof: "Idealtheorie in Ringbereichen" (1921)</div>
+        <div class="solution-link"><a href="#P04">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.05</div>
+        <div class="problem-text">Introduced Betti numbers as group-theoretic invariants in topology — a conceptual leap that seeded the entire field of algebraic topology and homological algebra.</div>
+        <div class="problem-source">Source: Algebraic Topology</div>
+        <div class="problem-proof">Proof: Attributed in lectures by Hopf and Alexandrov (c. 1925)</div>
+        <div class="solution-link"><a href="#P05">View Solution pdf</a></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ LIMITATIONS (full-bleed) ═══ -->
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">05 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Constraints She<br>Worked Against</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Noether's theorem applies only to systems with a Lagrangian formulation and continuous symmetries — discrete symmetries (like parity) and dissipative systems fall outside its direct reach.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Her abstract, structuralist approach was initially resisted by older mathematicians who preferred concrete computational methods — Gordan himself called her early abstract work "theology."</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The Noetherian condition is not universal — many naturally occurring rings (such as rings of holomorphic functions or power series in infinitely many variables) are not Noetherian, limiting the reach of her theory.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Denied a paid professorship at Göttingen for years due solely to her sex — Hilbert's famous retort to objectors ("I do not see that the sex of the candidate is an argument against her admission") captures the institutional absurdity she navigated.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Her death at 53 from surgical complications cut short a career still at its peak. Contemporaries — Weyl, van der Waerden, Alexandrov — all wrote that her greatest work may still have been ahead of her.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BOOKS ═══ -->
+  <section class="reveal">
+    <div class="section-label">06 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://www.amazon.com/Noethers-Wonderful-Theorem-Dwight-Neuenschwander/dp/142141176X" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Noether's Wonderful Theorem</div>
+        <div class="book-arrow">Dwight Neuenschwander →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Emmy-Noether-Mathematician-Extraordinaire-David/dp/3030638103" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Emmy Noether — Mathematician Extraordinaire</div>
+        <div class="book-arrow">David Rowe →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Symmetry-Beautiful-Universe-Leon-Lederman/dp/1591022428" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Symmetry and the Beautiful Universe</div>
+        <div class="book-arrow">Lederman &amp; Hill →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Modern-Algebra-Its-Applications-Birkhoff/dp/0821816233" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Algebra (van der Waerden)</div>
+        <div class="book-arrow">Built on Noether's lectures →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"She had great stimulating power and many of her suggestions took shape only in the works of her pupils and co-workers."<br><span style="font-size:0.8em; opacity:0.7;">— Hermann Weyl, eulogy for Emmy Noether, 1935</span></div>
+  <div style="margin-top:16px;">Emmy Noether &nbsp;·&nbsp; 1882–1935 &nbsp;·&nbsp; University of Göttingen &amp; Bryn Mawr College</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  document.querySelectorAll('.formula-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+</script>
+</body>
+</html>

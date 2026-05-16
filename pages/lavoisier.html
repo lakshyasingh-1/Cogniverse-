@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antoine Lavoisier — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #060e07;
+    --paper: #f0f7ed;
+    --aged: #ddf0d5;
+    --rust: #1e5c1a;
+    --gold: #3d9e35;
+    --charcoal: #060e07;
+    --fade: #3a6638;
+    --formula-bg: #050d06;
+    --formula-text: #7de874;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.45;
+  }
+
+  /* ─── BALANCE SCALE / CONSERVATION GRID ─── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 96px,
+        rgba(61,158,53,0.03) 96px,
+        rgba(61,158,53,0.03) 97px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 96px,
+        rgba(61,158,53,0.03) 96px,
+        rgba(61,158,53,0.03) 97px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(25%) contrast(1.1) brightness(0.82) hue-rotate(60deg) saturate(0.7);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+      linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  .hero-image-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 40% 60%, rgba(61,158,53,0.13) 0%, transparent 60%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+    z-index: 1;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(61,158,53,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Conservation law watermark */
+  .hero-right::after {
+    content: 'M₁ = M₂';
+    position: absolute;
+    bottom: 40px; right: 52px;
+    font-family: 'Playfair Display', serif;
+    font-size: 96px;
+    font-weight: 900;
+    color: rgba(61,158,53,0.045);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -4px;
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 76px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--charcoal);
+    max-width: 430px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.694);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── SECTION STYLES ─── */
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+
+  /* ─── BIOGRAPHY ─── */
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list { list-style: none; }
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(240,247,237,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .achievement-list li:last-child { border-bottom: none; }
+  .achievement-list li::before {
+    content: '⚗';
+    color: var(--gold);
+    font-size: 13px;
+    line-height: 1.3;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ─── ELEMENTS DISCOVERED STRIP ─── */
+  .elements-strip {
+    background: var(--charcoal);
+    padding: 40px 40px;
+    margin: 0 -40px;
+    position: relative;
+    z-index: 1;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .elements-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .elements-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    opacity: 0.7;
+  }
+
+  .elements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 2px;
+    background: rgba(125,232,116,0.06);
+  }
+
+  .element-card {
+    background: rgba(5,13,6,0.95);
+    padding: 16px 12px;
+    text-align: center;
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .element-card:hover { background: #0c1f0d; }
+
+  .el-symbol {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--formula-text);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .el-name {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: rgba(240, 247, 237, 0.721);
+    text-transform: uppercase;
+  }
+
+  .el-role {
+    font-size: 11px;
+    color: rgba(126, 232, 116, 0.633);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* ─── FORMULAS ─── */
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .formula-card::before {
+    content: '⚗';
+    position: absolute;
+    right: 18px;
+    top: 14px;
+    font-size: 24px;
+    color: rgba(125,232,116,0.06);
+    pointer-events: none;
+  }
+
+  .formula-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(61,158,53,0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .formula-card:hover { background: #0a1a0b; }
+  .formula-card:hover::after { opacity: 1; }
+
+  .formula-math {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.2vw, 30px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+  }
+
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 16px;
+  }
+
+  .formula-explanation {
+    font-size: 17px;
+    color: rgba(240,247,237,0.65);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ─── CONTRIBUTIONS ─── */
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+  }
+  .contrib-item:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(61,158,53,0.08);
+  }
+  .contrib-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-top: 8px;
+  }
+
+  /* ─── PROBLEMS SOLVED ─── */
+  .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .problem-item:hover { background: rgba(61,158,53,0.04); }
+
+  .problem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  .problem-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+  .problem-source::before { content: '⊢ '; color: var(--gold); }
+  .problem-proof::before  { content: '✓ '; color: var(--gold); }
+
+  /* ─── PDF LINK BUTTON ─── */
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 7px 16px;
+    border: 1px solid var(--rust);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before {
+    content: '↓';
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(61,158,53,0.35);
+  }
+
+  /* ─── LIMITATIONS ─── */
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+    z-index: 1;
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card {
+    background: var(--paper);
+    padding: 28px 24px;
+    border-left: 4px solid var(--rust);
+  }
+
+  .limit-text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+   /* ─── HOME BUTTON ─── */
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(232,160,96,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .home-btn:hover {
+    background: var(--rust);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  .home-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+  /* ─── BOOKS ─── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(61,158,53,0.14);
+    border-color: transparent;
+  }
+
+  .book-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .book-arrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    text-transform: uppercase;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(240,247,237,0.5);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .error {
+    color: rgba(30,92,26,0.75);
+    font-size: large;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .hero-right::after { display: none; }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+    .elements-strip { margin: 0 -24px; padding: 40px 24px; }
+    .elements-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+    .problem-meta { flex-direction: column; gap: 6px; }
+  }
+
+  /* ─── SCROLL ANIMATION ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+<a class="home-btn" href="chemistry.html" title="Go Home">
+  <span>Home</span>
+</a>
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/David_-_Portrait_of_Monsieur_Lavoisier_%28cropped%292.jpg/500px-David_-_Portrait_of_Monsieur_Lavoisier_%28cropped%292.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail"
+           alt="Antoine Lavoisier">
+    </div>
+   
+  </div>
+
+  <div class="hero-right">
+    <div class="nationality-tag">French &nbsp;·&nbsp; Chemist &amp; Nobleman</div>
+    <h1 class="hero-name">Antoine<br>Lavoisier</h1>
+    <p class="hero-era">1743 — 1794</p>
+    <p class="hero-tagline">He killed phlogiston, named oxygen, and proved that matter is never created nor destroyed — then the Revolution killed him.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Fields</div>
+        <div class="meta-value">Chemistry, Biology</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">French</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Known For</div>
+        <div class="meta-value">Law of Conservation</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        <div class="meta-value">Académie des Sciences</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BIOGRAPHY ═══ -->
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">A Life That<br>Transformed Matter</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Antoine-Laurent de Lavoisier was born in Paris into a wealthy bourgeois family. He studied law at his father's insistence, but his true passion was science. Elected to the Académie Royale des Sciences at age 25 — unusually young — he threw himself into a systematic reform of chemistry that would, within two decades, make the entire discipline unrecognisable.
+        <br><br>
+        Working in a private laboratory of extraordinary precision — funded partly by his role as a tax-farmer for the Crown, a role that would later doom him — Lavoisier dismantled the centuries-old phlogiston theory of combustion. Using careful quantitative measurement with precision balances, he showed that combustion was not the release of a mysterious substance called phlogiston, but the <em>combination</em> of matter with oxygen — a gas he named and characterised.
+        <br><br>
+        His masterwork, <em>Traité Élémentaire de Chimie</em> (1789), presented the first modern list of chemical elements, introduced the law of conservation of mass, and gave chemistry its modern nomenclature. It is often called the first modern chemistry textbook. Lavoisier also discovered that respiration was a form of slow combustion — the first step toward biochemistry. In 1794, at the height of the Terror, he was convicted on false charges by the Revolutionary Tribunal and guillotined. The mathematician Lagrange mourned: "It took them only a moment to cut off that head, and a hundred years may not produce another like it."
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Achievements</div>
+        <ul class="achievement-list">
+          <li>Proved the Law of Conservation of Mass — matter is neither created nor destroyed</li>
+          <li>Identified and named oxygen and hydrogen</li>
+          <li>Demolished the phlogiston theory of combustion</li>
+          <li>Showed that combustion and respiration are both oxidation processes</li>
+          <li>Introduced systematic chemical nomenclature (with Berthollet, Fourcroy, Guyton)</li>
+          <li>Published <em>Traité Élémentaire de Chimie</em> — first modern chemistry textbook (1789)</li>
+          <li>Introduced the concept of the chemical element as an operationally defined substance</li>
+          <li>First calorimetric measurements of metabolic heat in animals</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ LAWS & EQUATIONS ═══ -->
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Laws &amp; Equations</div>
+    <h2 class="section-title">The Mathematics<br>of Matter</h2>
+    <div class="formulas-grid">
+
+      <div class="formula-card">
+        <div class="formula-math">m<sub style="font-size:0.6em">reactants</sub> = m<sub style="font-size:0.6em">products</sub></div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Law of Conservation of Mass — Lavoisier's supreme discovery: in any chemical reaction, the total mass of reactants equals the total mass of products. Matter is rearranged, never destroyed or created.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">C + O₂ → CO₂</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Combustion as oxidation — Lavoisier's decisive reframing: burning is combination with oxygen, not release of phlogiston. This single conceptual revolution made modern chemistry possible.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + E</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Aerobic respiration — the biochemical process Lavoisier first identified as analogous to combustion. He showed that animals consume oxygen and produce CO₂, generating heat — founding the science of metabolism.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">2H₂ + O₂ → 2H₂O</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Synthesis of water — Lavoisier proved that water is a compound of hydrogen and oxygen (not an element), exploding the ancient four-element theory and giving hydrogen its name from the Greek for "water-maker."</div>
+      </div>
+
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">Q = m · c · ΔT &nbsp; (calorimetry)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Calorimetric heat measurement — Lavoisier and Laplace built the first ice calorimeter in 1782, measuring the heat produced by chemical reactions and animal respiration with precision. This equation captures the principle: heat equals mass times specific heat times temperature change, founding thermochemistry and the quantitative study of metabolism.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ CONTRIBUTIONS ═══ -->
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What He<br>Gave Chemistry</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">Law of Conservation of Mass — the bedrock of all chemistry and physics: in a closed system, the total mass of matter is constant, no matter what chemical reactions occur.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">Discovery and naming of oxygen — isolated, characterised, and named the gas that drives combustion and respiration, replacing phlogiston with a chemically real substance.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">Modern chemical nomenclature — working with three colleagues, Lavoisier systematised chemical naming so that a compound's name reflects its composition. The system survives essentially unchanged to this day.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">First modern chemistry textbook — <em>Traité Élémentaire de Chimie</em> (1789) presented the new oxygen-based chemistry, listed 33 elements, and defined the chemical element operationally as any substance that cannot be further decomposed.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">Discovery of the role of oxygen in respiration and metabolism — Lavoisier showed that breathing is slow combustion, measuring the oxygen consumed and CO₂ produced by a guinea pig — the birth of biochemistry.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; opacity: 0.18; line-height: 1; flex-shrink: 0;">⚗</div>
+        <div style="color: rgba(240,247,237,0.6); font-size: 16px; padding-top: 8px; font-style: italic;">…and the transformation of chemistry from an art of recipes and mystical substances into a rigorous, quantitative, predictive science — the Chemical Revolution.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROBLEMS SOLVED ═══ -->
+  <section class="reveal">
+    <div class="section-label">04 &nbsp; Problems Solved</div>
+    <h2 class="section-title">The Unsolvable,<br>Solved</h2>
+    <div class="problems-list">
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.01</div>
+          <div class="problem-text">Disproved the phlogiston theory — the dominant explanation of combustion for a century — by showing through precise weighing that metals gain mass when they burn, proving they absorb a gas (oxygen) rather than releasing phlogiston.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Combustion Theory, 1772–1777</div>
+          <div class="problem-proof">Mémoire sur la combustion en général — Mémoires de l'Académie Royale des Sciences, 1777</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://archive.org/details/mmoiressurlanat00lavogoog" target="_blank" rel="noopener">View Source PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.02</div>
+          <div class="problem-text">Proved that water is not an element but a compound of hydrogen and oxygen — by synthesising it from the two gases and then decomposing it back again — overturning two millennia of Aristotelian four-element chemistry.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Composition of Water, 1783</div>
+          <div class="problem-proof">Mémoire dans lequel on a pour objet de prouver que l'eau n'est point une substance simple — Académie, 1783</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://archive.org/details/traitlmentairede00lavo" target="_blank" rel="noopener">View Archive PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.03</div>
+          <div class="problem-text">Established the law of conservation of mass experimentally — by conducting reactions in sealed vessels and demonstrating through painstaking weighing that the total mass before and after any chemical change is identical.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Conservation of Mass, 1773–1789</div>
+          <div class="problem-proof">Traité Élémentaire de Chimie — Cuchet, Paris, 1789 (Part I, Chapter I)</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://archive.org/details/traitlmentairede00lavo" target="_blank" rel="noopener">View Source PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.04</div>
+          <div class="problem-text">Demonstrated that animal respiration is a form of slow combustion — showing that a guinea pig consumes oxygen and produces CO₂ and heat in proportion, and that the same metabolic chemistry occurs during muscular exertion — founding quantitative physiology.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Respiration &amp; Metabolism, 1783–1790</div>
+          <div class="problem-proof">Mémoire sur la respiration des animaux — with Laplace; Mémoires de l'Académie, 1784</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://archive.org/details/mmoiressurlanat00lavogoog" target="_blank" rel="noopener">View Source PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.05</div>
+          <div class="problem-text">Reformed the chaos of alchemical nomenclature — replacing thousands of arbitrary, regional, and mystical names with a rational system in which every compound's name encodes its elements and composition, enabling international scientific communication for the first time.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Chemical Nomenclature Reform, 1787</div>
+          <div class="problem-proof">Méthode de Nomenclature Chimique — with Berthollet, Fourcroy &amp; Guyton de Morveau; Cuchet, Paris, 1787</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://archive.org/details/mthodedenomencl00guytgoog" target="_blank" rel="noopener">View Source PDF</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ ELEMENTS DISCOVERED / NAMED STRIP ═══ -->
+<div class="elements-strip reveal">
+  <div class="elements-inner">
+    <div class="elements-label">Elements Lavoisier Identified, Named, or Clarified</div>
+    <div class="elements-grid">
+      <div class="element-card">
+        <div class="el-symbol">O</div>
+        <div class="el-name">Oxygen</div>
+        <div class="el-role">Named &amp; isolated</div>
+      </div>
+      <div class="element-card">
+        <div class="el-symbol">H</div>
+        <div class="el-name">Hydrogen</div>
+        <div class="el-role">Named</div>
+      </div>
+      <div class="element-card">
+        <div class="el-symbol">N</div>
+        <div class="el-name">Nitrogen</div>
+        <div class="el-role">Named azote</div>
+      </div>
+      <div class="element-card">
+        <div class="el-symbol">S</div>
+        <div class="el-name">Sulphur</div>
+        <div class="el-role">Confirmed element</div>
+      </div>
+      <div class="element-card">
+        <div class="el-symbol">P</div>
+        <div class="el-name">Phosphorus</div>
+        <div class="el-role">Confirmed element</div>
+      </div>
+      <div class="element-card">
+        <div class="el-symbol">C</div>
+        <div class="el-name">Carbon</div>
+        <div class="el-role">Confirmed element</div>
+      </div>
+      <div class="element-card">
+        <div class="el-symbol">Fe</div>
+        <div class="el-name">Iron</div>
+        <div class="el-role">Listed as element</div>
+      </div>
+      <div class="element-card">
+        <div class="el-symbol">Cu</div>
+        <div class="el-name">Copper</div>
+        <div class="el-role">Listed as element</div>
+      </div>
+      <div class="element-card">
+        <div class="el-symbol">Zn</div>
+        <div class="el-name">Zinc</div>
+        <div class="el-role">Listed as element</div>
+      </div>
+      <div class="element-card">
+        <div class="el-symbol">Ag</div>
+        <div class="el-name">Silver</div>
+        <div class="el-role">Listed as element</div>
+      </div>
+    </div>
+    <div style="margin-top:16px; font-family:'Courier Prime',monospace; font-size:12px; color:rgba(145, 186, 141, 0.585); letter-spacing:2px;">
+      From his Traité Élémentaire de Chimie, 1789 — the first modern list of elements
+    </div>
+  </div>
+</div>
+
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">05 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Where Even<br>Lavoisier Stumbled</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> He mistakenly believed that all acids must contain oxygen — coining the name "oxygen" from the Greek for "acid-maker" (ὀξύς + γεννάω). Davy disproved this in 1810 by showing hydrochloric acid (HCl) contains no oxygen whatsoever.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> He listed "light" and "caloric" (heat) as chemical elements in his Traité — physical imponderable fluids that he could not yet distinguish from matter. The caloric theory of heat was not disproven until Rumford's experiments of 1798, four years after Lavoisier's death.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Lavoisier's role as a Fermier Général — a private tax collector for the French Crown — made him deeply unpopular with the poor and politically vulnerable. He failed to read the political dangers of the Revolution and was guillotined in 1794 on charges that were largely fabricated but rooted in his tax-farming activities.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> He systematically underacknowledged the contributions of Joseph Priestley, who had independently isolated oxygen before him, and of Carl Wilhelm Scheele, who had actually discovered it first. Lavoisier's superior experimental framework won history's verdict, but at the cost of serious scientific credit to others.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Despite his meticulous quantitative approach, he could not explain <em>why</em> elements combine in fixed ratios — that had to wait for Dalton's atomic theory (1803). Lavoisier's chemistry was macroscopic and phenomenological; the atomic model that gave it its full explanatory power came a decade after his death.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BOOKS ═══ -->
+  <section class="reveal">
+    <div class="section-label">06 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://archive.org/details/traitlmentairede00lavo" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Traité Élémentaire de Chimie</div>
+        <div class="book-arrow">By Lavoisier himself →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Lavoisier-Chemistry-Biology-Enterprise-1743-1794/dp/0691024960" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Lavoisier: The Crucial Year</div>
+        <div class="book-arrow">Henry Guerlac →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Lavoisier-Revolution-Chemistry-Douglas-McKie/dp/B0000CIDSJ" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Antoine Lavoisier: Scientist, Economist, Social Reformer</div>
+        <div class="book-arrow">Douglas McKie →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Structure-Scientific-Revolutions-Thomas-Kuhn/dp/0226458121" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">The Structure of Scientific Revolutions</div>
+        <div class="book-arrow">Thomas Kuhn →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"Nothing is lost, nothing is created, everything is transformed."</div>
+  <div>Antoine Lavoisier &nbsp;·&nbsp; 1743–1794 &nbsp;·&nbsp; Father of Modern Chemistry &nbsp;·&nbsp; Académie Royale des Sciences</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(r => observer.observe(r));
+
+  document.querySelectorAll('.formula-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+</script>
+</body>
+</html>

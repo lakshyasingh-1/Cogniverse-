@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evolution of Mathematics</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(
+          to bottom,
+          #1b1b1b,
+          #3e2723,
+          #283593,
+          #0d1117
+        );
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 18px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ffd54f;
+      }
+
+      .logo-box {
+        width: 45px;
+        height: 45px;
+        border: 2px solid #ffd54f;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffd54f;
+        font-size: 1.2rem;
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 30px;
+        font-weight: 500;
+        position: relative;
+        transition: 0.3s;
+      }
+
+      nav a:hover {
+        color: #ffd54f;
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 0%;
+        height: 2px;
+        background: #ffd54f;
+        transition: 0.3s;
+      }
+
+      nav a:hover::after {
+        width: 100%;
+      }
+
+   
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 120px 10% 80px;
+
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)),
+          url("https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?q=80&w=1470&auto=format&fit=crop");
+
+        background-size: cover;
+        background-position: center;
+      }
+
+      .hero-content h1 {
+        font-size: 4rem;
+        margin-bottom: 25px;
+        color: #fff3c4;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      }
+
+      .hero-content p {
+        max-width: 850px;
+        margin: auto;
+        line-height: 1.9;
+        font-size: 1.1rem;
+        color: #ddd;
+      }
+
+      .hero-btn {
+        display: inline-block;
+        margin-top: 35px;
+        padding: 14px 35px;
+        background: #ffd54f;
+        color: #111;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.4s;
+      }
+
+      .hero-btn:hover {
+        transform: translateY(-4px);
+        background: #ffe082;
+      }
+
+      /* SECTION TITLE */
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title h2 {
+        font-size: 2.8rem;
+        color: #ffd54f;
+        margin-bottom: 15px;
+      }
+
+      .section-title p {
+        max-width: 700px;
+        margin: auto;
+        line-height: 1.8;
+        color: #ddd;
+      }
+
+      .timeline-section {
+        padding: 100px 8%;
+      }
+
+      .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+       .timeline::after {
+        content: "";
+        position: absolute;
+        width: 4px;
+        background: #ffcc80;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -2px;
+      }
+
+      .timeline-container {
+        position: relative;
+        width: 50%;
+        padding: 20px 40px;
+
+        opacity: 0;
+        transform: translateY(80px);
+        transition: all 1s ease;
+      }
+
+      .timeline-container.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .timeline-container.left {
+        left: 0;
+      }
+
+      .timeline-container.right {
+        left: 50%;
+      }
+
+      .timeline-content {
+        background: rgba(255, 255, 255, 0.06);
+        padding: 25px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        transition: 0.4s;
+      }
+
+      .timeline-content:hover {
+        transform: translateY(-6px);
+      }
+
+      .timeline-content h3 {
+        color: #ffd54f;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+      }
+
+      .timeline-content h4 {
+        color: #90caf9;
+        margin-bottom: 15px;
+      }
+
+      .timeline-content p {
+        line-height: 1.8;
+        color: #e0e0e0;
+        font-size: 0.95rem;
+      }
+
+    
+
+      .right::after {
+        left: -11px;
+      }
+
+      .quotes {
+        padding: 100px 8%;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .quote-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .quote-card {
+        background: rgba(255, 255, 255, 0.06);
+        padding: 30px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: 0.3s;
+      }
+
+      .quote-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .quote-card p {
+        line-height: 1.8;
+        font-style: italic;
+        color: #f5f5f5;
+      }
+
+      .quote-card h4 {
+        margin-top: 20px;
+        color: #ffd54f;
+      }
+
+      .scientists {
+        padding: 100px 8%;
+        text-align: center;
+      }
+
+      .scientist-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 40px;
+      }
+
+      .scientist-buttons a {
+        text-decoration: none;
+        padding: 15px 28px;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(135deg, #ffd54f, #64b5f6);
+        color: #111;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 1rem;
+      }
+
+      .scientist-buttons a:hover {
+        transform: scale(1.08);
+      }
+ 
+
+      footer {
+        padding: 40px 8%;
+        text-align: center;
+        background: #05070d;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      footer p {
+        line-height: 1.8;
+        color: #aaa;
+      }
+
+    
+
+      @media (max-width: 1024px) {
+        .hero-content h1 {
+          font-size: 3rem;
+        }
+
+        nav a {
+          margin-left: 18px;
+        }
+      }
+
+      @media (max-width: 900px) {
+        header {
+          padding: 16px 5%;
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        nav {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 15px;
+        }
+
+        nav a {
+          margin-left: 0;
+        }
+
+        .hero {
+          padding: 180px 6% 100px;
+        }
+
+        .hero-content h1 {
+          font-size: 2.7rem;
+        }
+
+        .timeline::after {
+          left: 25px;
+        }
+
+        .timeline-container {
+          width: 100%;
+          padding-left: 80px;
+          padding-right: 20px;
+        }
+
+        .timeline-container.right {
+          left: 0;
+        }
+
+        .timeline-container.left::after,
+        .timeline-container.right::after {
+          left: 14px;
+        }
+
+        .quote-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .scientist-buttons a {
+          width: 100%;
+          max-width: 320px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero-content h1 {
+          font-size: 2.1rem;
+        }
+
+        .hero-content p {
+          font-size: 0.95rem;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+
+        .timeline-content {
+          padding: 20px;
+        }
+
+        .timeline-content p {
+          font-size: 0.9rem;
+        }
+
+        footer {
+          padding: 30px 5%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+  
+
+    <header>
+      <div class="logo">
+        <div class="logo-box">∑</div>
+        Mathematics Evolution
+      </div>
+
+      <nav>
+        <a href="Home.html">Home</a>
+        <a href="#timeline">Explore</a>
+        <a href="#scientists">Mathematicians</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>The Evolution of Mathematics</h1>
+
+        <p>
+          Explore the incredible journey of mathematics from ancient counting
+          systems and geometry to calculus, algebra, modern computing, and
+          artificial intelligence.
+        </p>
+
+        <a href="#timeline" class="hero-btn"> Explore Timeline </a>
+      </div>
+    </section>
+
+    <section class="timeline-section" id="timeline">
+      <div class="section-title">
+        <h2>Mathematics Timeline</h2>
+
+        <p>
+          Discover how mathematics evolved through civilizations and transformed
+          science, technology, astronomy, engineering, and modern computing.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-container left">
+          <div class="timeline-content">
+            <h3>Ancient Mathematics</h3>
+            <h4>3000 BCE – 500 BCE</h4>
+
+            <p>
+              Egyptians and Babylonians developed arithmetic, geometry,
+              calendars, and measurement systems for construction and trade.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-container right">
+          <div class="timeline-content">
+            <h3>Greek Mathematics</h3>
+            <h4>500 BCE – 300 BCE</h4>
+
+            <p>
+              Pythagoras, Euclid, and Archimedes established logical proofs,
+              geometry, and mathematical reasoning that shaped future
+              mathematics.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-container left">
+          <div class="timeline-content">
+            <h3>Islamic Golden Age</h3>
+            <h4>800 CE – 1400 CE</h4>
+
+            <p>
+              Al-Khwarizmi introduced algebra and algorithms while Islamic
+              scholars preserved and expanded mathematical knowledge.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-container right">
+          <div class="timeline-content">
+            <h3>Calculus Revolution</h3>
+            <h4>1600 CE – 1700 CE</h4>
+
+            <p>
+              Newton and Leibniz independently developed calculus,
+              revolutionizing physics, engineering, and astronomy.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-container left">
+          <div class="timeline-content">
+            <h3>Modern Mathematics</h3>
+            <h4>1900 CE – Present</h4>
+
+            <p>
+              Mathematics now powers artificial intelligence, cryptography,
+              quantum computing, statistics, and advanced scientific research.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quotes">
+      <div class="section-title">
+        <h2>Famous Mathematics Quotes</h2>
+
+        <p>Inspiring words from legendary mathematicians.</p>
+      </div>
+
+      <div class="quote-grid">
+        <div class="quote-card">
+          <p>"Pure mathematics is, in its way, the poetry of logical ideas."</p>
+
+          <h4>— Albert Einstein</h4>
+        </div>
+
+        <div class="quote-card">
+          <p>
+            "Mathematics is the language in which God has written the universe."
+          </p>
+
+          <h4>— Galileo Galilei</h4>
+        </div>
+
+        <div class="quote-card">
+          <p>"Without mathematics, there’s nothing you can do."</p>
+
+          <h4>— Shakuntala Devi</h4>
+        </div>
+      </div>
+    </section>
+
+    <section class="scientists" id="scientists">
+      <div class="section-title">
+        <h2>Important Mathematicians</h2>
+
+        <p>Click to explore mathematician details.</p>
+      </div>
+
+      <div class="scientist-buttons">
+       <a href="Euler.html">Leonhard Euler</a>
+       <a href="gauss.html">Carl Friedrich Gauss</a>
+       <a href="Hilbert.html">David Hilbert</a>
+       <a href="noether.html">Amalie Emmy Noether</a>
+       <a href="ramanujan.html">Srinivasa Ramanujan Iyengar</a>
+       <a href="riemann.html">Bernhard Riemann</a>
+       <a href="Turing.html">Alan Turing</a>
+      </div>
+    </section>
+
+    <footer id="footer">
+      <p>© 2026 Mathematics Evolution | Ancient Numbers to Modern Computing</p>
+
+      <p>
+        Exploring the timeless language of logic, patterns, and the universe.
+      </p>
+    </footer>
+
+    <script>
+      const timelineItems = document.querySelectorAll(".timeline-container");
+
+      window.addEventListener("scroll", () => {
+        timelineItems.forEach((item) => {
+          const itemTop = item.getBoundingClientRect().top;
+
+          if (itemTop < window.innerHeight - 100) {
+            item.classList.add("show");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

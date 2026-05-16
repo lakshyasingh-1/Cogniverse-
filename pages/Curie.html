@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marie Curie — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b0d12;
+    --paper: #eef0f5;
+    --aged: #dde1eb;
+    --sepia: #7a8aaa;
+    --rust: #1a4a7a;
+    --gold: #4a90c4;
+    --charcoal: #141820;
+    --fade: #6a7488;
+    --formula-bg: #0d1017;
+    --formula-text: #7ab8e8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(30%) contrast(1.05);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+                linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+  }
+
+  /* Radioactive glow accent */
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(74,144,196,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--charcoal);
+    max-width: 400px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.694);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ─── SECTION STYLES ─── */
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    animation: fadeUp 1s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+
+  /* ─── BIOGRAPHY ─── */
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list {
+    list-style: none;
+  }
+
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(238,240,245,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .achievement-list li:last-child { border-bottom: none; }
+  .achievement-list li::before {
+    content: '★';
+    color: var(--gold);
+    font-size: 14px;
+    line-height: 1;
+    margin-top: 4px;
+  }
+
+  /* ─── FORMULAS ─── */
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+  .formula-card:hover {
+    transform: scaleX(1.05);
+    background: #101520;
+  }
+
+  .formula-math {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 3vw, 38px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 16px;
+  }
+
+  .formula-explanation {
+    font-size: 18px;
+    color: rgba(238,240,245,0.65);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ─── CONTRIBUTIONS ─── */
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    transition: all 0.3s ease;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+  }
+  .contrib-item:hover {
+    border-color: var(--rust);
+    transform: translateY(-3px);
+  }
+  .contrib-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-top: 8px;
+  }
+
+  /* ─── PROBLEMS SOLVED ─── */
+  /* ─── PROBLEMS SOLVED ─── */
+  .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .problem-item:hover { background: rgba(61,158,53,0.04); }
+
+  .problem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  .problem-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+  .problem-source::before { content: '⊢ '; color: var(--gold); }
+  .problem-proof::before  { content: '✓ '; color: var(--gold); }
+
+  /* ─── PDF LINK BUTTON ─── */
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 7px 16px;
+    border: 1px solid var(--rust);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before {
+    content: '↓';
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(61,158,53,0.35);
+  }
+  /* ─── LIMITATIONS ─── */
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card {
+    background: white;
+    padding: 28px 24px;
+    border-left: 4px solid var(--rust);
+    position: relative;
+  }
+
+  .limit-text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  /* ─── BOOKS ─── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    border-color: transparent;
+  }
+
+  .book-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .book-arrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    text-transform: uppercase;
+  }
+   /* ─── HOME BUTTON ─── */
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(232,160,96,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .home-btn:hover {
+    background: var(--rust);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  .home-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(238,240,245,0.5);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  /* ─── DECORATIVE ─── */
+  .ornament {
+    text-align: center;
+    font-size: 28px;
+    opacity: 0.2;
+    margin: 40px 0;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+  }
+
+  /* ─── SCROLL ANIMATION ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .error {
+    color: rgba(26, 74, 122, 0.7);
+    font-size: large;
+  }
+
+  /* Radioactive symbol decoration on formula cards */
+  .formula-card::before {
+    content: '☢';
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    font-size: 18px;
+    color: rgba(74,144,196,0.08);
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<a class="home-btn" href="physics.html" title="Go Home">
+Home
+</a>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Marie_Curie_c1920.jpg/500px-Marie_Curie_c1920.jpg"
+           alt="Marie Curie">
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="nationality-tag">Polish-French &nbsp;·&nbsp; Physicist &amp; Chemist</div>
+    <h1 class="hero-name">Marie<br>Curie</h1>
+    <p class="hero-era">1867 — 1934</p>
+    <p class="hero-tagline">She split open the atom's secrets and blazed trails no woman had walked before.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Fields</div>
+        <div class="meta-value">Physics, Chemistry</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">Polish-French</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nobel Prizes</div>
+        <div class="meta-value">1903 &amp; 1911</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        <div class="meta-value">Sorbonne, Paris</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BIOGRAPHY ═══ -->
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">A Life That<br>Glowed with Purpose</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Maria Sklodowska was born in Warsaw, then under Russian rule, to a family of teachers who nurtured her insatiable curiosity. Denied higher education in Poland, she moved to Paris in 1891, enrolled at the Sorbonne, and graduated top of her class in physics — then again in mathematics.
+        <br><br>
+        Working alongside her husband Pierre in a leaky, makeshift shed, she coined the term <em>radioactivity</em> and discovered two new elements — polonium (named for her homeland) and radium — through years of exhausting manual extraction from tonnes of pitchblende ore.
+        <br><br>
+        In 1903 she became the first woman to win the Nobel Prize, and in 1911 she won a second — in a different science — making her the first person ever to achieve that distinction. She remains the only person to have Nobel Prizes in both Physics and Chemistry.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Achievements</div>
+        <ul class="achievement-list">
+          <li>Nobel Prize in Physics (1903) for discovery of radioactivity</li>
+          <li>Nobel Prize in Chemistry (1911) for isolation of radium and polonium</li>
+          <li>Discovery of polonium and radium (1898)</li>
+          <li>First woman to win a Nobel Prize</li>
+          <li>First person to win Nobel Prizes in two sciences</li>
+          <li>Founded the Curie Institutes in Paris and Warsaw</li>
+          <li>Developed mobile X-ray units ("petites Curies") in WWI</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ EQUATIONS ═══ -->
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Equations &amp; Laws</div>
+    <h2 class="section-title">The Mathematics<br>of Invisible Forces</h2>
+    <div class="formulas-grid">
+      <div class="formula-card">
+        <div class="formula-math">A = λN</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Radioactive activity equals decay constant times the number of undecayed nuclei — the quantitative heartbeat of radioactivity Curie measured.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">N(t) = N₀ e<sup style="font-size:0.65em">−λt</sup></div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Radioactive decay law: the number of undecayed atoms decreases exponentially over time, defining the concept of half-life.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">t<sub style="font-size:0.6em">½</sub> = ln2 / λ</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Half-life formula: time for half of a radioactive sample to decay — a concept Curie's experimental work made precise for the first time.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">Q = ΔE = Δmc²</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Nuclear Q-value: energy released in radioactive decay, traceable to mass-energy equivalence — whose physical foundation Curie's radium experiments helped reveal.</div>
+      </div>
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">I ∝ 1 / r²</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Inverse-square radiation law: intensity falls off with the square of distance — a principle central to Curie's precise ionization-chamber measurements of radioactivity.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTRIBUTIONS ═══ -->
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What She<br>Gave Science</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">Coined the term <em>radioactivity</em> and established that it was an atomic property — not a chemical reaction — fundamentally reshaping atomic theory.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">Discovered polonium and radium, expanding the periodic table and proving that new elements could be found hidden in known ores.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">Developed techniques to isolate radioactive isotopes, creating the methodology for nuclear chemistry that researchers use to this day.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">Pioneered medical applications of radiation — radium therapy for tumours became the direct ancestor of modern radiation oncology.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">Deployed mobile radiography units in WWI, providing front-line X-ray diagnosis that saved countless soldiers' lives.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; opacity: 0.2; line-height: 1; flex-shrink: 0;">☢</div>
+        <div style="color: rgba(238,240,245,0.6); font-size: 16px; padding-top: 8px; font-style: italic;">…and a permanent reordering of what science believed possible for a woman to achieve.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROBLEMS SOLVED ═══ -->
+<section class="reveal">
+  <div class="section-label">04 &nbsp; Problems Solved</div>
+  <h2 class="section-title">The Unsolvable,<br>Solved</h2>
+
+  <div class="problems-list">
+
+    <div class="problem-item">
+      <div class="problem-header">
+        <div class="problem-num">P.01</div>
+        <div class="problem-text">
+          Explained why uranium compounds consistently produced ionising radiation regardless of their chemical form — proving radioactivity was atomic in origin, not molecular.
+        </div>
+      </div>
+
+      <div class="problem-meta">
+        <div class="problem-source">
+          Source: Atomic Physics
+        </div>
+        <div class="problem-proof">
+          Proof: Ionization-chamber measurements, 1897–1898
+        </div>
+      </div>
+
+      <div class="solution-link">
+        <a href="#P01">View Solution pdf</a>
+      </div>
+    </div>
+
+    <div class="problem-item">
+      <div class="problem-header">
+        <div class="problem-num">P.02</div>
+        <div class="problem-text">
+          Isolated pure radium metal (1910) — definitively confirming its atomic weight and settling doubts about whether it was truly a distinct element.
+        </div>
+      </div>
+
+      <div class="problem-meta">
+        <div class="problem-source">
+          Source: Radiochemistry
+        </div>
+        <div class="problem-proof">
+          Proof: Electrolytic isolation of radium, 1910
+        </div>
+      </div>
+
+      <div class="solution-link">
+        <a href="#P02">View Solution pdf</a>
+      </div>
+    </div>
+
+    <div class="problem-item">
+      <div class="problem-header">
+        <div class="problem-num">P.03</div>
+        <div class="problem-text">
+          Demonstrated that thorium was radioactive independently of uranium, establishing that radioactivity was a property of several elements — not a quirk of uranium alone.
+        </div>
+      </div>
+
+      <div class="problem-meta">
+        <div class="problem-source">
+          Source: Nuclear Chemistry
+        </div>
+        <div class="problem-proof">
+          Proof: Parallel ionization experiments on thorium salts, 1898
+        </div>
+      </div>
+
+      <div class="solution-link">
+        <a href="#P03">View Solution pdf</a>
+      </div>
+    </div>
+
+    <div class="problem-item">
+      <div class="problem-header">
+        <div class="problem-num">P.04</div>
+        <div class="problem-text">
+          Showed pitchblende emitted more radiation than pure uranium alone — predicting the existence of undiscovered radioactive elements hidden within the ore.
+        </div>
+      </div>
+
+      <div class="problem-meta">
+        <div class="problem-source">
+          Source: Mineralogy / Nuclear Physics
+        </div>
+        <div class="problem-proof">
+          Proof: Comparative ionization measurements of pitchblende vs. uranium, 1898
+        </div>
+      </div>
+
+      <div class="solution-link">
+        <a href="#P04">View Solution pdf</a>
+      </div>
+    </div>
+
+    <div class="problem-item">
+      <div class="problem-header">
+        <div class="problem-num">P.05</div>
+        <div class="problem-text">
+          Proved that radioactive decay was spontaneous and unaffected by temperature, pressure, or chemical state — overturning the assumption that atoms were indestructible and unchanging.
+        </div>
+      </div>
+
+      <div class="problem-meta">
+        <div class="problem-source">
+          Source: Atomic Theory
+        </div>
+        <div class="problem-proof">
+          Proof: Systematic decay measurements under varied conditions, 1899–1902
+        </div>
+      </div>
+
+      <div class="solution-link">
+        <a href="#P05">View Solution pdf</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ═══ LIMITATIONS (full-bleed) ═══ -->
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">05 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Where Even<br>Curie Stumbled</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> She underestimated the biological hazard of radiation, carrying test tubes of radioactive isotopes in her pockets and storing them in her desk — her notebooks remain too radioactive to handle safely today.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Devoted decades to extracting vast quantities of radium for medical use, without building theoretical models to explain <em>why</em> radioactivity occurred at the nuclear level — that fell to Rutherford and Soddy.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Resisted early quantum mechanical interpretations of atomic decay, preferring classical experimental frameworks even as quantum theory overtook the field in the 1920s.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Her focus on isolation and measurement left the theoretical explanation of nuclear transmutation — why one element becomes another during decay — to Rutherford and Soddy (1902).</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Chronic exposure to ionising radiation severely damaged her health, ultimately causing aplastic anaemia — she never acknowledged the connection publicly, possibly delaying safety protocols in her own labs.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BOOKS ═══ -->
+  <section class="reveal">
+    <div class="section-label">06 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://www.amazon.com/Radioactive-Marie-Pierre-Curie-Tale/dp/1596434657" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Radioactive: Marie &amp; Pierre Curie — A Tale of Love and Fallout</div>
+        <div class="book-arrow">Lauren Redniss →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Marie-Curie-Barbara-Goldsmith/dp/0393325857" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Obsessive Genius: The Inner World of Marie Curie</div>
+        <div class="book-arrow">Barbara Goldsmith →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Madam-Curie-Eve-Curie/dp/0306810387" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Madame Curie: A Biography</div>
+        <div class="book-arrow">Ève Curie →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Marie-Curie-Her-Daughter-Radium/dp/020140195X" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Marie Curie and Her Daughters</div>
+        <div class="book-arrow">Shelley Emling →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"Nothing in life is to be feared, only to be understood."</div>
+  <div>Marie Curie &nbsp;·&nbsp; 1867–1934 &nbsp;·&nbsp; Double Nobel Laureate in Physics &amp; Chemistry</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Stagger formula cards on load
+  document.querySelectorAll('.formula-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+</script>
+</body>
+</html>

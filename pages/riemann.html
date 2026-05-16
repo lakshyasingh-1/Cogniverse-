@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bernhard Riemann — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0608;
+    --paper: #f7f0f2;
+    --aged: #ecdde0;
+    --sepia: #9b2a42;
+    --rust: #8a1f38;
+    --gold: #c0455e;
+    --charcoal: #1c080d;
+    --fade: #7a3d4a;
+    --formula-bg: #0d0408;
+    --formula-text: #f0889a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(25%) contrast(1.1) brightness(0.85) hue-rotate(300deg) saturate(0.45);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+                linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: clamp(48px, 5.5vw, 84px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--charcoal);
+    max-width: 420px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.694);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    animation: fadeUp 1s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+
+  /* ─── BIOGRAPHY ─── */
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list { list-style: none; }
+
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(247,240,242,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .achievement-list li:last-child { border-bottom: none; }
+  .achievement-list li::before {
+    content: '★';
+    color: var(--gold);
+    font-size: 14px;
+    line-height: 1;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ─── FORMULAS ─── */
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+  .formula-card:hover {
+    transform: scaleX(1.05);
+    background: #1e0810;
+  }
+
+  .formula-math {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.5vw, 34px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 16px;
+  }
+
+  .formula-explanation {
+    font-size: 18px;
+    color: rgba(247,240,242,0.65);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ─── CONTRIBUTIONS ─── */
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+  }
+  .contrib-item:hover {
+    border-color: var(--rust);
+    transform: translateY(-3px);
+  }
+  .contrib-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-top: 8px;
+  }
+
+  .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .problem-item:hover { background: rgba(61,158,53,0.04); }
+
+  .problem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  .problem-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+  
+
+  /* ─── PDF LINK BUTTON ─── */
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 7px 16px;
+    border: 1px solid var(--rust);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before {
+    content: '↓';
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(61,158,53,0.35);
+  }
+
+  /* ─── LIMITATIONS ─── */
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card {
+    background: white;
+    padding: 28px 24px;
+    border-left: 4px solid var(--rust);
+  }
+
+  .limit-text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  /* ─── BOOKS ─── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    border-color: transparent;
+  }
+
+  .book-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .book-arrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    text-transform: uppercase;
+  }
+   /* ─── HOME BUTTON ─── */
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(232,160,96,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .home-btn:hover {
+    background: var(--rust);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  .home-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(247,240,242,0.5);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .error {
+    color: rgba(138, 31, 56, 0.55);
+    font-size: large;
+  }
+</style>
+</head>
+<body>
+<a class="home-btn" href="Math.html" title="Go Home">
+  <span>Home</span>
+</a>
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Georg_Friedrich_Bernhard_Riemann.jpeg/500px-Georg_Friedrich_Bernhard_Riemann.jpeg"
+           alt="Bernhard Riemann">
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="nationality-tag">German &nbsp;·&nbsp; Mathematician</div>
+    <h1 class="hero-name">Bernhard<br>Riemann</h1>
+    <p class="hero-era">1826 — 1866</p>
+    <p class="hero-tagline">In 39 short years he remade geometry, invented the mathematics of curved space, and posed a conjecture about prime numbers that remains unsolved 166 years later.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Field</div>
+        <div class="meta-value">Mathematics</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">German</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Doctoral Advisor</div>
+        <div class="meta-value">Carl Friedrich Gauss</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        <div class="meta-value">Univ. of Göttingen</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BIOGRAPHY ═══ -->
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">A Short Life of<br>Infinite Depth</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Georg Friedrich Bernhard Riemann was born in 1826 in Breselenz, a small village in the Kingdom of Hanover, the second of six children of a Lutheran pastor. Shy, sickly, and intensely devout, he was a self-taught mathematical prodigy who initially enrolled at Göttingen to study theology before Gauss recognised his gifts and redirected him entirely.
+        <br><br>
+        His 1851 doctoral dissertation on complex functions — supervised by the aged Gauss, who called it evidence of a gloriously fertile mind — introduced the concept of Riemann surfaces and transformed complex analysis. His 1854 habilitation lecture, <em>"On the Hypotheses Which Lie at the Foundations of Geometry,"</em> delivered to a stunned audience that included Gauss himself, founded Riemannian geometry: a framework of curved spaces of arbitrary dimension that would, sixty years later, become the mathematical language of Einstein's general relativity.
+        <br><br>
+        In 1859 he published a single eight-page paper on prime numbers that introduced the Riemann zeta function, the Riemann hypothesis, and methods that became the foundation of all modern analytic number theory. He died of tuberculosis in 1866 at the age of 39, having published fewer than a dozen papers — each one opening a new branch of mathematics.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Achievements</div>
+        <ul class="achievement-list">
+          <li>Riemannian geometry — curved space in n dimensions</li>
+          <li>Riemann hypothesis (1859) — still unsolved</li>
+          <li>Riemann integral — rigorous foundation of integration</li>
+          <li>Riemann surfaces — topology of complex functions</li>
+          <li>Riemann zeta function ζ(s)</li>
+          <li>Cauchy–Riemann equations for complex analysis</li>
+          <li>Mathematical foundation for general relativity</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FORMULAS ═══ -->
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Equations</div>
+    <h2 class="section-title">The Mathematics<br>of Curved Reality</h2>
+    <div class="formulas-grid">
+      <div class="formula-card">
+        <div class="formula-math">ds² = g<sub style="font-size:0.6em">μν</sub> dx<sup style="font-size:0.6em">μ</sup> dx<sup style="font-size:0.6em">ν</sup></div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The Riemannian metric: the infinitesimal distance between two points in any curved space, defined by the metric tensor g<sub>μν</sub>. Einstein borrowed this directly to write general relativity.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">ζ(s) = ∑<sub style="font-size:0.55em">n=1</sub><sup style="font-size:0.55em">∞</sup> 1/nˢ</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The Riemann zeta function: a deceptively simple sum that encodes the distribution of prime numbers. Its zeros hold the secret to one of mathematics' greatest unsolved problems.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">∂u/∂x = ∂v/∂y ,&nbsp; ∂u/∂y = −∂v/∂x</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Cauchy–Riemann equations: the conditions for a complex function to be differentiable (holomorphic). The bedrock of all complex analysis and conformal mapping.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">R<sup style="font-size:0.6em">ρ</sup><sub style="font-size:0.6em">σμν</sub> = ∂<sub style="font-size:0.6em">μ</sub>Γ<sup style="font-size:0.6em">ρ</sup><sub style="font-size:0.6em">νσ</sub> − ∂<sub style="font-size:0.6em">ν</sub>Γ<sup style="font-size:0.6em">ρ</sup><sub style="font-size:0.6em">μσ</sub> + …</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The Riemann curvature tensor: measures how much a curved space deviates from flatness. Einstein's field equations are built entirely from this object.</div>
+      </div>
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">∫<sub style="font-size:0.6em">a</sub><sup style="font-size:0.6em">b</sup> f(x) dx = lim<sub style="font-size:0.55em">n→∞</sub> ∑<sub style="font-size:0.55em">i=1</sub><sup style="font-size:0.55em">n</sup> f(x<sub style="font-size:0.6em">i</sub>*) Δx</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">The Riemann integral: the first rigorous definition of integration, replacing Newton and Leibniz's intuitive notion with a precise limiting process. Every calculus student still learns this definition today.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTRIBUTIONS ═══ -->
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What He<br>Gave Mathematics</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">Riemannian geometry — a complete framework for curved spaces of any dimension, the mathematical language Einstein needed for general relativity, invented 60 years before Einstein needed it.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">The Riemann hypothesis — his 1859 conjecture about the zeros of ζ(s) remains the most important unsolved problem in mathematics, carrying a $1 million Millennium Prize.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">Riemann surfaces — gave multi-valued complex functions a rigorous geometric home, founding modern topology and the study of algebraic curves.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">The Riemann integral — the first fully rigorous definition of the definite integral, replacing centuries of geometric intuition with a precise mathematical foundation.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">Analytic number theory — his single 1859 paper on primes introduced methods — the explicit formula, the prime-counting function — that defined the field for the next century.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; opacity: 0.2; line-height: 1; flex-shrink: 0;">∞</div>
+        <div style="color: rgba(247,240,242,0.6); font-size: 16px; padding-top: 8px; font-style: italic;">…and an unsolved problem that has consumed the greatest mathematical minds for over a century and a half.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROBLEMS SOLVED ═══ -->
+  <section class="reveal">
+    <div class="section-label">04 &nbsp; Problems Solved</div>
+    <h2 class="section-title">The Unsolvable,<br>Solved</h2>
+    <div class="problems-list">
+      <div class="problem-item">
+        <div class="problem-num">P.01</div>
+        <div class="problem-text">Gave the first rigorous definition of the integral, resolving centuries of ambiguity in calculus and establishing exactly which functions can be integrated and why.</div>
+        <div class="problem-source">Source: Real Analysis</div>
+        <div class="problem-proof">Proof: Habilitation thesis (1854), published 1867</div>
+        <div class="solution-link"><a href="#P01">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.02</div>
+        <div class="problem-text">Solved the problem of representing arbitrary functions as trigonometric series — founding the rigorous theory of Fourier series and harmonic analysis.</div>
+        <div class="problem-source">Source: Fourier Analysis</div>
+        <div class="problem-proof">Proof: Habilitation thesis on trigonometric series (1854)</div>
+        <div class="solution-link"><a href="#P02">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.03</div>
+        <div class="problem-text">Invented a geometry of curved surfaces and higher-dimensional spaces, solving the fundamental question of how to describe distance and curvature in any manifold.</div>
+        <div class="problem-source">Source: Differential Geometry</div>
+        <div class="problem-proof">Proof: Habilitation lecture "Über die Hypothesen..." (1854)</div>
+        <div class="solution-link"><a href="#P03">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.04</div>
+        <div class="problem-text">Extended the zeta function to the entire complex plane via analytic continuation, unlocking the connection between complex analysis and the distribution of prime numbers.</div>
+        <div class="problem-source">Source: Analytic Number Theory</div>
+        <div class="problem-proof">Proof: "Über die Anzahl der Primzahlen..." (1859)</div>
+        <div class="solution-link"><a href="#P04">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.05</div>
+        <div class="problem-text">Proved the Riemann mapping theorem — any simply connected open region of the complex plane (not the whole plane) can be conformally mapped to the unit disk.</div>
+        <div class="problem-source">Source: Complex Analysis</div>
+        <div class="problem-proof">Proof: Doctoral dissertation (1851), rigourised by later mathematicians</div>
+        <div class="solution-link"><a href="#P05">View Solution pdf</a></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ LIMITATIONS (full-bleed) ═══ -->
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">05 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Where Even<br>Riemann Stumbled</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His proof of the Riemann mapping theorem relied on Dirichlet's principle — an assumption that Weierstrass later showed was not always valid. The theorem is true, but Riemann's proof had a gap.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> The Riemann hypothesis itself remains unproved — his most famous conjecture, posed almost as an aside in 1859, is the central open problem of mathematics 166 years later.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His geometric framework, while revolutionary, initially lacked the tensor calculus machinery needed to make it fully operational — that required Christoffel, Ricci, and Levi-Civita over the following decades.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Riemann's integral, while rigorous, proved insufficient for the needs of 20th-century analysis — Lebesgue's more powerful measure-theoretic integral superseded it in most advanced applications.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His tragically short life — dead at 39 of tuberculosis — meant dozens of ideas recorded only in unpublished notes. His housekeeper burned many papers after his death, an irreplaceable loss to mathematics.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BOOKS ═══ -->
+  <section class="reveal">
+    <div class="section-label">06 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://www.amazon.com/Riemann-Hypothesis-Greatest-Unsolved-Mathematics/dp/0374529353" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">The Riemann Hypothesis: The Greatest Unsolved Problem in Mathematics</div>
+        <div class="book-arrow">Karl Sabbagh →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Prime-Obsession-Bernhard-Greatest-Mathematics/dp/0452285259" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Prime Obsession</div>
+        <div class="book-arrow">John Derbyshire →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Music-Primes-Searching-Greatest-Mathematics/dp/0062064010" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">The Music of the Primes</div>
+        <div class="book-arrow">Marcus du Sautoy →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Road-Reality-Complete-Guide-Universe/dp/0679776311" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">The Road to Reality</div>
+        <div class="book-arrow">Roger Penrose →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"If only I had the theorems! Then I should find the proofs easily enough."</div>
+  <div>Bernhard Riemann &nbsp;·&nbsp; 1826–1866 &nbsp;·&nbsp; University of Göttingen</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  document.querySelectorAll('.formula-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+</script>
+</body>
+</html>

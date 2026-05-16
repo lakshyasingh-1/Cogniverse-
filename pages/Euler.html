@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leonhard Euler — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #08060f;
+    --paper: #f2f0f8;
+    --aged: #e0daf0;
+    --sepia: #7a4fbb;
+    --rust: #6030a0;
+    --gold: #9b6fd4;
+    --charcoal: #100a1e;
+    --fade: #5e4e80;
+    --formula-bg: #080510;
+    --formula-text: #c9a0f0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(20%) contrast(1.08) brightness(0.88) hue-rotate(240deg) saturate(0.35);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+                linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--charcoal);
+    max-width: 420px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.694);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    animation: fadeUp 1s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+
+  /* ─── BIOGRAPHY ─── */
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list { list-style: none; }
+
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(242,240,248,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .achievement-list li:last-child { border-bottom: none; }
+  .achievement-list li::before {
+    content: '★';
+    color: var(--gold);
+    font-size: 14px;
+    line-height: 1;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ─── FORMULAS ─── */
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+  .formula-card:hover {
+    transform: scaleX(1.05);
+    background: #120a20;
+  }
+
+  .formula-math {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 2.8vw, 38px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 16px;
+  }
+
+  .formula-explanation {
+    font-size: 18px;
+    color: rgba(242,240,248,0.65);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ─── CONTRIBUTIONS ─── */
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+  }
+  .contrib-item:hover {
+    border-color: var(--rust);
+    transform: translateY(-3px);
+  }
+  .contrib-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-top: 8px;
+  }
+
+  .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .problem-item:hover { background: rgba(61,158,53,0.04); }
+
+  .problem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  .problem-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+  .problem-source::before { content: '⊢ '; color: var(--gold); }
+  .problem-proof::before  { content: '✓ '; color: var(--gold); }
+
+  /* ─── PDF LINK BUTTON ─── */
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 7px 16px;
+    border: 1px solid var(--rust);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before {
+    content: '↓';
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(61,158,53,0.35);
+  }
+
+
+  /* ─── LIMITATIONS ─── */
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card {
+    background: white;
+    padding: 28px 24px;
+    border-left: 4px solid var(--rust);
+  }
+
+  .limit-text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  /* ─── BOOKS ─── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    border-color: transparent;
+  }
+
+  .book-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .book-arrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    text-transform: uppercase;
+  }
+   /* ─── HOME BUTTON ─── */
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(232,160,96,0.25);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .home-btn:hover {
+    background: var(--rust);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  .home-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(242,240,248,0.5);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .error {
+    color: rgba(96, 48, 160, 0.55);
+    font-size: large;
+  }
+</style>
+</head>
+<body>
+<a class="home-btn" href="Math.html" title="Go Home">
+  <span>Home</span>
+</a>
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Leonhard_Euler_-_Jakob_Emanuel_Handmann_%28Kunstmuseum_Basel%29.jpg/500px-Leonhard_Euler_-_Jakob_Emanuel_Handmann_%28Kunstmuseum_Basel%29.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail"
+           alt="Leonhard Euler">
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="nationality-tag">Swiss &nbsp;·&nbsp; Mathematician &amp; Physicist</div>
+    <h1 class="hero-name">Leonhard<br>Euler</h1>
+    <p class="hero-era">1707 — 1783</p>
+    <p class="hero-tagline">The most prolific mathematician in history — blind in both eyes for the last seventeen years of his life, and still outproducing everyone around him.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Field</div>
+        <div class="meta-value">Mathematics &amp; Physics</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">Swiss</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Output</div>
+        <div class="meta-value">886+ papers</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        <div class="meta-value">Berlin &amp; St. Petersburg</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">The Man Who<br>Owned Mathematics</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Leonhard Euler was born in Basel, Switzerland in 1707, the son of a Calvinist pastor who had studied mathematics under Jakob Bernoulli. He enrolled at the University of Basel at thirteen, took his master's degree at sixteen, and came to the attention of Johann Bernoulli — the greatest mathematician of the age — who recognised something extraordinary and gave the boy private tutorials on Saturday afternoons.
+        <br><br>
+        At nineteen he published his first paper. He never stopped. Over a career spanning six decades — first at the St. Petersburg Academy, then at Frederick the Great's Berlin Academy, then back in St. Petersburg — Euler produced 886 books and papers, a body of work so vast that the <em>Opera Omnia</em> collected edition runs to over 80 volumes and is still not complete. He introduced or standardised most of the notation modern mathematics uses: <em>f(x)</em>, <em>e</em>, <em>i</em>, <em>π</em>, <em>Σ</em>, <em>Δ</em>.
+        <br><br>
+        He lost sight in his right eye in 1738 and went completely blind in 1766. His output barely slowed. Working from memory and dictation, he continued to produce a paper a week until his death in 1783 — reportedly passing away at his desk, chalk in hand, mid-calculation.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Achievements</div>
+        <ul class="achievement-list">
+          <li>Euler's identity: e<sup>iπ</sup> + 1 = 0</li>
+          <li>Introduced notation: e, i, π, f(x), Σ</li>
+          <li>Founded graph theory (Königsberg bridges)</li>
+          <li>Solved the Basel problem: Σ1/n² = π²/6</li>
+          <li>Euler's formula for polyhedra: V − E + F = 2</li>
+          <li>Foundations of calculus of variations</li>
+          <li>886 published works — most in history</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Equations</div>
+    <h2 class="section-title">The Mathematics<br>He Left Behind</h2>
+    <div class="formulas-grid">
+      <div class="formula-card">
+        <div class="formula-math">e<sup style="font-size:0.75em">iπ</sup> + 1 = 0</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Euler's identity: five of the most fundamental constants in mathematics — e, i, π, 1, 0 — united in a single equation. Voted the most beautiful formula in mathematics.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">e<sup style="font-size:0.75em">iθ</sup> = cos θ + i sin θ</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Euler's formula: connects complex exponentials to trigonometry. The single most used result in all of engineering, physics, and signal processing.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">∑<sub style="font-size:0.55em">n=1</sub><sup style="font-size:0.55em">∞</sup> 1/n² = π²/6</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Solution to the Basel problem: a sum that had defeated every mathematician for nearly a century. Euler solved it in 1734 and astonished Europe.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-math">V − E + F = 2</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Euler's polyhedron formula: for any convex polyhedron, vertices minus edges plus faces always equals 2. The founding theorem of topology.</div>
+      </div>
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">d/dt(∂L/∂q̇) − ∂L/∂q = 0</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Euler–Lagrange equation: the central equation of classical mechanics and field theory, derived from the calculus of variations that Euler himself founded. Every physical law from optics to general relativity can be written in this form.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What He<br>Gave Mathematics</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">Graph theory — invented from scratch to solve the Königsberg bridge problem, creating an entirely new branch of mathematics with a single paper in 1736.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">Modern mathematical notation — standardised e, i, π, f(x), Σ, and Δ, giving mathematics a universal language it had lacked for two thousand years.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">Calculus of variations — founded the field and derived the Euler–Lagrange equations, the language of all modern theoretical physics.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">Number theory — proved Fermat's little theorem, introduced the totient function φ(n), and laid the groundwork for modern cryptography and analytic number theory.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">Fluid mechanics — the Euler equations for inviscid flow remain fundamental to aerodynamics, naval architecture, and atmospheric modelling to this day.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; opacity: 0.2; line-height: 1; flex-shrink: 0;">∞</div>
+        <div style="color: rgba(242,240,248,0.6); font-size: 16px; padding-top: 8px; font-style: italic;">…and notation so universal that students today use Euler's symbols without ever knowing his name.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="reveal">
+    <div class="section-label">04 &nbsp; Problems Solved</div>
+    <h2 class="section-title">The Unsolvable,<br>Solved</h2>
+    <div class="problems-list">
+      <div class="problem-item">
+        <div class="problem-num">P.01</div>
+        <div class="problem-text">Solved the Basel problem — the sum of the reciprocals of all perfect squares equals π²/6 — defeating every mathematician who had attempted it since 1644.</div>
+        <div class="problem-source">Source: Analysis</div>
+        <div class="problem-proof">Proof: "De summis serierum reciprocarum" (1734)</div>
+        <div class="solution-link"><a href="#P01">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.02</div>
+        <div class="problem-text">Solved the Seven Bridges of Königsberg — proving no walk can cross each bridge exactly once, founding graph theory and the concept of an Eulerian path.</div>
+        <div class="problem-source">Source: Graph Theory</div>
+        <div class="problem-proof">Proof: "Solutio problematis ad geometriam situs" (1736)</div>
+        <div class="solution-link"><a href="#P02">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.03</div>
+        <div class="problem-text">Proved Fermat's little theorem — that a<sup>p</sup> ≡ a (mod p) for prime p — giving number theory its first rigorous proof and founding modular arithmetic.</div>
+        <div class="problem-source">Source: Number Theory</div>
+        <div class="problem-proof">Proof: Euler's 1736 paper on Fermat's theorem</div>
+        <div class="solution-link"><a href="#P03">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.04</div>
+        <div class="problem-text">Derived the equations of motion for a rigid body — the Euler rotation equations — solving how any freely rotating solid body moves through space.</div>
+        <div class="problem-source">Source: Mechanics</div>
+        <div class="problem-proof">Proof: Euler angles &amp; rotation equations (1758)</div>
+        <div class="solution-link"><a href="#P04">View Solution pdf</a></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">P.05</div>
+        <div class="problem-text">Solved the problem of the buckling load of a column — Euler's critical load formula — still the first equation in every structural engineering curriculum.</div>
+        <div class="problem-source">Source: Structural Mechanics</div>
+        <div class="problem-proof">Proof: Euler critical load P<sub>cr</sub> = π²EI / L² (1744)</div>
+        <div class="solution-link"><a href="#P05">View Solution pdf</a></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ LIMITATIONS (full-bleed) ═══ -->
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">05 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Where Even<br>Euler Stumbled</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Euler's handling of infinite series was often non-rigorous by modern standards — he summed divergent series without justification, producing results that were correct but whose validity was not proved until Cauchy a generation later.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His derivation of the Basel problem, while correct, relied on an unproven analogy between finite polynomials and infinite trigonometric series — the rigorous proof came only with Weierstrass and Cauchy.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Euler's fluid equations assume inviscid (frictionless) flow — a simplification that breaks down for real fluids near surfaces, the domain later addressed by Navier and Stokes.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Despite his enormous number-theoretic output, Euler never proved Fermat's Last Theorem beyond the n=3 case — it remained open for 357 years until Wiles in 1995.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Working before the 19th-century rigour revolution, Euler had no formal concept of limits, continuity, or convergence — foundations that Cauchy and Weierstrass had to reconstruct beneath his correct results.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BOOKS ═══ -->
+  <section class="reveal">
+    <div class="section-label">06 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://www.amazon.com/Elements-Algebra-Leonhard-Euler/dp/1899618694" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Elements of Algebra</div>
+        <div class="book-arrow">By Euler himself →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Introduction-Analysis-Infinite-Leonhard-Euler/dp/0387968245" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Introduction to Analysis of the Infinite</div>
+        <div class="book-arrow">By Euler himself →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Euler-Master-All-William-Dunham/dp/0883853280" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Euler: The Master of Us All</div>
+        <div class="book-arrow">William Dunham →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Dr-Eulers-Fabulous-Formula-Mathematical/dp/0691175918" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">Dr. Euler's Fabulous Formula</div>
+        <div class="book-arrow">Paul Nahin →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"Mathematicians have tried in vain to this day to discover some order in the sequence of prime numbers, and we have reason to believe that it is a mystery into which the human mind will never penetrate."</div>
+  <div>Leonhard Euler &nbsp;·&nbsp; 1707–1783 &nbsp;·&nbsp; Berlin &amp; St. Petersburg Academies</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  document.querySelectorAll('.formula-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+</script>
+</body>
+</html>

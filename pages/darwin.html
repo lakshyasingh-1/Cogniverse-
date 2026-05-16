@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charles Darwin — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0d05;
+    --paper: #f4f7ec;
+    --aged: #e2ead0;
+    --rust: #3d5a0a;
+    --gold: #6b9a14;
+    --charcoal: #0c100a;
+    --fade: #4a6030;
+    --formula-bg: #080c05;
+    --formula-text: #b4d95a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  .home-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--charcoal);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 10px 18px;
+    border-radius: 2px;
+    transition: background 0.25s, border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+    backdrop-filter: blur(8px);
+  }
+  
+  .home-btn:hover {
+    background: var(--rust);
+    border-color: var(--rust);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(61,90,10,0.45);
+  }
+  .home-btn:hover::before { transform: translateX(-3px); }
+
+
+
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: sepia(30%) contrast(1.1) brightness(0.82) hue-rotate(30deg) saturate(0.75);
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, transparent 40%, var(--charcoal) 100%),
+      linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+  }
+
+  .hero-image-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 35% 60%, rgba(107,154,20,0.14) 0%, transparent 60%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    border-left: 3px solid var(--ink);
+    z-index: 1;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(107,154,20,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-right::after {
+    content: 'Natura · non · facit · saltus';
+    position: absolute;
+    bottom: 44px; right: 52px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: rgba(107,154,20,0.07);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: 2px;
+  }
+
+  .nationality-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nationality-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .hero-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .hero-era {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--fade);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--charcoal);
+    max-width: 430px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .meta-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(0,0,0,0.694);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+
+
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+
+  .bio-sidebar {
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 32px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .sidebar-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .achievement-list { list-style: none; }
+  .achievement-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(244,247,236,0.85);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .achievement-list li:last-child { border-bottom: none; }
+  .achievement-list li::before {
+    content: '🌿';
+    font-size: 13px;
+    line-height: 1.3;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+
+  .finch-strip {
+    background: var(--charcoal);
+    padding: 48px 40px;
+    margin: 0 -40px;
+    position: relative;
+    z-index: 1;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .finch-inner { max-width: 1200px; margin: 0 auto; }
+
+  .finch-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0.7;
+  }
+
+  .finch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2px;
+    background: rgba(180,217,90,0.06);
+    margin-bottom: 28px;
+  }
+
+  .finch-card {
+    background: rgba(8,12,5,0.96);
+    padding: 24px 18px;
+    transition: background 0.25s;
+    cursor: default;
+    position: relative;
+  }
+  .finch-card:hover { background: #111a07; }
+
+  .finch-island {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(180,217,90,0.4);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .finch-species {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--formula-text);
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+
+  .finch-beak {
+    font-size: 13px;
+    color: rgba(244,247,236,0.45);
+    line-height: 1.45;
+  }
+
+
+  .fitness-eq {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-top: 8px;
+  }
+  .fitness-item {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    color: rgba(244,247,236,0.45);
+    letter-spacing: 1px;
+  }
+  .fitness-item span { color: var(--formula-text); }
+
+
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--ink);
+  }
+
+  .formula-card {
+    background: var(--formula-bg);
+    padding: 40px 36px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .formula-card::before {
+    content: '🌿';
+    position: absolute;
+    right: 18px;
+    top: 14px;
+    font-size: 20px;
+    opacity: 0.07;
+    pointer-events: none;
+  }
+
+  .formula-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(107,154,20,0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .formula-card:hover { background: #111a06; }
+  .formula-card:hover::after { opacity: 1; }
+
+  .formula-math {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.2vw, 30px);
+    font-weight: 700;
+    color: var(--formula-text);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+  }
+
+  .formula-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 16px;
+  }
+
+  .formula-explanation {
+    font-size: 17px;
+    color: rgba(244,247,236,0.65);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ─── CONTRIBUTIONS ─── */
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .contrib-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+  }
+  .contrib-item:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(107,154,20,0.09);
+  }
+  .contrib-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-top: 8px;
+  }
+
+  /* ─── PROBLEMS SOLVED ─── */
+  .problems-list { display: grid; gap: 0; }
+
+  .problem-item {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background 0.2s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .problem-item:hover { background: rgba(107,154,20,0.04); }
+
+  .problem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .problem-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .problem-text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  .problem-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .problem-source, .problem-proof {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--fade);
+  }
+  .problem-source::before { content: '⊢ '; color: var(--gold); }
+  .problem-proof::before  { content: '✓ '; color: var(--gold); }
+
+
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .solution-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--rust);
+    padding: 7px 16px;
+    border: 1px solid var(--rust);
+    transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .solution-link a::before {
+    content: '↓';
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .solution-link a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107,154,20,0.35);
+  }
+
+
+  .limits-section {
+    background: var(--aged);
+    margin: 0 -40px;
+    padding: 80px 40px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+    z-index: 1;
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .limit-card {
+    background: var(--paper);
+    padding: 28px 24px;
+    border-left: 4px solid var(--rust);
+  }
+
+  .limit-text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+
+  /* ─── BOOKS ─── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .book-card {
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(107,154,20,0.15);
+    border-color: transparent;
+  }
+
+  .book-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .book-arrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    text-transform: uppercase;
+  }
+
+
+  footer {
+    background: var(--charcoal);
+    color: rgba(244,247,236,0.5);
+    text-align: center;
+    padding: 48px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .footer-home {
+    margin-top: 28px;
+  }
+  .footer-home a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(244,247,236,0.5);
+    border: 1px solid rgba(244,247,236,0.15);
+    padding: 9px 20px;
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .footer-home a:hover {
+    color: var(--paper);
+    border-color: var(--gold);
+    background: rgba(107,154,20,0.15);
+  }
+  .footer-home a::before { content: '← '; }
+
+  .error {
+    color: rgba(61,90,10,0.75);
+    font-size: large;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .home-btn { top: 16px; left: 16px; padding: 8px 14px; font-size: 11px; }
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    .hero-right { padding: 48px 32px; border-left: none; border-top: 3px solid var(--ink); }
+    .hero-right::after { display: none; }
+    .bio-layout { grid-template-columns: 1fr; }
+    .formulas-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    .finch-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    main { padding: 0 24px; }
+    .limits-section { margin: 0 -24px; padding: 60px 24px; }
+    .finch-strip { margin: 0 -24px; padding: 40px 24px; }
+    .problem-meta { flex-direction: column; gap: 6px; }
+  }
+
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+
+<a class="home-btn" href="Biology.html" title="Go Home">
+  <span>Home</span>
+</a>
+
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-image-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Charles_Darwin_seated_crop.jpg/500px-Charles_Darwin_seated_crop.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail"
+           alt="Charles Darwin">
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="nationality-tag">English &nbsp;·&nbsp; Naturalist &amp; Biologist</div>
+    <h1 class="hero-name">Charles<br>Darwin</h1>
+    <p class="hero-era">1809 — 1882</p>
+    <p class="hero-tagline">He watched finches, counted barnacles, and overturned three thousand years of certainty about where life comes from.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Fields</div>
+        <div class="meta-value">Biology, Geology</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Nationality</div>
+        <div class="meta-value">English</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Known For</div>
+        <div class="meta-value">Theory of Evolution</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        <div class="meta-value">Royal Society, London</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BIOGRAPHY ═══ -->
+  <section class="reveal">
+    <div class="section-label">01 &nbsp; Biography</div>
+    <h2 class="section-title">A Life That<br>Branched All Others</h2>
+    <div class="bio-layout">
+      <div class="bio-text">
+        Charles Robert Darwin was born in Shrewsbury, Shropshire, the fifth of six children of a wealthy doctor and financier. He was an indifferent student — sent first to Edinburgh to study medicine and then to Cambridge to become a clergyman — but his true passion was natural history. He collected beetles with fanatic intensity and fell under the influence of the botanist John Stevens Henslow, who secured him the position that changed the world.
+        <br><br>
+        From 1831 to 1836, Darwin sailed aboard HMS Beagle as the ship's unofficial naturalist on a voyage around the South American coast and across the Pacific. The Galápagos Islands were not his only revelation — the whole voyage was a continuous education in geological change, animal distribution, and the astonishing diversity of life. By the time he returned to England, he suspected the fixity of species was wrong. By 1838, reading Malthus on population pressure, he grasped the mechanism: <em>natural selection</em>.
+        <br><br>
+        He sat on the idea for twenty years — accumulating evidence, worrying about the storm his theory would cause — until Alfred Russel Wallace independently arrived at the same conclusion in 1858. Jolted into action, Darwin published <em>On the Origin of Species</em> in November 1859. All 1,250 copies sold on the first day. It remains the most consequential book in the history of biology, and perhaps in all of science. He spent the rest of his life at Down House in Kent, continuing to work prodigiously on earthworms, orchids, barnacles, and sexual selection — never fully recovering from the chronic illness that plagued him from the voyage onwards.
+      </div>
+      <div class="bio-sidebar">
+        <div class="sidebar-title"> &nbsp; Major Achievements</div>
+        <ul class="achievement-list">
+          <li>Formulated the theory of evolution by natural selection (1838, published 1859)</li>
+          <li>Published <em>On the Origin of Species</em> (1859) — biology's founding text</li>
+          <li>Established common descent — all life shares a universal ancestor</li>
+          <li>Proposed sexual selection as a mechanism alongside natural selection</li>
+          <li><em>The Descent of Man</em> (1871) — applied evolution to humans</li>
+          <li>Monograph on barnacles — 8 years, four volumes (1851–1854)</li>
+          <li>Coral reef formation theory — atoll formation from subsiding volcanic islands</li>
+          <li>Fellow of the Royal Society; Copley Medal (1864)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRINCIPLES ═══ -->
+  <section class="reveal" style="padding-top: 0;">
+    <div class="section-label">02 &nbsp; Principles &amp; Laws</div>
+    <h2 class="section-title">The Mechanics<br>of Life's Diversity</h2>
+    <div class="formulas-grid">
+
+      <div class="formula-card">
+        <div class="formula-math">Fitness = Survival × Reproduction</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Natural selection — individuals with heritable traits that improve survival and reproduction leave more offspring. Over generations, those traits increase in frequency. The engine of all evolutionary change, requiring only variation, heritability, and differential reproduction.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">Δp = p·q·(p·w₁₁ + q·w₁₂ − w̄) / w̄</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Change in allele frequency under selection (Hardy-Weinberg with selection) — the mathematical formalisation of natural selection Darwin described verbally. Allele p increases when its carriers' average fitness exceeds the population mean fitness.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">All life ← Universal Common Ancestor</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Common descent — Darwin's most radical claim: every organism on Earth is descended from a single common ancestor. The tree of life is one tree. Confirmed overwhelmingly by comparative genetics, molecular biology, and the universality of the genetic code.</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-math">Speciation: gene flow → 0 → divergence</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Speciation by geographic isolation: when populations are separated long enough that gene flow ceases, natural selection and drift cause divergence until the populations can no longer interbreed — producing new species from one. Darwin observed the pattern; Dobzhansky and Mayr formalised it.</div>
+      </div>
+
+      <div class="formula-card" style="grid-column: 1 / -1;">
+        <div class="formula-math">rB &gt; C &nbsp; (Hamilton's Rule, foreshadowed by Darwin)</div>
+        <div class="formula-divider"></div>
+        <div class="formula-explanation">Hamilton's Rule for kin selection — Darwin was troubled by altruism and sterile castes in social insects, which seemed to contradict natural selection. He proposed that selection acts on the family, not the individual — precisely anticipating Hamilton's 1964 formalisation. An altruistic act evolves when the benefit B to the recipient, discounted by their genetic relatedness r, exceeds the cost C to the actor. Darwin's qualitative insight preceded the mathematics by 105 years.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ CONTRIBUTIONS ═══ -->
+  <section class="reveal">
+    <div class="section-label">03 &nbsp; Contributions</div>
+    <h2 class="section-title">What He<br>Gave Biology</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="contrib-num">01</div>
+        <div class="contrib-text">Natural selection — the mechanism by which heritable variation, combined with differential reproductive success, produces adaptation over time. The central organising principle of all biology.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">02</div>
+        <div class="contrib-text">Common descent — the demonstration that all life shares a universal ancestor, unified by branching genealogy. Confirmed by every subsequent discovery in genetics, genomics, and palaeontology.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">03</div>
+        <div class="contrib-text">Sexual selection — a second evolutionary mechanism driven by competition for mates, explaining extravagant traits (peacock tails, bird-of-paradise plumage) that reduce survival but increase reproductive success.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">04</div>
+        <div class="contrib-text">Coral reef theory — proposed that coral atolls form as volcanic islands subside, leaving fringing reefs that become barrier reefs and finally atolls — confirmed by deep drilling through Pacific atolls a century later.</div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-num">05</div>
+        <div class="contrib-text">The role of earthworms in soil formation — his last book showed that earthworms are the primary agents of topsoil generation, founding soil ecology and demonstrating that immense geological change can arise from tiny, cumulative actions.</div>
+      </div>
+      <div class="contrib-item" style="background: var(--charcoal); border: none;">
+        <div style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; opacity: 0.18; line-height: 1; flex-shrink: 0;">🌿</div>
+        <div style="color: rgba(244,247,236,0.6); font-size: 16px; padding-top: 8px; font-style: italic;">…and the unification of all life under a single explanatory framework — removing teleology from biology and placing it firmly among the natural sciences.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROBLEMS SOLVED ═══ -->
+  <section class="reveal">
+    <div class="section-label">04 &nbsp; Problems Solved</div>
+    <h2 class="section-title">The Unsolvable,<br>Solved</h2>
+    <div class="problems-list">
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.01</div>
+          <div class="problem-text">Solved the problem of the origin of biological adaptation — explaining why organisms appear exquisitely designed for their environments without invoking a designer, by showing that natural selection acting on heritable variation produces adaptation as an inevitable consequence.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Theory of Natural Selection, 1859</div>
+          <div class="problem-proof">On the Origin of Species by Means of Natural Selection — John Murray, London, 1859 (Chapters IV &amp; V)</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://archive.org/details/onoriginofspecie00darwuoft" target="_blank" rel="noopener">View Source PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.02</div>
+          <div class="problem-text">Resolved the mystery of the geographical distribution of species — showing that biogeographical patterns (why Galápagos finches differ island by island, why South American fossils resemble living South American animals) follow directly from descent with modification and geological change.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Biogeography &amp; Common Descent, 1859</div>
+          <div class="problem-proof">On the Origin of Species — Chapters XI &amp; XII: Geographical Distribution, 1859</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://archive.org/details/onoriginofspecie00darwuoft" target="_blank" rel="noopener">View Source PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.03</div>
+          <div class="problem-text">Explained the existence of sterile worker castes in social insects — which appeared to contradict natural selection since workers leave no offspring — by proposing that selection acts on the family group, with sterile workers benefiting related queens who share their genes.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Kin Selection / Social Insects, 1859</div>
+          <div class="problem-proof">On the Origin of Species — Chapter VII: Instinct (sterile neuter castes), 1859</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://archive.org/details/onoriginofspecie00darwuoft" target="_blank" rel="noopener">View Source PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.04</div>
+          <div class="problem-text">Accounted for the formation of coral atolls — a geological puzzle of his age — by proposing that fringing reefs, barrier reefs, and atolls are successive stages of the same process as a volcanic island subsides, with coral growing upward to stay within the photic zone.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Coral Reef Theory, 1842</div>
+          <div class="problem-proof">The Structure and Distribution of Coral Reefs — Smith, Elder &amp; Co., London, 1842</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://archive.org/details/structuredistrib00darw" target="_blank" rel="noopener">View Source PDF</a>
+        </div>
+      </div>
+
+      <div class="problem-item">
+        <div class="problem-header">
+          <div class="problem-num">P.05</div>
+          <div class="problem-text">Demonstrated why extravagant male ornaments — peacock tails, stag antlers, bird-of-paradise plumage — evolve despite their survival cost, by proposing sexual selection: traits that improve mating success are favoured even when they reduce survival, because reproduction is what evolution ultimately maximises.</div>
+        </div>
+        <div class="problem-meta">
+          <div class="problem-source">Sexual Selection, 1871</div>
+          <div class="problem-proof">The Descent of Man, and Selection in Relation to Sex — John Murray, London, 1871 (Part II)</div>
+        </div>
+        <div class="solution-link">
+          <a href="https://archive.org/details/descentofmansel00darwuoft" target="_blank" rel="noopener">View Source PDF</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ GALÁPAGOS FINCHES STRIP ═══ -->
+<div class="finch-strip reveal">
+  <div class="finch-inner">
+    <div class="finch-label">Darwin's Galápagos Finches — Adaptive Radiation in Action</div>
+    <div class="finch-grid">
+      <div class="finch-card">
+        <div class="finch-island">Santa Cruz</div>
+        <div class="finch-species">Geospiza fortis</div>
+        <div class="finch-beak">Medium ground finch — medium crushing beak for hard seeds</div>
+      </div>
+      <div class="finch-card">
+        <div class="finch-island">Española</div>
+        <div class="finch-species">Geospiza conirostris</div>
+        <div class="finch-beak">Large cactus finch — long probing beak for cactus flowers</div>
+      </div>
+      <div class="finch-card">
+        <div class="finch-island">Fernandina</div>
+        <div class="finch-species">Camarhynchus pallidus</div>
+        <div class="finch-beak">Woodpecker finch — uses cactus spines as tools to extract insects</div>
+      </div>
+      <div class="finch-card">
+        <div class="finch-island">Genovesa</div>
+        <div class="finch-species">Geospiza magnirostris</div>
+        <div class="finch-beak">Large ground finch — massive beak for the hardest seeds</div>
+      </div>
+      <div class="finch-card">
+        <div class="finch-island">Santa Cruz</div>
+        <div class="finch-species">Certhidea olivacea</div>
+        <div class="finch-beak">Green warbler finch — thin insectivore beak, most warbler-like</div>
+      </div>
+      <div class="finch-card">
+        <div class="finch-island">Multiple</div>
+        <div class="finch-species">Geospiza fuliginosa</div>
+        <div class="finch-beak">Small ground finch — small beak for tiny soft seeds</div>
+      </div>
+    </div>
+    <div class="fitness-eq">
+      <div class="fitness-item">All descended from <span>one ancestor</span> ~2–3 million years ago</div>
+      <div class="fitness-item"><span>13 species</span> from one colonising population</div>
+      <div class="fitness-item">Beak shape varies by <span>island &amp; food source</span></div>
+      <div class="fitness-item">Classic example of <span>adaptive radiation</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LIMITATIONS ═══ -->
+<div class="limits-section reveal">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="section-label" style="margin-bottom: 12px;">05 &nbsp; Limitations &amp; Blind Spots</div>
+    <h2 class="section-title">Where Even<br>Darwin Stumbled</h2>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Darwin had no mechanism for heredity — he knew variation existed and was inherited, but had no idea how. He proposed "pangenesis" — that cells shed particles called gemmules that migrate to the gonads — a hypothesis that was completely wrong and was disproved in his lifetime by Galton's blood transfusion experiments.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> He worried deeply about blending inheritance — the reasonable Victorian assumption that offspring traits are the average of their parents', which would erode variation and make natural selection impossible. Mendel's particulate genetics (published 1866, rediscovered 1900) solved this problem, but Darwin never read Mendel and died unaware of the solution.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His theory of sexual selection was largely ignored or mocked for a century — the idea that female choice could drive male evolution seemed to many scientists anthropomorphic and implausible. It was vindicated only by the mathematical work of Fisher (1930) and the experimental work of behavioural ecologists from the 1970s onward.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> Darwin underestimated the role of genetic drift — random changes in allele frequency in small populations — as an evolutionary force independent of selection. This was formalised by Sewall Wright in the 1930s and shown to be crucial in small, isolated populations exactly like those Darwin studied on the Galápagos.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-text"><span class="error">⚠</span> His view of evolution was gradualist — <em>natura non facit saltus</em>, "nature makes no leaps" — and he struggled with the fossil record's apparent gaps and the sudden appearance of major body plans. Punctuated equilibrium (Gould &amp; Eldredge, 1972) later showed that evolution can proceed in rapid bursts separated by long stasis, partly reconciling the fossil record with Darwinian theory.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ BOOKS ═══ -->
+  <section class="reveal">
+    <div class="section-label">06 &nbsp; Further Reading</div>
+    <h2 class="section-title">Go Deeper</h2>
+    <div class="books-grid">
+      <a class="book-card" href="https://archive.org/details/onoriginofspecie00darwuoft" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">On the Origin of Species</div>
+        <div class="book-arrow">By Darwin himself →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Voyage-Beagle-Charles-Darwin/dp/0140432688" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">The Voyage of the Beagle</div>
+        <div class="book-arrow">By Darwin himself →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Selfish-Gene-Anniversary-Landmark-Science/dp/0198788606" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">The Selfish Gene</div>
+        <div class="book-arrow">Richard Dawkins →</div>
+      </a>
+      <a class="book-card" href="https://www.amazon.com/Beak-Finch-Story-Evolution-Time/dp/0679733922" target="_blank" rel="noopener">
+        <span class="book-icon"></span>
+        <div class="book-title">The Beak of the Finch</div>
+        <div class="book-arrow">Jonathan Weiner →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-quote">"There is grandeur in this view of life, with its several powers, having been originally breathed into a few forms or into one."</div>
+  <div>Charles Darwin &nbsp;·&nbsp; 1809–1882 &nbsp;·&nbsp; On the Origin of Species, 1859 &nbsp;·&nbsp; Fellow of the Royal Society</div>
+  <div class="footer-home">
+    <a href="/">Back to Home</a>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(r => observer.observe(r));
+
+  document.querySelectorAll('.formula-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+</script>
+</body>
+</html>
